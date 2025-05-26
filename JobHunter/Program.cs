@@ -1,4 +1,6 @@
 using JobHunter.Data;
+using JobHunter.Models;
+using JobHunter.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,9 +18,12 @@ namespace JobHunter
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddTransient<IResumeRepository, ResumeRepository>();
+            builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 
             var app = builder.Build();
 

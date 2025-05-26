@@ -32,6 +32,8 @@ namespace JobHunter.Models
         public List<Certificate> Certificates { get; set; }
 
         [Required(ErrorMessage = "User is required")]
+
+        [ForeignKey("EndUserId")]
         public EndUser EndUser { get; set; }
     }
 }

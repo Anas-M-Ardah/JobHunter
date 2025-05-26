@@ -1,0 +1,144 @@
+﻿@model JobHunter.DTOs.PortfolioCreateEditDTO
+@using Microsoft.AspNetCore.Identity
+@* Replace 'User' with your actual Identity User class if it's different (e.g., ApplicationUser). *@
+@inject UserManager<User> UserManager
+
+@{
+    ViewData["Title"] = "Create Portfolio";
+    var currentUser = await UserManager.GetUserAsync(User);
+    var currentUserIdString = "";
+
+    if (currentUser != null)
+    {
+        currentUserIdString = currentUser.Id.ToString();
+    }
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    @if (!string.IsNullOrEmpty(currentUserIdString))
+    {
+        <input type="hidden" asp-for="EndUserId" value="@currentUserIdString" />
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            User not logged in or user ID could not be determined. Please log in to create a portfolio.
+        </div>
+    }
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Personal Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Major" class="control-label"></label>
+                        <input asp-for="Major" class="form-control" />
+                        <span asp-validation-for="Major" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" placeholder="e.g., Software Engineer, Senior Developer" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group mb-3">
+                <label asp-for="Bio" class="control-label"></label>
+                <textarea asp-for="Bio" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Bio" class="text-danger"></span>
+                <small class="form-text text-muted">A brief summary about yourself.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Portfolio Details</h5>
+        </div>
+        <div class="card-body">
+            <div class="form-group mb-3">
+                <label asp-for="PersonalImage" class="control-label"></label>
+                <input asp-for="PersonalImage" class="form-control" placeholder="https://example.com/path/to/your-image.jpg" />
+                <span asp-validation-for="PersonalImage" class="text-danger"></span>
+                <small class="form-text text-muted">Provide a direct URL to your profile image (e.g., ending in .jpg, .png).</small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Services" class="control-label"></label>
+                <textarea asp-for="Services" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Services" class="text-danger"></span>
+                <small class="form-text text-muted">Describe the services you offer. You can list multiple services, perhaps one per line.</small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Projects" class="control-label"></label>
+                <textarea asp-for="Projects" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Projects" class="text-danger"></span>
+                <small class="form-text text-muted">Detail your key projects. Include descriptions, technologies used, and links if applicable.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt-4">
+        <button type="submit" class="btn btn-primary" @(string.IsNullOrEmpty(currentUserIdString) ? "disabled" : "")>Create Portfolio</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

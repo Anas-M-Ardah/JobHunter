@@ -39,5 +39,7 @@ namespace JobHunter.Models
         [StringLength(500, ErrorMessage = "Project link cannot exceed 500 characters")]
         [DisplayName("Project Link")]
         public string ProjectLink { get; set; }
+
+        //TODO: Add Project Attachments
     }
 }

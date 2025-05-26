@@ -1,0 +1,180 @@
+﻿@model JobHunter.DTOs.ResumeCreateEditDTO
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+
+@{
+    ViewData["Title"] = "Create Resume";
+    var currentUser = await UserManager.GetUserAsync(User);
+}
+
+<h1>Create Resume</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="EndUserId" value="@currentUser.Id" />
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Personal Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="SecondName" class="control-label"></label>
+                        <input asp-for="SecondName" class="form-control" />
+                        <span asp-validation-for="SecondName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="ThirdName" class="control-label"></label>
+                        <input asp-for="ThirdName" class="form-control" />
+                        <span asp-validation-for="ThirdName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DateOfBirth" class="control-label"></label>
+                        <input asp-for="DateOfBirth" class="form-control" type="date" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="Major" class="control-label"></label>
+                <input asp-for="Major" class="form-control" />
+                <span asp-validation-for="Major" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="Bio" class="control-label"></label>
+                <textarea asp-for="Bio" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Bio" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Online Profiles</h5>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label asp-for="GitHubLink" class="control-label"></label>
+                <input asp-for="GitHubLink" class="form-control" />
+                <span asp-validation-for="GitHubLink" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="LinkedInLink" class="control-label"></label>
+                <input asp-for="LinkedInLink" class="form-control" />
+                <span asp-validation-for="LinkedInLink" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="PortfolioLink" class="control-label"></label>
+                <input asp-for="PortfolioLink" class="form-control" />
+                <span asp-validation-for="PortfolioLink" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Resume Details</h5>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label asp-for="Educations" class="control-label"></label>
+                <textarea asp-for="Educations" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Educations" class="text-danger"></span>
+                <small class="form-text text-muted">Enter your educational background, including degrees, institutions, and graduation dates.</small>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="Experiences" class="control-label"></label>
+                <textarea asp-for="Experiences" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Experiences" class="text-danger"></span>
+                <small class="form-text text-muted">List your work experience, including job titles, companies, dates, and responsibilities.</small>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="Skills" class="control-label"></label>
+                <textarea asp-for="Skills" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Skills" class="text-danger"></span>
+                <small class="form-text text-muted">List your technical and professional skills.</small>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="Languages" class="control-label"></label>
+                <textarea asp-for="Languages" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="Languages" class="text-danger"></span>
+                <small class="form-text text-muted">List languages you speak and your proficiency level.</small>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="Certificates" class="control-label"></label>
+                <textarea asp-for="Certificates" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Certificates" class="text-danger"></span>
+                <small class="form-text text-muted">List relevant certifications, including name, issuing organization, and date.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt-4">
+        <button type="submit" class="btn btn-primary">Create Resume</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
