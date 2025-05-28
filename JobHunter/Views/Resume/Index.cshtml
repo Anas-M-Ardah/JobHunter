@@ -2,66 +2,174 @@
 
 @{
     ViewData["Title"] = "My Resumes";
+    Layout = "_DashBoard";
 }
 
-<div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>My Resumes</h1>
-        <a asp-action="Create" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Create New Resume
-        </a>
-    </div>
 
-    @if (!Model.Any())
-    {
-        <div class="alert alert-info">
-            <p class="mb-0">You haven't created any resumes yet. Click the "Create New Resume" button to get started.</p>
-        </div>
-    }
-    else
-    {
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead class="table-light">
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
-                        <th>@Html.DisplayNameFor(model => model.LastName)</th>
-                        <th>@Html.DisplayNameFor(model => model.Title)</th>
-                        <th>@Html.DisplayNameFor(model => model.UpdatedAt)</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-                            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                            <td>@Html.DisplayFor(modelItem => item.UpdatedAt)</td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <a asp-action="Details" asp-route-id="@item.ResumeId" class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-eye"></i> View
-                                    </a>
-                                    <a asp-action="Edit" asp-route-resumeId="@item.ResumeId" class="btn btn-sm btn-outline-secondary">
-                                        <i class="bi bi-pencil"></i> Edit
-                                    </a>
-                                    <a asp-action="Delete" asp-route-id="@item.ResumeId" class="btn btn-sm btn-outline-danger">
-                                        <i class="bi bi-trash"></i> Delete
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    }
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">My Resumes</h1>
+    <a asp-action="Create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Create New Resume
+    </a>
 </div>
 
-@section Scripts {
-    <script>
-        // Optional: Add any JavaScript needed for the index page
-    </script>
+@if (!Model.Any())
+{
+    <!-- Empty State Card -->
+    <div class="card shadow mb-4">
+        <div class="card-body text-center py-5">
+            <i class="fas fa-file-alt fa-3x text-gray-300 mb-3"></i>
+            <p class="mb-3 text-gray-500">You haven't created any resumes yet.</p>
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus-circle"></i> Create Your First Resume
+            </a>
+        </div>
+    </div>
 }
+else
+{
+    <!-- DataTables Card -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Resume List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="resumeTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Title</th>
+                            <th>Updated At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Title</th>
+                            <th>Updated At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.FirstName</td>
+                                <td>@item.LastName</td>
+                                <td>@item.Title</td>
+                                <td data-order="@item.UpdatedAt.Ticks">@item.UpdatedAt.ToString("yyyy/MM/dd HH:mm")</td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.ResumeId"
+                                       class="btn btn-info btn-circle btn-sm"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="View Resume">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-resumeId="@item.ResumeId"
+                                       class="btn btn-warning btn-circle btn-sm"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Edit Resume">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.ResumeId"
+                                       class="btn btn-danger btn-circle btn-sm delete-btn"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Delete Resume"
+                                       data-resume-name="@item.FirstName @item.LastName">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+
+
+<!-- Initialize DataTable with all features -->
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable
+        var table = $('#resumeTable').DataTable({
+            // Default ordering by Updated At column (descending - newest first)
+            "order": [[3, "desc"]],
+
+            // Number of rows per page
+            "pageLength": 10,
+
+            // Options for page length
+            "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+
+            // Column specific options
+            "columnDefs": [
+                {
+                    "orderable": false,  // Disable ordering
+                    "targets": 4         // Actions column (5th column, 0-indexed)
+                },
+                {
+                    "width": "15%",      // Set width for actions column
+                    "targets": 4
+                }
+            ],
+
+            // Language customization
+            "language": {
+                "search": "Search resumes:",
+                "lengthMenu": "Show _MENU_ resumes per page",
+                "info": "Showing _START_ to _END_ of _TOTAL_ resumes",
+                "infoEmpty": "No resumes found",
+                "infoFiltered": "(filtered from _MAX_ total resumes)",
+                "paginate": {
+                    "first": "First",
+                    "last": "Last",
+                    "next": "Next",
+                    "previous": "Previous"
+                },
+                "emptyTable": "No resumes available"
+            },
+
+            // Enable state saving (remembers search, pagination, etc.)
+            "stateSave": true,
+
+            // Responsive design
+            "responsive": true,
+
+            // DOM positioning (optional - for custom layout)
+            "dom": '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
+                   '<"row"<"col-sm-12"tr>>' +
+                   '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>'
+        });
+
+        // Initialize tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Handle delete confirmation
+        $('.delete-btn').on('click', function(e) {
+            e.preventDefault();
+            var deleteUrl = $(this).attr('href');
+            var resumeName = $(this).data('resume-name');
+
+            // You can use a nice modal here instead of confirm
+            if (confirm('Are you sure you want to delete the resume for ' + resumeName + '?')) {
+                window.location.href = deleteUrl;
+            }
+        });
+
+        // Optional: Add export buttons
+        // new $.fn.dataTable.Buttons(table, {
+        //     buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        // });
+    });
+</script>

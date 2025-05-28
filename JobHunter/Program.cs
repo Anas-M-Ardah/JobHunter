@@ -48,7 +48,7 @@ namespace JobHunter
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=LandingPage}/{action=Index}/{id?}");
             app.MapRazorPages();
 
             app.Run();
