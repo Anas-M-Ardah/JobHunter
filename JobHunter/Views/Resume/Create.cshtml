@@ -5,176 +5,262 @@
 @{
     ViewData["Title"] = "Create Resume";
     var currentUser = await UserManager.GetUserAsync(User);
+	Layout = "_DashBoard";
 }
 
-<h1>Create Resume</h1>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Create Resume</h1>
+    <a asp-action="Index" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+        <i class="fas fa-arrow-left fa-sm text-white-50"></i> Back to List
+    </a>
+</div>
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index">Resumes</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create New</li>
+    </ol>
+</nav>
 
 <form asp-action="Create" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
     <input type="hidden" asp-for="EndUserId" value="@currentUser.Id" />
 
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Personal Information</h5>
+    <!-- Personal Information Card -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <i class="fas fa-user"></i> Personal Information
+            </h6>
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-xl-4 col-md-6 mb-3">
                     <div class="form-group">
-                        <label asp-for="FirstName" class="control-label"></label>
-                        <input asp-for="FirstName" class="form-control" />
-                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                        <label asp-for="FirstName" class="control-label font-weight-bold small text-gray-800"></label>
+                        <input asp-for="FirstName" class="form-control form-control-user" placeholder="Enter first name..." />
+                        <span asp-validation-for="FirstName" class="text-danger small"></span>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-xl-4 col-md-6 mb-3">
                     <div class="form-group">
-                        <label asp-for="SecondName" class="control-label"></label>
-                        <input asp-for="SecondName" class="form-control" />
-                        <span asp-validation-for="SecondName" class="text-danger"></span>
+                        <label asp-for="SecondName" class="control-label font-weight-bold small text-gray-800"></label>
+                        <input asp-for="SecondName" class="form-control form-control-user" placeholder="Enter second name..." />
+                        <span asp-validation-for="SecondName" class="text-danger small"></span>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-xl-4 col-md-6 mb-3">
                     <div class="form-group">
-                        <label asp-for="ThirdName" class="control-label"></label>
-                        <input asp-for="ThirdName" class="form-control" />
-                        <span asp-validation-for="ThirdName" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="LastName" class="control-label"></label>
-                        <input asp-for="LastName" class="form-control" />
-                        <span asp-validation-for="LastName" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <label asp-for="ThirdName" class="control-label font-weight-bold small text-gray-800"></label>
+                        <input asp-for="ThirdName" class="form-control form-control-user" placeholder="Enter third name..." />
+                        <span asp-validation-for="ThirdName" class="text-danger small"></span>
                     </div>
                 </div>
             </div>
 
-            <div class="row mt-3">
-                <div class="col-md-6">
+            <div class="row">
+                <div class="col-xl-6 col-md-6 mb-3">
                     <div class="form-group">
-                        <label asp-for="DateOfBirth" class="control-label"></label>
-                        <input asp-for="DateOfBirth" class="form-control" type="date" />
-                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        <label asp-for="LastName" class="control-label font-weight-bold small text-gray-800"></label>
+                        <input asp-for="LastName" class="form-control form-control-user" placeholder="Enter last name..." />
+                        <span asp-validation-for="LastName" class="text-danger small"></span>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-xl-6 col-md-6 mb-3">
                     <div class="form-group">
-                        <label asp-for="PhoneNumber" class="control-label"></label>
-                        <input asp-for="PhoneNumber" class="form-control" />
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        <label asp-for="Email" class="control-label font-weight-bold small text-gray-800"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input asp-for="Email" class="form-control" placeholder="email@example.com" />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger small"></span>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group mt-3">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
+            <div class="row">
+                <div class="col-xl-6 col-md-6 mb-3">
+                    <div class="form-group">
+                        <label asp-for="DateOfBirth" class="control-label font-weight-bold small text-gray-800"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            </div>
+                            <input asp-for="DateOfBirth" class="form-control" type="date" />
+                        </div>
+                        <span asp-validation-for="DateOfBirth" class="text-danger small"></span>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 mb-3">
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="control-label font-weight-bold small text-gray-800"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            </div>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="+1 (555) 123-4567" />
+                        </div>
+                        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group mt-3">
-                <label asp-for="Major" class="control-label"></label>
-                <input asp-for="Major" class="form-control" />
-                <span asp-validation-for="Major" class="text-danger"></span>
+            <div class="form-group mb-3">
+                <label asp-for="Address" class="control-label font-weight-bold small text-gray-800"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    </div>
+                    <input asp-for="Address" class="form-control" placeholder="Enter your address..." />
+                </div>
+                <span asp-validation-for="Address" class="text-danger small"></span>
             </div>
 
-            <div class="form-group mt-3">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+            <div class="row">
+                <div class="col-xl-6 col-md-6 mb-3">
+                    <div class="form-group">
+                        <label asp-for="Major" class="control-label font-weight-bold small text-gray-800"></label>
+                        <input asp-for="Major" class="form-control" placeholder="e.g., Computer Science" />
+                        <span asp-validation-for="Major" class="text-danger small"></span>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 mb-3">
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label font-weight-bold small text-gray-800"></label>
+                        <input asp-for="Title" class="form-control" placeholder="e.g., Software Developer" />
+                        <span asp-validation-for="Title" class="text-danger small"></span>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group mt-3">
-                <label asp-for="Bio" class="control-label"></label>
-                <textarea asp-for="Bio" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="Bio" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Bio" class="control-label font-weight-bold small text-gray-800"></label>
+                <textarea asp-for="Bio" class="form-control" rows="3" placeholder="Tell us about yourself..."></textarea>
+                <span asp-validation-for="Bio" class="text-danger small"></span>
             </div>
         </div>
     </div>
 
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Online Profiles</h5>
+    <!-- Online Profiles Card -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-info">
+                <i class="fas fa-globe"></i> Online Profiles
+            </h6>
         </div>
         <div class="card-body">
+            <div class="form-group mb-3">
+                <label asp-for="GitHubLink" class="control-label font-weight-bold small text-gray-800">
+                    <i class="fab fa-github"></i> GitHub Profile
+                </label>
+                <input asp-for="GitHubLink" class="form-control" placeholder="https://github.com/username" />
+                <span asp-validation-for="GitHubLink" class="text-danger small"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="LinkedInLink" class="control-label font-weight-bold small text-gray-800">
+                    <i class="fab fa-linkedin"></i> LinkedIn Profile
+                </label>
+                <input asp-for="LinkedInLink" class="form-control" placeholder="https://linkedin.com/in/username" />
+                <span asp-validation-for="LinkedInLink" class="text-danger small"></span>
+            </div>
             <div class="form-group">
-                <label asp-for="GitHubLink" class="control-label"></label>
-                <input asp-for="GitHubLink" class="form-control" />
-                <span asp-validation-for="GitHubLink" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-3">
-                <label asp-for="LinkedInLink" class="control-label"></label>
-                <input asp-for="LinkedInLink" class="form-control" />
-                <span asp-validation-for="LinkedInLink" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-3">
-                <label asp-for="PortfolioLink" class="control-label"></label>
-                <input asp-for="PortfolioLink" class="form-control" />
-                <span asp-validation-for="PortfolioLink" class="text-danger"></span>
+                <label asp-for="PortfolioLink" class="control-label font-weight-bold small text-gray-800">
+                    <i class="fas fa-briefcase"></i> Portfolio Website
+                </label>
+                <input asp-for="PortfolioLink" class="form-control" placeholder="https://yourportfolio.com" />
+                <span asp-validation-for="PortfolioLink" class="text-danger small"></span>
             </div>
         </div>
     </div>
 
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Resume Details</h5>
+    <!-- Resume Details Card -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-success">
+                <i class="fas fa-file-alt"></i> Resume Details
+            </h6>
         </div>
         <div class="card-body">
+            <div class="form-group mb-4">
+                <label asp-for="Educations" class="control-label font-weight-bold small text-gray-800">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </label>
+                <textarea asp-for="Educations" class="form-control" rows="4" placeholder="Bachelor of Science in Computer Science&#10;XYZ University, 2020-2024"></textarea>
+                <small class="form-text text-muted">
+                    <i class="fas fa-info-circle"></i> Enter your educational background, including degrees, institutions, and graduation dates.
+                </small>
+                <span asp-validation-for="Educations" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group mb-4">
+                <label asp-for="Experiences" class="control-label font-weight-bold small text-gray-800">
+                    <i class="fas fa-briefcase"></i> Work Experience
+                </label>
+                <textarea asp-for="Experiences" class="form-control" rows="4" placeholder="Software Developer&#10;ABC Company, 2022-Present&#10;• Developed web applications..."></textarea>
+                <small class="form-text text-muted">
+                    <i class="fas fa-info-circle"></i> List your work experience, including job titles, companies, dates, and responsibilities.
+                </small>
+                <span asp-validation-for="Experiences" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group mb-4">
+                <label asp-for="Skills" class="control-label font-weight-bold small text-gray-800">
+                    <i class="fas fa-tools"></i> Skills
+                </label>
+                <textarea asp-for="Skills" class="form-control" rows="3" placeholder="Programming: C#, JavaScript, Python&#10;Frameworks: ASP.NET Core, React&#10;Databases: SQL Server, MongoDB"></textarea>
+                <small class="form-text text-muted">
+                    <i class="fas fa-info-circle"></i> List your technical and professional skills.
+                </small>
+                <span asp-validation-for="Skills" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group mb-4">
+                <label asp-for="Languages" class="control-label font-weight-bold small text-gray-800">
+                    <i class="fas fa-language"></i> Languages
+                </label>
+                <textarea asp-for="Languages" class="form-control" rows="2" placeholder="English - Native&#10;Spanish - Intermediate"></textarea>
+                <small class="form-text text-muted">
+                    <i class="fas fa-info-circle"></i> List languages you speak and your proficiency level.
+                </small>
+                <span asp-validation-for="Languages" class="text-danger small"></span>
+            </div>
+
             <div class="form-group">
-                <label asp-for="Educations" class="control-label"></label>
-                <textarea asp-for="Educations" class="form-control" rows="4"></textarea>
-                <span asp-validation-for="Educations" class="text-danger"></span>
-                <small class="form-text text-muted">Enter your educational background, including degrees, institutions, and graduation dates.</small>
-            </div>
-
-            <div class="form-group mt-3">
-                <label asp-for="Experiences" class="control-label"></label>
-                <textarea asp-for="Experiences" class="form-control" rows="4"></textarea>
-                <span asp-validation-for="Experiences" class="text-danger"></span>
-                <small class="form-text text-muted">List your work experience, including job titles, companies, dates, and responsibilities.</small>
-            </div>
-
-            <div class="form-group mt-3">
-                <label asp-for="Skills" class="control-label"></label>
-                <textarea asp-for="Skills" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="Skills" class="text-danger"></span>
-                <small class="form-text text-muted">List your technical and professional skills.</small>
-            </div>
-
-            <div class="form-group mt-3">
-                <label asp-for="Languages" class="control-label"></label>
-                <textarea asp-for="Languages" class="form-control" rows="2"></textarea>
-                <span asp-validation-for="Languages" class="text-danger"></span>
-                <small class="form-text text-muted">List languages you speak and your proficiency level.</small>
-            </div>
-
-            <div class="form-group mt-3">
-                <label asp-for="Certificates" class="control-label"></label>
-                <textarea asp-for="Certificates" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="Certificates" class="text-danger"></span>
-                <small class="form-text text-muted">List relevant certifications, including name, issuing organization, and date.</small>
+                <label asp-for="Certificates" class="control-label font-weight-bold small text-gray-800">
+                    <i class="fas fa-certificate"></i> Certifications
+                </label>
+                <textarea asp-for="Certificates" class="form-control" rows="3" placeholder="Microsoft Certified: Azure Developer Associate&#10;Issued: March 2023"></textarea>
+                <small class="form-text text-muted">
+                    <i class="fas fa-info-circle"></i> List relevant certifications, including name, issuing organization, and date.
+                </small>
+                <span asp-validation-for="Certificates" class="text-danger small"></span>
             </div>
         </div>
     </div>
 
-    <div class="form-group mt-4">
-        <button type="submit" class="btn btn-primary">Create Resume</button>
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    <!-- Form Actions -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 text-right">
+                    <a asp-action="Index" class="btn btn-secondary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-arrow-left"></i>
+                        </span>
+                        <span class="text">Cancel</span>
+                    </a>
+                    <button type="submit" class="btn btn-primary btn-icon-split ml-2">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-save"></i>
+                        </span>
+                        <span class="text">Create Resume</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

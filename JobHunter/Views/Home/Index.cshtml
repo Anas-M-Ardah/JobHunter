@@ -1,4 +1,403 @@
 ﻿@{
-	Layout = "_Dashboard";
+    Layout = "_Dashboard";
+    ViewData["Title"] = "Home - AI Resume & Portfolio Builder";
 }
 
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Welcome to Career AI</h1>
+    <div>
+        <a asp-controller="Resume" asp-action="Create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Create Resume
+        </a>
+        <a asp-controller="Portfolio" asp-action="Create" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm ml-2">
+            <i class="fas fa-briefcase fa-sm text-white-50"></i> Create Portfolio
+        </a>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="card shadow mb-4 border-left-primary">
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h2 class="h4 font-weight-bold text-primary mb-3">
+                    <i class="fas fa-robot text-primary"></i> Build Your Career with AI Power
+                </h2>
+                <p class="lead text-gray-700 mb-4">
+                    Create professional resumes and stunning portfolios in minutes with our advanced AI technology.
+                    Stand out from the crowd and land your dream job with personalized, ATS-friendly documents.
+                </p>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <a asp-controller="Resume" asp-action="Create" class="btn btn-primary btn-lg btn-block">
+                            <i class="fas fa-file-alt mr-2"></i> Start Building Resume
+                        </a>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <a asp-controller="Portfolio" asp-action="Create" class="btn btn-success btn-lg btn-block">
+                            <i class="fas fa-briefcase mr-2"></i> Create Portfolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="text-center">
+                    <i class="fas fa-magic fa-5x text-primary mb-3"></i>
+                    <h5 class="text-gray-800">AI-Powered Creation</h5>
+                    <p class="text-muted">Smart suggestions and optimizations</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row - Statistics -->
+<div class="row">
+    <!-- Users Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Active Users
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">12,847</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resumes Created Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Resumes Created
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">24,592</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolios Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Portfolios Built
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">8,934</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Rate Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Job Success Rate
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">89%</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-trophy fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row - Features -->
+<div class="row">
+    <!-- AI Features Card -->
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <i class="fas fa-brain"></i> AI-Powered Features
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                        <div>
+                            <i class="fas fa-check-circle text-success mr-2"></i>
+                            <strong>Smart Content Suggestions</strong>
+                            <p class="mb-0 small text-muted">AI analyzes your profile and suggests relevant content</p>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                        <div>
+                            <i class="fas fa-check-circle text-success mr-2"></i>
+                            <strong>ATS Optimization</strong>
+                            <p class="mb-0 small text-muted">Automatically optimized for Applicant Tracking Systems</p>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                        <div>
+                            <i class="fas fa-check-circle text-success mr-2"></i>
+                            <strong>Industry Templates</strong>
+                            <p class="mb-0 small text-muted">Professional templates tailored to your industry</p>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center border-0">
+                        <div>
+                            <i class="fas fa-check-circle text-success mr-2"></i>
+                            <strong>Real-time Feedback</strong>
+                            <p class="mb-0 small text-muted">Get instant suggestions for improvements</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions Card -->
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-success">
+                    <i class="fas fa-rocket"></i> Quick Actions
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <a asp-controller="Resume" asp-action="Create" class="btn btn-outline-primary btn-block">
+                            <i class="fas fa-plus-circle mr-2"></i>
+                            New Resume
+                        </a>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <a asp-controller="Portfolio" asp-action="Create" class="btn btn-outline-success btn-block">
+                            <i class="fas fa-briefcase mr-2"></i>
+                            New Portfolio
+                        </a>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <a asp-controller="Resume" asp-action="Index" class="btn btn-outline-info btn-block">
+                            <i class="fas fa-list mr-2"></i>
+                            My Resumes
+                        </a>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <a asp-controller="Templates" asp-action="Index" class="btn btn-outline-warning btn-block">
+                            <i class="fas fa-palette mr-2"></i>
+                            Browse Templates
+                        </a>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <h6 class="font-weight-bold text-gray-800 mb-3">Need Help Getting Started?</h6>
+                    <a href="#" class="btn btn-sm btn-info mr-2">
+                        <i class="fas fa-play mr-1"></i> Watch Tutorial
+                    </a>
+                    <a href="#" class="btn btn-sm btn-secondary">
+                        <i class="fas fa-question-circle mr-1"></i> Help Center
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row - Recent Activity & Tips -->
+<div class="row">
+    <!-- Recent Activity -->
+    <div class="col-lg-8 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <i class="fas fa-clock"></i> Recent Activity
+                </h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                         aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Actions:</div>
+                        <a class="dropdown-item" href="#">View All</a>
+                        <a class="dropdown-item" href="#">Clear History</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-success"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Resume "Software Developer" created</h6>
+                            <p class="timeline-text">Your new resume has been successfully generated with AI optimization.</p>
+                            <span class="timeline-date">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-info"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Portfolio updated</h6>
+                            <p class="timeline-text">Added new project: "E-commerce Web Application"</p>
+                            <span class="timeline-date">1 day ago</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-warning"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Template downloaded</h6>
+                            <p class="timeline-text">Downloaded "Modern Professional" template</p>
+                            <span class="timeline-date">3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pro Tips -->
+    <div class="col-lg-4 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-warning">
+                    <i class="fas fa-lightbulb"></i> Pro Tips
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-light" role="alert">
+                    <i class="fas fa-star text-warning mr-2"></i>
+                    <strong>Tip of the Day:</strong> Use action verbs like "developed," "managed," and "implemented" to make your resume more impactful.
+                </div>
+
+                <h6 class="font-weight-bold text-gray-800 mb-3">Latest Features:</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <span class="badge badge-success mr-2">NEW</span>
+                        AI-powered skill recommendations
+                    </li>
+                    <li class="mb-2">
+                        <span class="badge badge-info mr-2">UPDATED</span>
+                        Enhanced portfolio templates
+                    </li>
+                    <li class="mb-2">
+                        <span class="badge badge-warning mr-2">BETA</span>
+                        LinkedIn profile import
+                    </li>
+                </ul>
+
+                <div class="text-center mt-4">
+                    <a href="#" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-bell mr-1"></i> Subscribe to Updates
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add some interactive elements
+        $(document).ready(function() {
+            // Animate counters
+            $('.h5').each(function() {
+                var $this = $(this);
+                var countTo = parseInt($this.text().replace(/,/g, ''));
+
+                if (!isNaN(countTo)) {
+                    $({ countNum: 0 }).animate({
+                        countNum: countTo
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function() {
+                            $this.text(Math.floor(this.countNum).toLocaleString());
+                        },
+                        complete: function() {
+                            $this.text(countTo.toLocaleString());
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -35px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 20px;
+            height: calc(100% + 10px);
+            width: 4px;
+            background: #e3e6f0;
+        }
+
+        .timeline-item:last-child:before {
+            display: none;
+        }
+
+        .timeline-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #5a5c69;
+            margin-bottom: 5px;
+        }
+
+        .timeline-text {
+            font-size: 13px;
+            color: #858796;
+            margin-bottom: 5px;
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: #858796;
+        }
+    </style>
+}

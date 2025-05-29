@@ -3,80 +3,134 @@
 
 @{
     ViewData["Title"] = "Log in";
+    Layout = "_NewLayout";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label asp-for="Input.Email" class="form-label">Email</label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label">Password</label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="checkbox mb-3">
-                    <label asp-for="Input.RememberMe" class="form-label">
-                        <input class="form-check-input" asp-for="Input.RememberMe" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
-                    </label>
-                </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                <div>
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to log in.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card border-0 shadow overflow-hidden">
+                    <div class="row g-0">
+
+                        <!-- Left Side - Welcome Section -->
+                        <div class="col-md-5 bg-primary text-white d-flex align-items-center">
+                            <div class="p-4 text-center w-100">
+                                <div class="mb-3">
+                                    <i class="bi bi-briefcase-fill fs-1"></i>
+                                </div>
+                                <h4 class="fw-bold mb-2">Welcome to CareerBoost</h4>
+                                <p class="mb-3 small">Your AI-powered career companion</p>
+                                <div class="text-start small">
+                                    <div class="mb-2 d-flex align-items-center">
+                                        <i class="bi bi-check-circle-fill me-2"></i>
+                                        <span>Build professional resumes in minutes</span>
+                                    </div>
+                                    <div class="mb-2 d-flex align-items-center">
+                                        <i class="bi bi-check-circle-fill me-2"></i>
+                                        <span>AI-optimized for ATS systems</span>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-check-circle-fill me-2"></i>
+                                        <span>Track your job applications</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                }
-            }
-        </section>
+
+                        <!-- Right Side - Login Form -->
+                        <div class="col-md-7 d-flex align-items-center">
+                            <div class="p-4 w-100">
+                                <div class="text-center mb-3">
+                                    <h3 class="fw-bold text-dark">Sign In</h3>
+                                    <p class="text-muted small">Enter your credentials to access your account</p>
+                                </div>
+
+                                <form id="account" method="post">
+                                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                                    <!-- Email Input -->
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light border-end-0">
+                                                <i class="bi bi-envelope text-muted"></i>
+                                            </span>
+                                            <input asp-for="Input.Email"
+                                                   class="form-control border-start-0 ps-0"
+                                                   placeholder="Email address"
+                                                   autocomplete="username"
+                                                   aria-required="true" />
+                                        </div>
+                                        <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                                    </div>
+
+                                    <!-- Password Input -->
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light border-end-0">
+                                                <i class="bi bi-lock text-muted"></i>
+                                            </span>
+                                            <input asp-for="Input.Password"
+                                                   class="form-control border-start-0 ps-0"
+                                                   placeholder="Password"
+                                                   autocomplete="current-password"
+                                                   aria-required="true" />
+                                        </div>
+                                        <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                                    </div>
+
+                                    <!-- Remember Me & Forgot Password -->
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                                            <label asp-for="Input.RememberMe" class="form-check-label text-muted small">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                        <a asp-page="./ForgotPassword" class="text-decoration-none small">
+                                            Forgot password?
+                                        </a>
+                                    </div>
+
+                                    <!-- Sign In Button -->
+                                    <div class="d-grid">
+                                        <button id="login-submit" type="submit" class="btn btn-primary">
+                                            Sign In
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <!-- Divider -->
+                                <div class="text-center my-3">
+                                    <small class="text-muted">OR</small>
+                                </div>
+
+                                <!-- Create Account -->
+                                <div class="text-center">
+                                    <p class="text-muted small mb-2">Don't have an account?</p>
+                                    <a asp-page="./Register"
+                                       asp-route-returnUrl="@Model.ReturnUrl"
+                                       class="btn btn-outline-primary btn-sm">
+                                        Create Free Account
+                                    </a>
+                                </div>
+
+                                <!-- Resend Confirmation -->
+                                <div class="text-center mt-2">
+                                    <a asp-page="./ResendEmailConfirmation"
+                                       class="text-decoration-none text-muted small">
+                                        <i class="bi bi-envelope me-1 small"></i>Resend email confirmation
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

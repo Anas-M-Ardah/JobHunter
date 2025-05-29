@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Resume\View.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Views\Resume\View.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\assets\img\job.png" />
   </ItemGroup>
 
