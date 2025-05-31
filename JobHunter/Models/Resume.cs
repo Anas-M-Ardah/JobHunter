@@ -35,5 +35,7 @@ namespace JobHunter.Models
 
         [ForeignKey("EndUserId")]
         public EndUser EndUser { get; set; }
+
+        //add is deleted flag
     }
 }

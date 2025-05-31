@@ -40,6 +40,9 @@ namespace JobHunter.Models
         [DisplayName("Project Link")]
         public string ProjectLink { get; set; }
 
-        //TODO: Add Project Attachments
+        //TODO: Add Project Attachments //documenation,
+        public string ProjectAttachmentsName { get; set; }
+        public string ProjectAttachmentsContentType { get; set; }
+        public byte[] ProjectAttachments { get; set; }
     }
 }

@@ -28,14 +28,32 @@ namespace JobHunter.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(PortfolioCreateEditDTO portfolioCreateEditDTO)
+        public async Task<IActionResult> Create(PortfolioCreateEditDTO portfolioCreateEditDTO)
         {
             if (ModelState.IsValid)
             {
+                var user = await _userManager.GetUserAsync(User);
+                _portfolioRepository.CreatePortfolio(portfolioCreateEditDTO, user);
                 return RedirectToAction("Index");
             }
             else
             {
+                var errors = ModelState
+           .Where(x => x.Value.Errors.Count > 0)
+           .Select(x => new {
+               Field = x.Key,
+               Errors = x.Value.Errors.Select(e => e.ErrorMessage)
+           });
+
+                // Set breakpoint here or log the errors
+                foreach (var error in errors)
+                {
+                    Console.WriteLine($"Field: {error.Field}");
+                    foreach (var msg in error.Errors)
+                    {
+                        Console.WriteLine($"  Error: {msg}");
+                    }
+                }
                 return View(portfolioCreateEditDTO);
             }
         }
