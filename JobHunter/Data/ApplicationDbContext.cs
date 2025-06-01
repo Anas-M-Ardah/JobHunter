@@ -20,12 +20,31 @@ namespace JobHunter.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+           protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
+            base.OnModelCreating(modelBuilder);
 
+            // Configure Portfolio -> User relationship (One User has Many Portfolios)
+            modelBuilder.Entity<Portfolio>()
+                .HasOne(p => p.EndUser)
+                .WithMany(u => u.Portfolios)
+                .HasForeignKey(p => p.EndUserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
+            // Configure Service -> Portfolio relationship
+            modelBuilder.Entity<Service>()
+                .HasOne<Portfolio>()
+                .WithMany(p => p.Services)
+                .HasForeignKey(s => s.PortfolioId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Configure Project -> Portfolio relationship
+            modelBuilder.Entity<Project>()
+                .HasOne<Portfolio>()
+                .WithMany(p => p.Projects)
+                .HasForeignKey(proj => proj.PortfolioId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
-
     }
+
 }

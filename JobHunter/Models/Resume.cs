@@ -37,5 +37,6 @@ namespace JobHunter.Models
         public EndUser EndUser { get; set; }
 
         //add is deleted flag
+        public bool IsDeleted { get; set; } = false;
     }
 }

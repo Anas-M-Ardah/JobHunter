@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JobHunter.Models
 {
@@ -16,11 +17,7 @@ namespace JobHunter.Models
         public string PersonalImage { get; set; }
 
         public List<Service> Services { get; set; }
-
         public List<Project> Projects { get; set; }
-
-        [Required(ErrorMessage = "User is required")]
-        public EndUser EndUser { get; set; }
 
         [DataType(DataType.DateTime)]
         [DisplayName("Created Date")]
@@ -32,6 +29,12 @@ namespace JobHunter.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
 
-        
+        // Foreign Key to EndUser/User - Changed to string
+        [Required(ErrorMessage = "User Id is required")]
+        public string EndUserId { get; set; }
+
+        // Navigation Properties
+        [ForeignKey("EndUserId")]
+        public EndUser EndUser { get; set; }
     }
 }

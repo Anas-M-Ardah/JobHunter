@@ -1,0 +1,172 @@
+﻿@model IEnumerable<JobHunter.DTOs.PortfolioIndexDTO>
+
+@{
+    ViewData["Title"] = "My Portfolios";
+    Layout = "_DashBoard";
+}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">My Portfolios</h1>
+    <a asp-action="Create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Create New Portfolio
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <!-- Empty State Card -->
+    <div class="card shadow mb-4">
+        <div class="card-body text-center py-5">
+            <i class="fas fa-briefcase fa-3x text-gray-300 mb-3"></i>
+            <p class="mb-3 text-gray-500">You haven't created any portfolios yet.</p>
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus-circle"></i> Create Your First Portfolio
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    <!-- DataTables Card -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Portfolio List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="portfolioTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Professional Title</th>
+                            <th>Last Modified</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Professional Title</th>
+                            <th>Last Modified</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.FirstName</td>
+                                <td>@item.LastName</td>
+                                <td>@(item.Title ?? "Not specified")</td>
+                                <td data-order="@item.ModifiedDate.Ticks">@item.ModifiedDate.ToString("yyyy/MM/dd HH:mm")</td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.PortfolioId"
+                                       class="btn btn-info btn-circle btn-sm"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="View Portfolio">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-portfolioId="@item.PortfolioId"
+                                       class="btn btn-warning btn-circle btn-sm"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Edit Portfolio">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.PortfolioId"
+                                       class="btn btn-danger btn-circle btn-sm delete-btn"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Delete Portfolio"
+                                       data-portfolio-name="@item.FirstName @item.LastName">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Initialize DataTable with all features -->
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable
+        var table = $('#portfolioTable').DataTable({
+            // Default ordering by Last Modified column (descending - newest first)
+            "order": [[3, "desc"]],
+
+            // Number of rows per page
+            "pageLength": 10,
+
+            // Options for page length
+            "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+
+            // Column specific options
+            "columnDefs": [
+                {
+                    "orderable": false,  // Disable ordering
+                    "targets": 4         // Actions column (5th column, 0-indexed)
+                },
+                {
+                    "width": "15%",      // Set width for actions column
+                    "targets": 4
+                }
+            ],
+
+            // Language customization
+            "language": {
+                "search": "Search portfolios:",
+                "lengthMenu": "Show _MENU_ portfolios per page",
+                "info": "Showing _START_ to _END_ of _TOTAL_ portfolios",
+                "infoEmpty": "No portfolios found",
+                "infoFiltered": "(filtered from _MAX_ total portfolios)",
+                "paginate": {
+                    "first": "First",
+                    "last": "Last",
+                    "next": "Next",
+                    "previous": "Previous"
+                },
+                "emptyTable": "No portfolios available"
+            },
+
+            // Enable state saving (remembers search, pagination, etc.)
+            "stateSave": true,
+
+            // Responsive design
+            "responsive": true,
+
+            // DOM positioning (optional - for custom layout)
+            "dom": '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
+                   '<"row"<"col-sm-12"tr>>' +
+                   '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>'
+        });
+
+        // Initialize tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Handle delete confirmation
+        $('.delete-btn').on('click', function(e) {
+            e.preventDefault();
+            var deleteUrl = $(this).attr('href');
+            var portfolioName = $(this).data('portfolio-name');
+
+            // You can use a nice modal here instead of confirm
+            if (confirm('Are you sure you want to delete the portfolio for ' + portfolioName + '?')) {
+                window.location.href = deleteUrl;
+            }
+        });
+
+        // Optional: Add export buttons
+        // new $.fn.dataTable.Buttons(table, {
+        //     buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        // });
+    });
+</script>

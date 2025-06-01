@@ -2,7 +2,7 @@
 {
     public class EndUser : User
     {
-        List<Portfolio> Portfolios { get; set; }
-        List<Resume> Resumes { get; set; }
+        public ICollection<Portfolio> Portfolios { get; set; } = new List<Portfolio>();
+        public List<Resume> Resumes { get; set; }
     }
 }

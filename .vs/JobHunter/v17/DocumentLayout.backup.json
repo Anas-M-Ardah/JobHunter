@@ -3,48 +3,31 @@
   "WorkspaceRootPath": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\views\\portfolio\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\views\\portfolio\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-JobHunter-14c40390-2099-43ba-a8fc-b12971855521\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\dtos\\portfoliocreateeditdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\dtos\\portfoliocreateeditdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\controllers\\geminicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\controllers\\geminicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\services\\geminiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\services\\geminiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\services\\igeminiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\services\\igeminiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\repositories\\iportfoliorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\repositories\\iportfoliorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\controllers\\portfoliocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\controllers\\portfoliocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\dtos\\servicedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\dtos\\servicedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\dtos\\projectdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\dtos\\projectdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\models\\personalinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\models\\personalinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\repositories\\portfoliorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\repositories\\portfoliorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\models\\portfolio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\models\\portfolio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\models\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\models\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\models\\resume.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\models\\resume.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +37,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,143 +45,94 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProjectDTO.cs",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\DTOs\\ProjectDTO.cs",
-              "RelativeDocumentMoniker": "JobHunter\\DTOs\\ProjectDTO.cs",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\DTOs\\ProjectDTO.cs",
-              "RelativeToolTip": "JobHunter\\DTOs\\ProjectDTO.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAA1wCkAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T10:04:20.281Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\Portfolio\\Create.cshtml",
-              "RelativeDocumentMoniker": "JobHunter\\Views\\Portfolio\\Create.cshtml",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\Portfolio\\Create.cshtml",
-              "RelativeToolTip": "JobHunter\\Views\\Portfolio\\Create.cshtml",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAkwIYAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-31T09:28:04.676Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PortfolioRepository.cs",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Repositories\\PortfolioRepository.cs",
-              "RelativeDocumentMoniker": "JobHunter\\Repositories\\PortfolioRepository.cs",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Repositories\\PortfolioRepository.cs",
-              "RelativeToolTip": "JobHunter\\Repositories\\PortfolioRepository.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAswA8AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T18:44:52.644Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PersonalInfo.cs",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Models\\PersonalInfo.cs",
-              "RelativeDocumentMoniker": "JobHunter\\Models\\PersonalInfo.cs",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Models\\PersonalInfo.cs",
-              "RelativeToolTip": "JobHunter\\Models\\PersonalInfo.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAYwEwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T10:48:30.449Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PortfolioController.cs",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Controllers\\PortfolioController.cs",
-              "RelativeDocumentMoniker": "JobHunter\\Controllers\\PortfolioController.cs",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Controllers\\PortfolioController.cs",
-              "RelativeToolTip": "JobHunter\\Controllers\\PortfolioController.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAuwCIAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T18:45:04.088Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Project.cs",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Models\\Project.cs",
-              "RelativeDocumentMoniker": "JobHunter\\Models\\Project.cs",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Models\\Project.cs",
-              "RelativeToolTip": "JobHunter\\Models\\Project.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T19:49:25.074Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ServiceDTO.cs",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\DTOs\\ServiceDTO.cs",
-              "RelativeDocumentMoniker": "JobHunter\\DTOs\\ServiceDTO.cs",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\DTOs\\ServiceDTO.cs",
-              "RelativeToolTip": "JobHunter\\DTOs\\ServiceDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T17:30:15.756Z",
+              "Title": "secrets.json",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-JobHunter-14c40390-2099-43ba-a8fc-b12971855521\\secrets.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Users\\Lenovo\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-JobHunter-14c40390-2099-43ba-a8fc-b12971855521\\secrets.json",
+              "ToolTip": "C:\\Users\\Lenovo\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-JobHunter-14c40390-2099-43ba-a8fc-b12971855521\\secrets.json",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Users\\Lenovo\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-JobHunter-14c40390-2099-43ba-a8fc-b12971855521\\secrets.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-01T16:19:46.215Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PortfolioCreateEditDTO.cs",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\DTOs\\PortfolioCreateEditDTO.cs",
-              "RelativeDocumentMoniker": "JobHunter\\DTOs\\PortfolioCreateEditDTO.cs",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\DTOs\\PortfolioCreateEditDTO.cs",
-              "RelativeToolTip": "JobHunter\\DTOs\\PortfolioCreateEditDTO.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAA1wBEAAAAxAAAAAAAAAA==",
+              "Title": "GeminiController.cs",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Controllers\\GeminiController.cs",
+              "RelativeDocumentMoniker": "JobHunter\\Controllers\\GeminiController.cs",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Controllers\\GeminiController.cs",
+              "RelativeToolTip": "JobHunter\\Controllers\\GeminiController.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAiwAYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T18:17:07.207Z",
+              "WhenOpened": "2025-06-01T16:06:02.992Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Resume.cs",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Models\\Resume.cs",
-              "RelativeDocumentMoniker": "JobHunter\\Models\\Resume.cs",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Models\\Resume.cs",
-              "RelativeToolTip": "JobHunter\\Models\\Resume.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAArwCYAAAAdAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Program.cs",
+              "RelativeDocumentMoniker": "JobHunter\\Program.cs",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Program.cs",
+              "RelativeToolTip": "JobHunter\\Program.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA+wBsAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T09:11:54.794Z"
+              "WhenOpened": "2025-06-01T16:03:20.368Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Portfolio.cs",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Models\\Portfolio.cs",
-              "RelativeDocumentMoniker": "JobHunter\\Models\\Portfolio.cs",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Models\\Portfolio.cs",
-              "RelativeToolTip": "JobHunter\\Models\\Portfolio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "GeminiService.cs",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Services\\GeminiService.cs",
+              "RelativeDocumentMoniker": "JobHunter\\Services\\GeminiService.cs",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Services\\GeminiService.cs",
+              "RelativeToolTip": "JobHunter\\Services\\GeminiService.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAqwDUAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T10:48:28.591Z"
+              "WhenOpened": "2025-06-01T16:03:12.438Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Service.cs",
-              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Models\\Service.cs",
-              "RelativeDocumentMoniker": "JobHunter\\Models\\Service.cs",
-              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Models\\Service.cs",
-              "RelativeToolTip": "JobHunter\\Models\\Service.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAwwB8AAAABAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "IGeminiService.cs",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Services\\IGeminiService.cs",
+              "RelativeDocumentMoniker": "JobHunter\\Services\\IGeminiService.cs",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Services\\IGeminiService.cs",
+              "RelativeToolTip": "JobHunter\\Services\\IGeminiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T09:30:44.343Z"
+              "WhenOpened": "2025-06-01T16:02:45.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IPortfolioRepository.cs",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Repositories\\IPortfolioRepository.cs",
+              "RelativeDocumentMoniker": "JobHunter\\Repositories\\IPortfolioRepository.cs",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Repositories\\IPortfolioRepository.cs",
+              "RelativeToolTip": "JobHunter\\Repositories\\IPortfolioRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T11:24:50.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PortfolioController.cs",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Controllers\\PortfolioController.cs",
+              "RelativeDocumentMoniker": "JobHunter\\Controllers\\PortfolioController.cs",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Controllers\\PortfolioController.cs",
+              "RelativeToolTip": "JobHunter\\Controllers\\PortfolioController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAcwEAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T08:57:40.308Z",
+              "EditorCaption": ""
             }
           ]
         }

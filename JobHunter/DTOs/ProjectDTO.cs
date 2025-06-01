@@ -28,16 +28,16 @@ namespace JobHunter.DTOs
 
         [Required(ErrorMessage = "Start date is required")]
         [DisplayName("Start Date")]
-        public DateTime StartDate { get; set; }
+        public DateOnly StartDate { get; set; }
 
         [DisplayName("End Date")]
-        public DateTime? EndDate { get; set; }
+        public DateOnly? EndDate { get; set; }
 
         [Required(ErrorMessage = "Service association is required")]
         [DisplayName("Service Association")]
         public Guid ServiceId { get; set; }
 
-        [AllowNull]
+        [Required(ErrorMessage = "Project attachments are required")]
         [DisplayName("Project Attachments")]
         public IFormFile ProjectAttachments { get; set; }
 

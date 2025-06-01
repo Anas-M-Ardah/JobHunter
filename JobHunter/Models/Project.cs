@@ -44,5 +44,8 @@ namespace JobHunter.Models
         public string ProjectAttachmentsName { get; set; }
         public string ProjectAttachmentsContentType { get; set; }
         public byte[] ProjectAttachments { get; set; }
+
+        [ForeignKey("Portfolio")]
+        public Guid PortfolioId { get; set; }
     }
 }

@@ -17,9 +17,10 @@ namespace JobHunter.Controllers
         }
 
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var portfolios = await _portfolioRepository.GetAllPortfoliosByUserId(await _userManager.GetUserAsync(User));
+            return View(portfolios);
         }
 
         public IActionResult Create()
@@ -33,17 +34,18 @@ namespace JobHunter.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
-                _portfolioRepository.CreatePortfolio(portfolioCreateEditDTO, user);
+                await _portfolioRepository.CreatePortfolioAsync(portfolioCreateEditDTO, user);
                 return RedirectToAction("Index");
             }
             else
             {
                 var errors = ModelState
-           .Where(x => x.Value.Errors.Count > 0)
-           .Select(x => new {
-               Field = x.Key,
-               Errors = x.Value.Errors.Select(e => e.ErrorMessage)
-           });
+                   .Where(x => x.Value.Errors.Count > 0)
+                   .Select(x => new
+                   {
+                       Field = x.Key,
+                       Errors = x.Value.Errors.Select(e => e.ErrorMessage)
+                   });
 
                 // Set breakpoint here or log the errors
                 foreach (var error in errors)
@@ -56,6 +58,28 @@ namespace JobHunter.Controllers
                 }
                 return View(portfolioCreateEditDTO);
             }
+        }
+
+        public async Task<IActionResult> Edit(Guid portfolioId)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var portfolio = await _portfolioRepository.GetPortfolioById(portfolioId);
+            if (portfolio == null)
+            {
+                return NotFound();
+            }
+            return View(portfolio);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(PortfolioCreateEditDTO portfolioCreateEditDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                await _portfolioRepository.UpdatePortfolioAsync(portfolioCreateEditDTO, await _userManager.GetUserAsync(User));
+                return RedirectToAction("Index");
+            }
+            return View(portfolioCreateEditDTO);
         }
     }
 }

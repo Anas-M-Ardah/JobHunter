@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
 namespace JobHunter.Models
@@ -27,6 +28,13 @@ namespace JobHunter.Models
         public string ServiceImage { get; set; }
 
         [AllowNull]
-        public Project Project { get; set; }
+        [DisplayName("Project ID")]
+        [ForeignKey("Project")]
+        public Guid ProjectId { get; set; }
+
+        [Required(ErrorMessage = "Portfolio ID is required")]
+        [DisplayName("Portfolio ID")]
+        [ForeignKey("Portfolio")]
+        public Guid PortfolioId { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 using JobHunter.Data;
 using JobHunter.Models;
 using JobHunter.Repositories;
+using JobHunter.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,7 @@ namespace JobHunter
 
             builder.Services.AddTransient<IResumeRepository, ResumeRepository>();
             builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
+            builder.Services.AddTransient<IGeminiService,  GeminiService>();
 
             var app = builder.Build();
 

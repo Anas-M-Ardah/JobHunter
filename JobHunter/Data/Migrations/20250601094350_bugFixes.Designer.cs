@@ -4,6 +4,7 @@ using JobHunter.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobHunter.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250601094350_bugFixes")]
+    partial class bugFixes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,9 +192,8 @@ namespace JobHunter.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("EndUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("EndUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -246,8 +248,6 @@ namespace JobHunter.Data.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("PortfolioId");
-
-                    b.HasIndex("EndUserId");
 
                     b.ToTable("Portfolios");
                 });
@@ -397,7 +397,7 @@ namespace JobHunter.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PortfolioId")
+                    b.Property<Guid?>("PortfolioId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ProjectId")
@@ -705,17 +705,6 @@ namespace JobHunter.Data.Migrations
                         .HasForeignKey("ResumeId");
                 });
 
-            modelBuilder.Entity("JobHunter.Models.Portfolio", b =>
-                {
-                    b.HasOne("JobHunter.Models.EndUser", "EndUser")
-                        .WithMany("Portfolios")
-                        .HasForeignKey("EndUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EndUser");
-                });
-
             modelBuilder.Entity("JobHunter.Models.Project", b =>
                 {
                     b.HasOne("JobHunter.Models.Portfolio", null)
@@ -728,7 +717,7 @@ namespace JobHunter.Data.Migrations
             modelBuilder.Entity("JobHunter.Models.Resume", b =>
                 {
                     b.HasOne("JobHunter.Models.EndUser", "EndUser")
-                        .WithMany("Resumes")
+                        .WithMany()
                         .HasForeignKey("EndUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -740,9 +729,7 @@ namespace JobHunter.Data.Migrations
                 {
                     b.HasOne("JobHunter.Models.Portfolio", null)
                         .WithMany("Services")
-                        .HasForeignKey("PortfolioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PortfolioId");
                 });
 
             modelBuilder.Entity("JobHunter.Models.Skill", b =>
@@ -821,13 +808,6 @@ namespace JobHunter.Data.Migrations
                     b.Navigation("Languages");
 
                     b.Navigation("Skills");
-                });
-
-            modelBuilder.Entity("JobHunter.Models.EndUser", b =>
-                {
-                    b.Navigation("Portfolios");
-
-                    b.Navigation("Resumes");
                 });
 #pragma warning restore 612, 618
         }
