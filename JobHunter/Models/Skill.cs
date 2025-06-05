@@ -19,5 +19,6 @@ namespace JobHunter.Models
         [StringLength(50, ErrorMessage = "Skill type cannot exceed 50 characters")]
         [DisplayName("Category")]
         public string SkillType { get; set; }
+        public Guid ResumeId { get; internal set; }
     }
 }

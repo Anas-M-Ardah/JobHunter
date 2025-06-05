@@ -1,0 +1,144 @@
+﻿@model JobHunter.Models.User
+@{
+    ViewData["Title"] = "Account Settings";
+    Layout = "_DashBoard";
+}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Account Settings</h1>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Account Information Card -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Personal Information</h6>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { @class = "user" }))
+                {
+                    @Html.AntiForgeryToken()
+                    
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            @Html.LabelFor(m => m.FirstName, "First Name", new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-control-user", @placeholder = "First Name" })
+                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger small" })
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.LabelFor(m => m.LastName, "Last Name", new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-control-user", @placeholder = "Last Name" })
+                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger small" })
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, "Email Address", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-user", @placeholder = "Email Address", @type = "email" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger small" })
+                    </div>
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PhoneNumber, "Phone Number", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control form-control-user", @placeholder = "Phone Number" })
+                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <hr>
+                    
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.ActionLink("Change Password", "ChangePassword", "Account", null, new { @class = "btn btn-warning btn-user btn-block" })
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <!-- Account Summary Card -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Account Summary</h6>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-user-circle fa-5x text-gray-300"></i>
+                    </div>
+                    <h5 class="font-weight-bold">@Model.FirstName @Model.LastName</h5>
+                    <p class="text-muted">@Model.Email</p>
+                    @if (!string.IsNullOrEmpty(Model.PhoneNumber))
+                    {
+                        <p class="text-muted"><i class="fas fa-phone"></i> @Model.PhoneNumber</p>
+                    }
+                </div>
+                <hr>
+                <div class="small text-muted">
+                    <strong>Account Status:</strong> Active<br>
+                    <strong>Member Since:</strong> @DateTime.Now.ToString("MMMM yyyy")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success/Error Messages -->
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        // Auto-dismiss alerts after 5 seconds
+        setTimeout(function() {
+            $('.alert').fadeOut('slow');
+        }, 5000);
+
+        // Form validation feedback
+        $('form').on('submit', function() {
+            var isValid = true;
+            $('.form-control').each(function() {
+                if ($(this).hasClass('input-validation-error')) {
+                    isValid = false;
+                }
+            });
+            
+            if (!isValid) {
+                $('.alert-danger').remove();
+                $('<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+                  '<i class="fas fa-exclamation-triangle"></i> Please correct the errors below.' +
+                  '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                  '<span aria-hidden="true">&times;</span></button></div>').insertBefore('.card');
+                return false;
+            }
+        });
+    </script>
+}

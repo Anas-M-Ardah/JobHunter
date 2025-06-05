@@ -38,5 +38,12 @@ namespace JobHunter.Models
 
         //add is deleted flag
         public bool IsDeleted { get; set; } = false;
+
+        public string UserInputSkills { get; set; }
+        public string UserInputLanguages { get; set; }
+        public string UserInputExperiences { get; set; }
+        public string UserInputCertificates { get; set; }
+        public string UserInputEducation { get; set; }
+        public string UserInputBio { get; set; } 
     }
 }

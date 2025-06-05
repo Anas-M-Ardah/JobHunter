@@ -36,5 +36,6 @@ namespace JobHunter.Models
         [DataType(DataType.MultilineText)]
         [StringLength(2000, ErrorMessage = "Duties cannot exceed 2000 characters")]
         public string Duties { get; set; }
+        public Guid ResumeId { get; internal set; }
     }
 }

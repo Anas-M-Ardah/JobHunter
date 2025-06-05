@@ -18,5 +18,6 @@ namespace JobHunter.Models
         [StringLength(30, ErrorMessage = "Level description cannot exceed 30 characters")]
         [DisplayName("Proficiency Level")]
         public string Level { get; set; }
+        public Guid ResumeId { get; internal set; }
     }
 }

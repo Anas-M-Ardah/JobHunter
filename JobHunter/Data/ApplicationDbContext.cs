@@ -15,6 +15,7 @@ namespace JobHunter.Data
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

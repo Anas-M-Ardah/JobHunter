@@ -5,11 +5,12 @@ namespace JobHunter.Repositories
 {
     public interface IResumeRepository
     {
-        public bool CreateResume(DTOs.ResumeCreateEditDTO resumeCreateDTO, User user);
-        public bool UpdateResume(DTOs.ResumeCreateEditDTO resumeCreateDTO);
-        public Resume MapResumeDTOToResumeModel(DTOs.ResumeCreateEditDTO resumeCreateDTO, User user);
+        public Task<bool> CreateResume(DTOs.ResumeCreateEditDTO resumeCreateDTO, User user);
+        public Task<bool> UpdateResume(DTOs.ResumeCreateEditDTO resumeCreateDTO);
+        public Task<Resume> MapResumeDTOToResumeModel(DTOs.ResumeCreateEditDTO resumeCreateDTO, User user);
         public List<ResumeIndexDTO> GetAllResumesByUserId(string userId);
-
         public ResumeCreateEditDTO GetResumeById(Guid resumeId);
+        public Task<Resume> GetResumeByIdAsync(Guid resumeId);    
+        public Task<bool> DeleteResumeAsync(Guid resumeId);
     }
 }

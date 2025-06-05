@@ -1,1 +1,1043 @@
-﻿
+﻿@model JobHunter.Models.Resume
+
+@{
+    ViewData["Title"] = $"{Model.FirstName} {Model.LastName}";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: #f5f5f5;
+            font-size: 11pt;
+            padding: 20px;
+        }
+
+        .cv-container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            background: white;
+            padding: 0.75in;
+            min-height: 11in;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+            .cv-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: white;
+                border: 1px solid #ccc;
+                box-shadow: 2px 2px 4px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(255,255,255,0.8);
+                z-index: -1;
+            }
+
+        /* Editable Elements */
+        .editable {
+            border: 1px dashed transparent;
+            padding: 2px;
+            transition: all 0.3s ease;
+            min-height: 1.2em;
+            cursor: text;
+            outline: none;
+        }
+
+            .editable:hover {
+                border-color: #007bff;
+                background-color: rgba(0, 123, 255, 0.05);
+            }
+
+            .editable:focus {
+                border-color: #007bff;
+                background-color: rgba(0, 123, 255, 0.1);
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+            }
+
+            .editable[contenteditable="true"]:empty:before {
+                content: attr(data-placeholder);
+                color: #999;
+                font-style: italic;
+            }
+
+        /* Control Panel */
+        .control-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid #ddd;
+            min-width: 200px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 8px;
+            flex-direction: column;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11pt;
+            transition: background-color 0.3s;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background: #0056b3;
+            }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+            .btn-success:hover {
+                background: #1e7e34;
+            }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+            .btn-warning:hover {
+                background: #e0a800;
+            }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+            .btn-danger:hover {
+                background: #c82333;
+            }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+            .btn-secondary:hover {
+                background: #545b62;
+            }
+
+        /* Add Item Buttons */
+        .add-item-container {
+            margin: 10px 0;
+            text-align: center;
+            display: none;
+        }
+
+        .editing .add-item-container {
+            display: block;
+        }
+
+        .add-item-btn {
+            background: #17a2b8;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 10pt;
+            margin: 0 5px;
+        }
+
+            .add-item-btn:hover {
+                background: #138496;
+            }
+
+        /* Remove Item Buttons */
+        .remove-item-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 2px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 9pt;
+            margin-left: 10px;
+            display: none;
+        }
+
+        .editing .remove-item-btn {
+            display: inline-block;
+        }
+
+        .remove-item-btn:hover {
+            background: #c82333;
+        }
+
+        /* Edit Mode Indicator */
+        .edit-mode-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #28a745;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 10pt;
+            z-index: 1000;
+            display: none;
+        }
+
+        .editing .edit-mode-indicator {
+            display: block;
+        }
+
+        /* Header Section - Enhanced */
+        .cv-header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 15px;
+        }
+
+            .cv-header h1 {
+                font-size: 26pt;
+                font-weight: bold;
+                color: #2c3e50;
+                margin-bottom: 10px;
+                letter-spacing: 1px;
+            }
+
+        .contact-info {
+            font-size: 10pt;
+            color: #555;
+            line-height: 1.4;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+            .contact-info span {
+                position: relative;
+            }
+
+                .contact-info span:not(:last-child):after {
+                    content: '•';
+                    color: #999;
+                    margin-left: 15px;
+                    font-weight: bold;
+                }
+
+        /* Section Styling - Professional Enhancement */
+        .section {
+            margin-bottom: 24px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 4px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .summary {
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #444;
+            text-align: justify;
+            margin-bottom: 5px;
+        }
+
+        /* Item Layout - Fixed for Print Consistency */
+        .experience-item, .education-item, .certificate-item {
+            margin-bottom: 18px;
+            position: relative;
+            border-left: 3px solid #ecf0f1;
+            padding-left: 15px;
+            page-break-inside: avoid;
+        }
+
+        .language-item-container, .skill-category {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .item-header {
+            margin-bottom: 6px;
+        }
+
+        /* Fixed Title-Duration Layout for Print Consistency */
+        .item-title-line {
+            display: table;
+            width: 100%;
+            margin-bottom: 4px;
+            table-layout: fixed;
+        }
+
+        .item-title {
+            display: table-cell;
+            font-size: 12pt;
+            font-weight: bold;
+            color: #2c3e50;
+            width: auto;
+            vertical-align: top;
+            padding-right: 20px;
+        }
+
+        .item-duration {
+            display: table-cell;
+            font-size: 10pt;
+            color: #7f8c8d;
+            font-style: italic;
+            white-space: nowrap;
+            text-align: right;
+            vertical-align: top;
+            width: 120px;
+        }
+
+        .item-company, .item-institution {
+            font-size: 11pt;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .item-description {
+            font-size: 10pt;
+            color: #555;
+            line-height: 1.5;
+            margin-top: 5px;
+            text-align: justify;
+        }
+
+        /* Skills Section - Better Organization */
+        .skills-content {
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+
+        .skill-category {
+            margin-bottom: 10px;
+            border-left: 3px solid #3498db;
+            padding-left: 12px;
+        }
+
+        .skill-category-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 4px;
+            font-size: 11pt;
+        }
+
+        .skill-items {
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* Languages Section - Single Line Layout */
+        .languages-content {
+            font-size: 10pt;
+            color: #555;
+        }
+
+        .languages-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .language-item-container {
+            margin-bottom: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .language-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .language-level {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        /* Certificate styling */
+        .certificate-item .item-title-line {
+            margin-bottom: 3px;
+        }
+
+        .item-provider {
+            font-size: 10pt;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .education-details {
+            font-size: 10pt;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .no-data {
+            color: #888;
+            font-style: italic;
+            font-size: 10pt;
+        }
+
+        /* Enhanced Print Styles for Perfect Consistency */
+        @@media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background: white !important;
+                font-size: 10pt !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .cv-container {
+                margin: 0 !important;
+                padding: 0.5in !important;
+                max-width: none !important;
+                box-shadow: none !important;
+                border: none !important;
+                width: 100% !important;
+                min-height: auto !important;
+            }
+
+                .cv-container::before {
+                    display: none !important;
+                }
+
+            .control-panel,
+            .add-item-container,
+            .remove-item-btn,
+            .edit-mode-indicator {
+                display: none !important;
+            }
+
+            .editable {
+                border: none !important;
+                background: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+
+            .section {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                margin-bottom: 20px !important;
+            }
+
+            .experience-item, .education-item, .certificate-item {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                margin-bottom: 16px !important;
+            }
+
+            /* Critical: Ensure table layout consistency in print */
+            .item-title-line {
+                display: table !important;
+                width: 100% !important;
+                margin-bottom: 4px !important;
+                table-layout: fixed !important;
+            }
+
+            .item-title {
+                display: table-cell !important;
+                width: auto !important;
+                padding-right: 20px !important;
+                vertical-align: top !important;
+                word-wrap: break-word !important;
+                font-size: 11pt !important;
+            }
+
+            .item-duration {
+                display: table-cell !important;
+                white-space: nowrap !important;
+                text-align: right !important;
+                vertical-align: top !important;
+                width: 120px !important;
+                font-size: 9pt !important;
+            }
+
+            /* Languages single line in print */
+            .languages-list {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 18px !important;
+            }
+
+            .language-item-container {
+                margin-bottom: 0 !important;
+                display: inline-block !important;
+            }
+
+            .language-item {
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 4px !important;
+                white-space: nowrap !important;
+            }
+
+            /* Header consistency */
+            .cv-header h1 {
+                font-size: 22pt !important;
+            }
+
+            .contact-info {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 12px !important;
+            }
+
+            /* Section titles */
+            .section-title {
+                font-size: 12pt !important;
+            }
+
+            /* Skills organization */
+            .skill-category {
+                margin-bottom: 8px !important;
+            }
+        }
+
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .cv-container {
+                padding: 20px;
+            }
+
+            .control-panel {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            .control-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .item-title-line {
+                display: block !important;
+            }
+
+            .item-title, .item-duration {
+                display: block !important;
+                width: auto !important;
+                text-align: left !important;
+                padding-right: 0 !important;
+            }
+
+            .item-duration {
+                margin-top: 3px;
+                font-size: 9pt;
+            }
+
+            .languages-list {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+                .contact-info span:not(:last-child):after {
+                    display: none;
+                }
+        }
+    </style>
+</head>
+<body>
+    <div class="edit-mode-indicator">✏️ Edit Mode Active - Click on text to edit</div>
+
+    <div class="control-panel">
+        <div class="control-buttons">
+            <button id="editBtn" class="btn btn-primary">🖊️ Enable Editing</button>
+            <button id="saveBtn" class="btn btn-success" style="display: none;">💾 Save Changes</button>
+            <button id="downloadBtn" class="btn btn-warning">📄 Download PDF</button>
+            <button id="printBtn" class="btn btn-secondary">🖨️ Print</button>
+            <button id="resetBtn" class="btn btn-danger" style="display: none;">🔄 Reset</button>
+        </div>
+        <form method="post" action="/Resume/DownloadWordDocument" style="display: inline;">
+            <input type="hidden" name="resumeId" value="@Model.ResumeId" />
+            <button type="submit" class="btn btn-info">📝 Download Word</button>
+        </form>
+    </div>
+
+    <div class="cv-container" id="cvContainer">
+        <!-- Header Section -->
+        <div class="cv-header">
+            <h1>
+                <span class="editable" contenteditable="false" data-placeholder="First Name">@Model.FirstName</span>
+                <span class="editable" contenteditable="false" data-placeholder="Last Name">@Model.LastName</span>
+            </h1>
+            <div class="contact-info">
+                <span class="editable" contenteditable="false" data-placeholder="Job Title">@(Model.Title ?? "")</span>
+                <span class="editable" contenteditable="false" data-placeholder="Address">@(Model.Address ?? "")</span>
+                <span class="editable" contenteditable="false" data-placeholder="Phone">@(Model.PhoneNumber ?? "")</span>
+                <span class="editable" contenteditable="false" data-placeholder="Email">@(Model.Email ?? "")</span>
+                <span class="editable" contenteditable="false" data-placeholder="LinkedIn">@(Model.LinkedInLink ?? "")</span>
+                <span class="editable" contenteditable="false" data-placeholder="Portfolio">@(Model.PortfolioLink ?? "")</span>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="section">
+            <h2 class="section-title">About</h2>
+            <div class="summary editable" contenteditable="false" data-placeholder="Write your professional summary here...">@(Model.Bio ?? "")</div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="section" id="skillsSection">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-content" id="skillsContent">
+                @if (Model.Skills != null && Model.Skills.Any())
+                {
+                    @foreach (var skillGroup in Model.Skills.GroupBy(s => s.SkillType ?? "Technical Skills"))
+                    {
+                        <div class="skill-category">
+                            <div class="skill-category-title editable" contenteditable="false" data-placeholder="Skill Category">@skillGroup.Key:</div>
+                            <div class="skill-items editable" contenteditable="false" data-placeholder="Add skills separated by bullets">
+                                @string.Join(" • ", skillGroup.Select(s => s.SkillName))
+                            </div>
+                            <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="skill-category">
+                        <div class="skill-category-title editable" contenteditable="false" data-placeholder="Skill Category">Technical Skills:</div>
+                        <div class="skill-items editable" contenteditable="false" data-placeholder="Add skills separated by bullets"></div>
+                        <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                    </div>
+                }
+            </div>
+            <div class="add-item-container">
+                <button class="add-item-btn" onclick="addSkillCategory()">➕ Add Skill Category</button>
+            </div>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="section" id="experienceSection">
+            <h2 class="section-title">Experience</h2>
+            <div id="experienceContent">
+                @if (Model.Experiences != null && Model.Experiences.Any())
+                {
+                    @foreach (var experience in Model.Experiences.OrderByDescending(e => e.StartDate))
+                    {
+                        <div class="experience-item">
+                            <div class="item-header">
+                                <div class="item-title-line">
+                                    <div class="item-title editable" contenteditable="false" data-placeholder="Job Title">@experience.Title</div>
+                                    <div class="item-duration editable" contenteditable="false" data-placeholder="Start - End">
+                                        @experience.StartDate.ToString("MMM yyyy") - @(experience.EndDate?.ToString("MMM yyyy") ?? "Present")
+                                    </div>
+                                </div>
+                                <div class="item-company editable" contenteditable="false" data-placeholder="Company Name">@experience.Company</div>
+                            </div>
+                            <div class="item-description editable" contenteditable="false" data-placeholder="Describe your responsibilities and achievements...">@(experience.Duties ?? "")</div>
+                            <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <div class="item-title-line">
+                                <div class="item-title editable" contenteditable="false" data-placeholder="Job Title"></div>
+                                <div class="item-duration editable" contenteditable="false" data-placeholder="Start - End"></div>
+                            </div>
+                            <div class="item-company editable" contenteditable="false" data-placeholder="Company Name"></div>
+                        </div>
+                        <div class="item-description editable" contenteditable="false" data-placeholder="Describe your responsibilities and achievements..."></div>
+                        <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                    </div>
+                }
+            </div>
+            <div class="add-item-container">
+                <button class="add-item-btn" onclick="addExperience()">➕ Add Experience</button>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section" id="educationSection">
+            <h2 class="section-title">Education</h2>
+            <div id="educationContent">
+                @if (Model.Educations != null && Model.Educations.Any())
+                {
+                    @foreach (var education in Model.Educations.OrderByDescending(e => e.StartDate))
+                    {
+                        <div class="education-item">
+                            <div class="item-header">
+                                <div class="item-title-line">
+                                    <div class="item-title editable" contenteditable="false" data-placeholder="Institution Name">@education.CollegeName</div>
+                                    <div class="item-duration editable" contenteditable="false" data-placeholder="Start - End">
+                                        @education.StartDate.ToString("MMM yyyy") - @(education.EndDate?.ToString("MMM yyyy") ?? "Present")
+                                    </div>
+                                </div>
+                                <div class="item-company editable" contenteditable="false" data-placeholder="Degree/Major">@education.Major</div>
+                            </div>
+                            <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="education-item">
+                        <div class="item-header">
+                            <div class="item-title-line">
+                                <div class="item-title editable" contenteditable="false" data-placeholder="Institution Name"></div>
+                                <div class="item-duration editable" contenteditable="false" data-placeholder="Start - End"></div>
+                            </div>
+                            <div class="item-company editable" contenteditable="false" data-placeholder="Degree/Major"></div>
+                        </div>
+                        <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                    </div>
+                }
+            </div>
+            <div class="add-item-container">
+                <button class="add-item-btn" onclick="addEducation()">➕ Add Education</button>
+            </div>
+        </div>
+
+        <!-- Languages Section - Enhanced Single Line Layout -->
+        <div class="section" id="languagesSection">
+            <h2 class="section-title">Languages</h2>
+            <div class="languages-content" id="languagesContent">
+                <div class="languages-list">
+                    @if (Model.Languages != null && Model.Languages.Any())
+                    {
+                        @foreach (var language in Model.Languages)
+                        {
+                            <div class="language-item-container">
+                                <div class="language-item">
+                                    <span class="language-name editable" contenteditable="false" data-placeholder="Language">@language.LanguageName</span>
+                                    <span class="language-level editable" contenteditable="false" data-placeholder="(Level)">(@(language.Level ?? ""))</span>
+                                </div>
+                                <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="language-item-container">
+                            <div class="language-item">
+                                <span class="language-name editable" contenteditable="false" data-placeholder="Language"></span>
+                                <span class="language-level editable" contenteditable="false" data-placeholder="(Level)"></span>
+                            </div>
+                            <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="add-item-container">
+                <button class="add-item-btn" onclick="addLanguage()">➕ Add Language</button>
+            </div>
+        </div>
+
+        <!-- Certificates Section -->
+        <div class="section" id="certificatesSection">
+            <h2 class="section-title">Certifications</h2>
+            <div id="certificatesContent">
+                @if (Model.Certificates != null && Model.Certificates.Any())
+                {
+                    @foreach (var certificate in Model.Certificates.OrderByDescending(c => c.StartDate))
+                    {
+                        <div class="certificate-item">
+                            <div class="item-header">
+                                <div class="item-title-line">
+                                    <div class="item-title editable" contenteditable="false" data-placeholder="Certificate Name">@certificate.TopicName</div>
+                                    @if (certificate.StartDate != default(DateOnly))
+                                    {
+                                        <div class="item-duration editable" contenteditable="false" data-placeholder="Date">@certificate.StartDate.ToString("MMM yyyy")</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="item-duration editable" contenteditable="false" data-placeholder="Date"></div>
+                                    }
+                                </div>
+                                <div class="item-provider editable" contenteditable="false" data-placeholder="Provider/Institution">@(certificate.ProviderName ?? "")</div>
+                            </div>
+                            <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="certificate-item">
+                        <div class="item-header">
+                            <div class="item-title-line">
+                                <div class="item-title editable" contenteditable="false" data-placeholder="Certificate Name"></div>
+                                <div class="item-duration editable" contenteditable="false" data-placeholder="Date"></div>
+                            </div>
+                            <div class="item-provider editable" contenteditable="false" data-placeholder="Provider/Institution"></div>
+                        </div>
+                        <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                    </div>
+                }
+            </div>
+            <div class="add-item-container">
+                <button class="add-item-btn" onclick="addCertificate()">➕ Add Certificate</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isEditing = false;
+        let originalContent = '';
+
+        // Store original content
+        document.addEventListener('DOMContentLoaded', function() {
+            originalContent = document.getElementById('cvContainer').innerHTML;
+        });
+
+        // Toggle edit mode
+        document.getElementById('editBtn').addEventListener('click', function() {
+            toggleEditMode();
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            saveChanges();
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            resetChanges();
+        });
+
+        document.getElementById('printBtn').addEventListener('click', function() {
+            window.print();
+        });
+
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            downloadPDF();
+        });
+
+        function toggleEditMode() {
+            isEditing = !isEditing;
+            const container = document.getElementById('cvContainer');
+            const editBtn = document.getElementById('editBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const resetBtn = document.getElementById('resetBtn');
+
+            if (isEditing) {
+                container.classList.add('editing');
+                document.querySelectorAll('.editable').forEach(el => {
+                    el.contentEditable = true;
+                });
+                editBtn.style.display = 'none';
+                saveBtn.style.display = 'block';
+                resetBtn.style.display = 'block';
+                editBtn.textContent = '🖊️ Enable Editing';
+            } else {
+                container.classList.remove('editing');
+                document.querySelectorAll('.editable').forEach(el => {
+                    el.contentEditable = false;
+                });
+                editBtn.style.display = 'block';
+                saveBtn.style.display = 'none';
+                resetBtn.style.display = 'none';
+            }
+        }
+
+        function saveChanges() {
+            // Here you would typically send the data to your server
+            // For now, we'll just update the original content and exit edit mode
+            originalContent = document.getElementById('cvContainer').innerHTML;
+            toggleEditMode();
+            alert('Changes saved successfully!');
+        }
+
+        function resetChanges() {
+            if (confirm('Are you sure you want to reset all changes?')) {
+                document.getElementById('cvContainer').innerHTML = originalContent;
+                toggleEditMode();
+            }
+        }
+
+        function downloadPDF() {
+            // Temporarily disable edit mode for clean PDF
+            const wasEditing = isEditing;
+            if (isEditing) {
+                toggleEditMode();
+            }
+
+            // Use browser's print functionality to save as PDF
+            setTimeout(() => {
+                window.print();
+                if (wasEditing) {
+                    toggleEditMode();
+                }
+            }, 100);
+        }
+
+        function removeItem(element) {
+            if (confirm('Are you sure you want to remove this item?')) {
+                element.remove();
+            }
+        }
+
+        function addExperience() {
+            const container = document.getElementById('experienceContent');
+            const newItem = document.createElement('div');
+            newItem.className = 'experience-item';
+            newItem.innerHTML = `
+                <div class="item-header">
+                    <div class="item-title-line">
+                        <div class="item-title editable" contenteditable="true" data-placeholder="Job Title"></div>
+                        <div class="item-duration editable" contenteditable="true" data-placeholder="Start - End"></div>
+                    </div>
+                    <div class="item-company editable" contenteditable="true" data-placeholder="Company Name"></div>
+                </div>
+                <div class="item-description editable" contenteditable="true" data-placeholder="Describe your responsibilities and achievements..."></div>
+                <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        function addEducation() {
+            const container = document.getElementById('educationContent');
+            const newItem = document.createElement('div');
+            newItem.className = 'education-item';
+            newItem.innerHTML = `
+                <div class="item-header">
+                    <div class="item-title-line">
+                        <div class="item-title editable" contenteditable="true" data-placeholder="Institution Name"></div>
+                        <div class="item-duration editable" contenteditable="true" data-placeholder="Start - End"></div>
+                    </div>
+                    <div class="item-company editable" contenteditable="true" data-placeholder="Degree/Major"></div>
+                </div>
+                <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        function addCertificate() {
+            const container = document.getElementById('certificatesContent');
+            const newItem = document.createElement('div');
+            newItem.className = 'certificate-item';
+            newItem.innerHTML = `
+                <div class="item-header">
+                    <div class="item-title-line">
+                        <div class="item-title editable" contenteditable="true" data-placeholder="Certificate Name"></div>
+                        <div class="item-duration editable" contenteditable="true" data-placeholder="Date"></div>
+                    </div>
+                    <div class="item-provider editable" contenteditable="true" data-placeholder="Provider/Institution"></div>
+                </div>
+                <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        function addLanguage() {
+            const languagesList = document.querySelector('.languages-list');
+            const newItem = document.createElement('div');
+            newItem.className = 'language-item-container';
+            newItem.innerHTML = `
+                <div class="language-item">
+                    <span class="language-name editable" contenteditable="true" data-placeholder="Language"></span>
+                    <span class="language-level editable" contenteditable="true" data-placeholder="(Level)"></span>
+                </div>
+                <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+            `;
+            languagesList.appendChild(newItem);
+        }
+
+        function addSkillCategory() {
+            const container = document.getElementById('skillsContent');
+            const newItem = document.createElement('div');
+            newItem.className = 'skill-category';
+            newItem.innerHTML = `
+                <div class="skill-category-title editable" contenteditable="true" data-placeholder="Skill Category">New Category:</div>
+                <div class="skill-items editable" contenteditable="true" data-placeholder="Add skills separated by bullets"></div>
+                <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        // Print event handlers
+        window.addEventListener('beforeprint', function() {
+            document.querySelector('.control-panel').style.display = 'none';
+            document.querySelector('.edit-mode-indicator').style.display = 'none';
+        });
+
+        window.addEventListener('afterprint', function() {
+            document.querySelector('.control-panel').style.display = 'block';
+            if (isEditing) {
+                document.querySelector('.edit-mode-indicator').style.display = 'block';
+            }
+        });
+
+        // Enhanced contenteditable behavior
+        document.addEventListener('keydown', function(e) {
+            if (e.target.classList.contains('editable') && e.key === 'Enter') {
+                // Allow line breaks in description fields
+                if (!e.target.classList.contains('item-description') && !e.target.classList.contains('summary')) {
+                    e.preventDefault();
+                }
+            }
+        });
+
+
+    </script>
+</body>
+</html>

@@ -34,5 +34,6 @@ namespace JobHunter.Models
         [DisplayFormat(DataFormatString = "{0:F1}", ApplyFormatInEditMode = true)]
         [DisplayName("Score/Grade")]
         public double? GPA { get; set; }
+        public Guid ResumeId { get; internal set; }
     }
 }
