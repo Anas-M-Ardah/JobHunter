@@ -26,6 +26,7 @@ namespace JobHunter
             builder.Services.AddTransient<IResumeRepository, ResumeRepository>();
             builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
             builder.Services.AddTransient<IGeminiService,  GeminiService>();
+            builder.Services.AddTransient<IWordService, WordService>();
 
             var app = builder.Build();
 
