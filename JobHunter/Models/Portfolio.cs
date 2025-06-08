@@ -36,5 +36,9 @@ namespace JobHunter.Models
         // Navigation Properties
         [ForeignKey("EndUserId")]
         public EndUser EndUser { get; set; }
+
+        public bool isDeleted { get; set; } = false;
+
+
     }
 }

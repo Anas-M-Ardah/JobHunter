@@ -3,17 +3,20 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using JobHunter.Models;
 using JobHunter.DTOs;
+using JobHunter.Services;
 namespace JobHunter.Controllers
 {
     public class PortfolioController : BaseController
     {
         private readonly IPortfolioRepository _portfolioRepository;
         private readonly UserManager<User> _userManager;
+        private readonly IGeminiService _geminiService;
 
-        public PortfolioController(IPortfolioRepository portfolioRepository, UserManager<User> userManager)
+        public PortfolioController(IPortfolioRepository portfolioRepository, UserManager<User> userManager, IGeminiService geminiService)
         {
             _portfolioRepository = portfolioRepository;
             _userManager = userManager;
+            _geminiService = geminiService;
         }
 
 
@@ -79,7 +82,50 @@ namespace JobHunter.Controllers
                 await _portfolioRepository.UpdatePortfolioAsync(portfolioCreateEditDTO, await _userManager.GetUserAsync(User));
                 return RedirectToAction("Index");
             }
+
+            // Method 1: Print to Debug Console
+            foreach (var modelError in ModelState)
+            {
+                var key = modelError.Key;
+                var errors = modelError.Value.Errors;
+                if (errors.Count > 0)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Property: {key}");
+                    Console.WriteLine($"Property: {key}");
+                    foreach (var error in errors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"  Error: {error.ErrorMessage}");
+                        Console.WriteLine($"  Error: {error.ErrorMessage}");
+                    }
+                }
+            }
+
             return View(portfolioCreateEditDTO);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ImproveBio(string bio)
+        {
+            string improvedBio = await _geminiService.ImproveBio(bio);
+            return Json(new { improvedBio });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ImproveServiceDescription(string serviceDescription)
+        {
+            string improvedServiceDescription = await _geminiService.ImproveServiceDescription(serviceDescription);
+            return Json(new { improvedServiceDescription });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ImproveProjectDescription(string projectDescription)
+        {
+            string improvedProjectDescription = await _geminiService.ImproveProjectDescription(projectDescription);
+            return Json(new { improvedProjectDescription });
+        }
+
+
+        //view
+        //delete
     }
 }

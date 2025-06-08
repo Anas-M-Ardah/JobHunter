@@ -138,9 +138,15 @@
                 <!-- Professional Bio -->
                 <div class="form-group">
                     <label asp-for="Bio" class="small font-weight-bold text-gray-800">Professional Bio</label>
-                    <textarea asp-for="Bio" class="form-control shadow-sm" rows="4"
-                              placeholder="Share your professional journey, key achievements, expertise, and what makes you unique in your field..."
-                              maxlength="1000" oninput="updateCharCount(this)" required>@Model.Bio</textarea>
+                    <div class="position-relative">
+                        <textarea asp-for="Bio" class="form-control shadow-sm" rows="4"
+                                  placeholder="Share your professional journey, key achievements, expertise, and what makes you unique in your field..."
+                                  maxlength="1000" oninput="updateCharCount(this)" required>@Model.Bio</textarea>
+                        <!-- AI Replace Button -->
+                        <button type="button" id="aiReplaceBtn" class="btn btn-outline-primary btn-sm mt-2" onclick="replaceWithAI()">
+                            <i class="fas fa-magic"></i> Replace with AI Bio
+                        </button>
+                    </div>
                     <span asp-validation-for="Bio" class="text-danger small d-block mt-1"></span>
                 </div>
             </div>
@@ -190,9 +196,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Service Description <span class="text-danger">*</span></label>
-                                    <textarea name="Services[@i].ServiceDescription" class="form-control service-description" rows="3"
-                                              placeholder="Describe what this service includes, your expertise, and what clients can expect... (10-1000 characters)"
-                                              required minlength="10" maxlength="1000">@Model.Services[i].ServiceDescription</textarea>
+                                    <div class="position-relative">
+                                        <textarea name="Services[@i].ServiceDescription" class="form-control service-description" rows="3"
+                                          placeholder="Describe what this service includes, your expertise, and what clients can expect... (10-1000 characters)"
+                                          required minlength="10" maxlength="1000">@Model.Services[i].ServiceDescription</textarea>
+                                        <!-- AI Improve Button -->
+                                        <button type="button" class="btn btn-outline-success btn-sm mt-2 improve-service-btn">
+                                            <i class="fas fa-magic"></i> Improve with AI
+                                        </button>
+                                    </div>
                                     <small class="form-text text-muted">Character count: <span class="char-count">@Model.Services[i].ServiceDescription?.Length</span>/1000</small>
                                 </div>
                             </div>
@@ -298,9 +310,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Project Description <span class="text-danger">*</span></label>
-                                    <textarea name="Projects[@i].ProjectDescription" class="form-control" rows="3"
-                                              placeholder="Describe the project, technologies used, challenges solved, and your role..." 
-                                              required>@Model.Projects[i].ProjectDescription</textarea>
+                                    <div class="position-relative">
+                                        <textarea name="Projects[@i].ProjectDescription" class="form-control project-description" rows="3"
+                                          placeholder="Describe the project, technologies used, challenges solved, and your role..."
+                                          required>@Model.Projects[i].ProjectDescription</textarea>
+
+                                        <!-- AI Improve Button -->
+                                        <button type="button" class="btn btn-outline-info btn-sm mt-2 improve-project-btn">
+                                            <i class="fas fa-magic"></i> Improve with AI
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -767,6 +786,156 @@
                 }, 3000);
             }, autoSaveInterval);
         }
+
+         function replaceWithAI() {
+                const bioTextarea = document.querySelector('textarea[name="Bio"]') || document.getElementById('Bio');
+                const button = document.getElementById('aiReplaceBtn');
+
+                // Disable button and show loading state
+                button.disabled = true;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+
+                // Call the Portfolio controller's ImproveBio action
+                       // In your main script section, update the replaceWithAI function:
+                fetch('/Portfolio/ImproveBio', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        bio: bioTextarea.value
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.improvedBio) {
+                        // Replace the textarea content with AI-generated bio
+                        bioTextarea.value = data.improvedBio;
+
+                        // Trigger the character count update if the function exists
+                        if (typeof updateCharCount === 'function') {
+                            updateCharCount(bioTextarea);
+                        }
+                    } else {
+                        alert('Error generating bio: No response received');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error generating bio. Please try again.');
+                })
+                .finally(() => {
+                    // Re-enable button and restore original text
+                    button.disabled = false;
+                    button.innerHTML = '<i class="fas fa-magic"></i> Replace with AI Bio';
+                });
+
+
+            }
+
+            function improveServiceDescription(button) {
+                const textarea = button.parentElement.querySelector('.service-description');
+
+                if (!textarea.value.trim()) {
+                    alert('Please enter a service description first before improving it.');
+                    return;
+                }
+
+                // Disable button and show loading state
+                button.disabled = true;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Improving...';
+
+                // Call the Portfolio controller's ImproveServiceDescription action
+                fetch('/Portfolio/ImproveServiceDescription', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        serviceDescription: textarea.value
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.improvedServiceDescription) {
+                        // Replace the textarea content with AI-improved description
+                        textarea.value = data.improvedServiceDescription;
+
+                        // Trigger the character count update
+                        const counter = textarea.closest('.form-group').querySelector('.char-count');
+                        if (counter) {
+                            counter.textContent = textarea.value.length;
+                        }
+                    } else {
+                        alert('Error improving description: No response received');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error improving description. Please try again.');
+                })
+                .finally(() => {
+                    // Re-enable button and restore original text
+                    button.disabled = false;
+                    button.innerHTML = '<i class="fas fa-magic"></i> Improve with AI';
+                });
+            }
+
+            // Add event listener for dynamically created improve buttons
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.improve-service-btn')) {
+                    improveServiceDescription(e.target.closest('.improve-service-btn'));
+                }
+            });
+
+                    function improveProjectDescription(button) {
+            const textarea = button.parentElement.querySelector('.project-description');
+
+            if (!textarea.value.trim()) {
+                alert('Please enter a project description first before improving it.');
+                return;
+            }
+
+            // Disable button and show loading state
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Improving...';
+
+            // Call the Portfolio controller's ImproveProjectDescription action
+            fetch('/Portfolio/ImproveProjectDescription', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    projectDescription: textarea.value
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.improvedProjectDescription) {
+                    // Replace the textarea content with AI-improved description
+                    textarea.value = data.improvedProjectDescription;
+                } else {
+                    alert('Error improving description: No response received');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error improving description. Please try again.');
+            })
+            .finally(() => {
+                // Re-enable button and restore original text
+                button.disabled = false;
+                button.innerHTML = '<i class="fas fa-magic"></i> Improve with AI';
+            });
+        }
+
+        // Add event listener for dynamically created improve project buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.improve-project-btn')) {
+                improveProjectDescription(e.target.closest('.improve-project-btn'));
+            }
+        });
 
         // Enable auto-save on form changes
         document.getElementById('portfolioForm').addEventListener('input', autoSaveDraft);

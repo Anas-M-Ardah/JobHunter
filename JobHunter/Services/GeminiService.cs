@@ -1134,5 +1134,124 @@ namespace JobHunter.Services
             }
         }
 
+        public async Task<string> ImproveBio(string bio)
+        {
+            try
+            {
+            string prompt = $@"
+                Improve and enhance the following professional bio to make it more compelling and polished:
+                {bio}
+            
+                Guidelines:
+                - Keep the core information and personal voice intact
+                - Enhance the language to be more professional and engaging
+                - Highlight key achievements, skills, and expertise more effectively
+                - Ensure proper flow and readability
+                - Keep it concise but impactful (under 1000 characters to fit the textarea limit)
+                - Focus on the candidate's unique value proposition and career highlights
+                - Use active voice and strong action words
+            
+                Example improvements:
+                Before: ""I am a developer who likes to code and has worked on some projects.""
+                After: ""Passionate full-stack developer with expertise in modern web technologies, successfully delivering scalable applications that enhance user experience and drive business growth.""
+            
+                Return ONLY the improved bio text without any additional formatting, quotes, or explanations.";
+
+                // Get AI response
+                var aiResponse = await _model.GenerateContent(prompt);
+                string aiResponseText = aiResponse?.Text?.Trim();
+                return aiResponseText ?? "ERROR";
+            }
+            catch (Exception ex)
+            {
+                // Log the error for debugging
+                Console.WriteLine($"ImproveBio error: {ex.Message}");
+                return string.Empty;
+            }
+        }
+
+        public async Task<string> ImproveServiceDescription(string serviceDescription)
+        {
+            try
+            {
+                string prompt = $@"
+            Improve and enhance the following service description to make it more professional, compelling, and client-focused:
+            {serviceDescription}
+            
+            Guidelines:
+            - Make it more engaging and professional while keeping the core message
+            - Highlight key benefits and value propositions for potential clients
+            - Use persuasive language that demonstrates expertise and builds trust
+            - Focus on outcomes and results clients can expect
+            - Keep it concise but impactful (under 1000 characters to fit the textarea limit)
+            - Use active voice and strong action words
+            - Ensure it sounds authentic and not overly promotional
+            - Include what makes this service unique and valuable
+            
+            Example improvements:
+            Before: ""I do web development and make websites for people.""
+            After: ""Expert web development services delivering responsive, user-friendly websites that drive business growth. Specializing in modern frameworks and optimized performance to enhance your online presence and convert visitors into customers.""
+            
+            Return ONLY the improved service description text without any additional formatting, quotes, or explanations.";
+
+                // Get AI response
+                var aiResponse = await _model.GenerateContent(prompt);
+                string aiResponseText = aiResponse?.Text?.Trim();
+                return aiResponseText ?? "ERROR";
+            }
+            catch (Exception ex)
+            {
+                // Log the error for debugging
+                Console.WriteLine($"ImproveServiceDescription error: {ex.Message}");
+                return string.Empty;
+            }
+        }
+
+        public async Task<string> ImproveProjectDescription(string projectDescription)
+        {
+            try
+            {
+                string prompt = $@"
+                    Improve and enhance the following project description to make it more professional, detailed, and impactful for a portfolio:
+                    {projectDescription}
+
+                    Guidelines:
+                    - Clearly describe the project scope, objectives, and deliverables
+                    - Highlight specific technologies, frameworks, and tools used
+                    - Emphasize your specific role and contributions to the project
+                    - Showcase key challenges faced and how you solved them
+                    - Include measurable results, improvements, or impact when possible
+                    - Use technical language appropriately while remaining clear and readable
+                    - Structure it to demonstrate your skills, expertise, and problem-solving abilities
+                    - Make it compelling for potential employers, clients, or collaborators
+                    - Focus on achievements and learning outcomes
+                    - Keep it comprehensive but concise
+                    - IMPORTANT: The response must be 1000 characters or less
+
+                    Example improvements:
+                    Before: ""Built a website for a client using React and Node.js.""
+                    After: ""Developed a full-stack e-commerce platform using React.js frontend and Node.js/Express backend. Implemented user authentication, payment processing with Stripe API, and real-time inventory management. Optimized database queries reducing load times by 45% and deployed using Docker containerization, serving 500+ daily active users.""
+
+                    Return ONLY the improved project description text without any additional formatting, quotes, or explanations. Maximum length: 1000 characters.";
+
+                // Get AI response
+                var aiResponse = await _model.GenerateContent(prompt);
+                string aiResponseText = aiResponse?.Text?.Trim();
+
+                // Ensure the response doesn't exceed 1000 characters
+                if (!string.IsNullOrEmpty(aiResponseText) && aiResponseText.Length > 1000)
+                {
+                    aiResponseText = aiResponseText.Substring(0, 1000);
+                }
+
+                return aiResponseText ?? "ERROR";
+            }
+            catch (Exception ex)
+            {
+                // Log the error for debugging
+                Console.WriteLine($"ImproveProjectDescription error: {ex.Message}");
+                return string.Empty;
+            }
+        }
     }
 }
