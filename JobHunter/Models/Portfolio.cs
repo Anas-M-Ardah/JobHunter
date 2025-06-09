@@ -37,7 +37,7 @@ namespace JobHunter.Models
         [ForeignKey("EndUserId")]
         public EndUser EndUser { get; set; }
 
-        public bool isDeleted { get; set; } = false;
+        public bool IsDeleted { get; set; } = false;
 
 
     }

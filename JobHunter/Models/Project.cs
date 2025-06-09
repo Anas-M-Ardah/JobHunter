@@ -34,6 +34,7 @@ namespace JobHunter.Models
 
         [Required(ErrorMessage = "Service ID is required")]
         public Guid ServiceId { get; set; }
+        public string ServiceName { get; set; }
 
         [Url(ErrorMessage = "Please enter a valid project URL")]
         [StringLength(500, ErrorMessage = "Project link cannot exceed 500 characters")]

@@ -63,10 +63,10 @@ namespace JobHunter.Controllers
             }
         }
 
-        public async Task<IActionResult> Edit(Guid portfolioId)
+        public async Task<IActionResult> Edit(Guid id)
         {
             var user = await _userManager.GetUserAsync(User);
-            var portfolio = await _portfolioRepository.GetPortfolioById(portfolioId);
+            var portfolio = await _portfolioRepository.GetPortfolioByIdForEdit(id);
             if (portfolio == null)
             {
                 return NotFound();
@@ -125,7 +125,55 @@ namespace JobHunter.Controllers
         }
 
 
-        //view
-        //delete
+        public async Task<IActionResult> View(Guid id)
+        {
+            var portfolio = await _portfolioRepository.GetPortfolioById(id);
+            if (portfolio == null)
+            {
+                return NotFound();
+            }
+            return View(portfolio);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+         
+            if (await _portfolioRepository.DeletePortfolioAsync(id))
+            {
+                TempData["SuccessMessage"] = "Portfolio deleted successfully.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to delete portfolio.";
+                return RedirectToAction("Index");
+            }
+        }
+
+        public async Task<IActionResult> ViewFile(Guid projectId)
+        {
+            try
+            {
+                var fileResult = await _portfolioRepository.GetFileFromDatabaseAsync(projectId);
+
+                if (fileResult == null)
+                    return NotFound("File not found");
+
+                return fileResult;
+            }
+            catch (ApplicationException ex)
+            {
+                // Log the exception
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return StatusCode(500, "An error occurred while retrieving the file");
+            }
+        }
+
     }
 }

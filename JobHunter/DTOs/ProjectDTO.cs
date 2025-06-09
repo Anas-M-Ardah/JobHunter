@@ -36,6 +36,7 @@ namespace JobHunter.DTOs
         [Required(ErrorMessage = "Service association is required")]
         [DisplayName("Service Association")]
         public Guid ServiceId { get; set; }
+        public string ServiceName { get; set; }
 
         [Required(ErrorMessage = "Project attachments are required")]
         [DisplayName("Project Attachments")]

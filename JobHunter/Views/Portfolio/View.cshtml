@@ -1,0 +1,760 @@
+﻿@model JobHunter.Models.Portfolio
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>@Model.FirstName @Model.LastName - Portfolio</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+	<link rel="stylesheet" href="~/assetsPort/css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="~/assetsPort/css/animate.css">
+	<link rel="stylesheet" href="~/assetsPort/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="~/assetsPort/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="~/assetsPort/css/magnific-popup.css">
+	<link rel="stylesheet" href="~/assetsPort/css/aos.css">
+	<link rel="stylesheet" href="~/assetsPort/css/ionicons.min.css">
+	<link rel="stylesheet" href="~/assetsPort/css/flaticon.css">
+	<link rel="stylesheet" href="~/assetsPort/css/icomoon.css">
+	<link rel="stylesheet" href="~/assetsPort/css/style.css">
+
+	<style>
+		/* CSS Variables for consistent theming */
+		:root {
+			--primary-color: #007bff;
+			--primary-dark: #0056b3;
+			--secondary-color: #6c757d;
+			--text-dark: #333;
+			--text-light: #666;
+			--text-muted: #999;
+			--text-white: #ffffff;
+			--bg-light: #f8f9fa;
+			--bg-white: #ffffff;
+			--bg-dark: #000000;
+			--border-radius: 10px;
+			--border-radius-sm: 6px;
+			--border-radius-lg: 15px;
+			--shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+			--shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+			--shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+			--transition: all 0.3s ease;
+			--spacing-xs: 10px;
+			--spacing-sm: 15px;
+			--spacing-md: 20px;
+			--spacing-lg: 30px;
+			--spacing-xl: 40px;
+		}
+
+		/* Dark background text color fix */
+		.hero,
+		.hero .slider-item {
+			color: var(--text-white);
+		}
+
+		.hero h1,
+		.hero h2,
+		.hero .subheading {
+			color: var(--text-white);
+		}
+
+		/* Button styling */
+		.btn-custom {
+			padding: 12px 30px;
+			border-radius: 25px;
+			font-weight: 500;
+			text-decoration: none;
+			display: inline-block;
+			transition: var(--transition);
+			border: none;
+			cursor: pointer;
+		}
+
+		.btn-primary-custom {
+			background: var(--primary-color);
+			color: var(--text-white);
+		}
+
+			.btn-primary-custom:hover {
+				background: var(--primary-dark);
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-md);
+				color: var(--text-white);
+				text-decoration: none;
+			}
+
+		.btn-outline-custom {
+			background: transparent;
+			color: var(--text-white);
+			border: 2px solid var(--text-white);
+		}
+
+			.btn-outline-custom:hover {
+				background: var(--text-white);
+				color: var(--primary-color);
+				text-decoration: none;
+			}
+
+		/* Card styling */
+		.card-custom {
+			background: var(--bg-white);
+			border-radius: var(--border-radius);
+			box-shadow: var(--shadow-sm);
+			transition: var(--transition);
+			padding: var(--spacing-lg);
+			height: 100%;
+		}
+
+			.card-custom:hover {
+				transform: translateY(-5px);
+				box-shadow: var(--shadow-lg);
+			}
+
+		/* Section spacing */
+		.section-spacing {
+			padding: 80px 0;
+		}
+
+		.section-spacing-sm {
+			padding: 60px 0;
+		}
+
+		/* Section headings */
+		.section-heading {
+			margin-bottom: var(--spacing-xl);
+		}
+
+			.section-heading h1.big {
+				font-size: 120px;
+				color: rgba(0,0,0,0.05);
+				font-weight: 800;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: -1;
+			}
+
+			.section-heading h2 {
+				color: var(--text-dark);
+				font-weight: 600;
+				margin-bottom: var(--spacing-sm);
+			}
+
+			.section-heading p {
+				color: var(--text-light);
+				font-size: 16px;
+				line-height: 1.6;
+			}
+
+		/* Service cards */
+		.service-card {
+			text-align: center;
+			padding: var(--spacing-xl);
+			background: var(--bg-white);
+			border-radius: var(--border-radius);
+			box-shadow: var(--shadow-sm);
+			transition: var(--transition);
+			height: 100%;
+			text-decoration: none;
+			color: inherit;
+		}
+
+			.service-card:hover {
+				transform: translateY(-5px);
+				box-shadow: var(--shadow-lg);
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.service-card .icon {
+				width: 80px;
+				height: 80px;
+				background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 0 auto var(--spacing-md);
+			}
+
+				.service-card .icon i {
+					font-size: 32px;
+					color: var(--text-white);
+				}
+
+			.service-card h3 {
+				color: var(--text-dark);
+				font-weight: 600;
+				margin-bottom: var(--spacing-sm);
+			}
+
+			.service-card p {
+				color: var(--text-light);
+				line-height: 1.6;
+			}
+
+		/* Project cards - Improved width and layout */
+		.project-card {
+			background: var(--bg-white);
+			border-radius: var(--border-radius);
+			box-shadow: var(--shadow-sm);
+			transition: var(--transition);
+			padding: var(--spacing-lg);
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			min-height: 300px;
+		}
+
+			.project-card:hover {
+				transform: translateY(-5px);
+				box-shadow: var(--shadow-lg);
+			}
+
+			.project-card h3 {
+				color: var(--text-dark);
+				margin-bottom: var(--spacing-sm);
+				font-weight: 600;
+				font-size: 1.25rem;
+			}
+
+				.project-card h3 a {
+					color: var(--text-dark);
+					text-decoration: none;
+					transition: var(--transition);
+				}
+
+					.project-card h3 a:hover {
+						color: var(--primary-color);
+						text-decoration: none;
+					}
+
+			.project-card .service-tag {
+				background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+				color: var(--text-white);
+				padding: var(--spacing-xs) 16px;
+				border-radius: 20px;
+				font-size: 12px;
+				display: inline-block;
+				margin-bottom: var(--spacing-sm);
+			}
+
+			.project-card p {
+				color: var(--text-light);
+				line-height: 1.6;
+				margin-bottom: var(--spacing-md);
+				flex-grow: 1;
+			}
+
+			.project-card .btn-project {
+				background: var(--primary-color);
+				color: var(--text-white);
+				padding: var(--spacing-xs) 25px;
+				border-radius: 25px;
+				text-decoration: none;
+				display: inline-block;
+				transition: var(--transition);
+				align-self: flex-start;
+			}
+
+				.project-card .btn-project:hover {
+					background: var(--primary-dark);
+					transform: translateY(-2px);
+					color: var(--text-white);
+					text-decoration: none;
+				}
+
+		/* About info styling */
+		.about-info {
+			list-style: none;
+			padding: 0;
+		}
+
+			.about-info li {
+				display: flex;
+				margin-bottom: var(--spacing-xs);
+				padding: var(--spacing-xs) 0;
+				border-bottom: 1px solid #eee;
+			}
+
+				.about-info li:last-child {
+					border-bottom: none;
+				}
+
+				.about-info li span:first-child {
+					font-weight: 600;
+					color: var(--text-dark);
+					min-width: 120px;
+				}
+
+				.about-info li span:last-child {
+					color: var(--text-light);
+				}
+
+		/* Navbar text color fix */
+		.navbar-dark .navbar-nav .nav-link {
+			color: rgba(255, 255, 255, 0.8);
+		}
+
+			.navbar-dark .navbar-nav .nav-link:hover {
+				color: var(--text-white);
+			}
+
+		.navbar-dark .navbar-brand {
+			color: var(--text-white);
+		}
+
+		/* Footer styling */
+		.ftco-footer {
+			background: var(--text-dark);
+			color: var(--text-white);
+		}
+
+			.ftco-footer h2 {
+				color: var(--text-white);
+			}
+
+			.ftco-footer p {
+				color: rgba(255, 255, 255, 0.7);
+			}
+
+			.ftco-footer a {
+				color: rgba(255, 255, 255, 0.7);
+				transition: var(--transition);
+			}
+
+				.ftco-footer a:hover {
+					color: var(--text-white);
+					text-decoration: none;
+				}
+
+		/* Responsive adjustments */
+		@@media (max-width: 768px) {
+			.section-heading h1.big {
+				font-size: 80px;
+			}
+
+			.card-custom,
+			.service-card,
+			.project-card {
+				margin-bottom: var(--spacing-md);
+			}
+
+			.project-card {
+				min-height: 250px;
+			}
+		}
+
+		/* Project grid improvements */
+		.project-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+			gap: var(--spacing-lg);
+		}
+
+		@@media (max-width: 768px) {
+			.project-grid {
+				grid-template-columns: 1fr;
+				gap: var(--spacing-md);
+			}
+		}
+	</style>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="#home-section">@Model.FirstName @Model.LastName</a>
+			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav nav ml-auto">
+					<li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+					<li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+					@if (Model.Services != null && Model.Services.Any())
+					{
+						<li class="nav-item"><a href="#services-section" class="nav-link"><span>Services</span></a></li>
+					}
+					@if (Model.Projects != null && Model.Projects.Any())
+					{
+						<li class="nav-item"><a href="#projects-section" class="nav-link"><span>Projects</span></a></li>
+					}
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<section id="home-section" class="hero">
+		<div class="home-slider owl-carousel">
+			<div class="slider-item">
+				<div class="overlay"></div>
+				<div class="container">
+					@if (!string.IsNullOrEmpty(Model.PersonalImage))
+					{
+						<div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
+							<div class="one-third js-fullheight order-md-last img" style="background-image:url(@Model.PersonalImage);">
+								<div class="overlay"></div>
+							</div>
+							<div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+								<div class="text">
+									<span class="subheading">Hello!</span>
+									<h1 class="mb-4 mt-3">I'm <span>@Model.FirstName @Model.LastName</span></h1>
+									@if (!string.IsNullOrEmpty(Model.Title))
+									{
+										<h2 class="mb-4">@Model.Title</h2>
+									}
+									<p>
+										<a href="#about-section" class="btn-custom btn-primary-custom">About Me</a>
+										@if (Model.Projects != null && Model.Projects.Any())
+										{
+											<a href="#projects-section" class="btn-custom btn-outline-custom ml-3">My Works</a>
+										}
+									</p>
+								</div>
+							</div>
+						</div>
+					}
+					else
+					{
+						<div class="row d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+							<div class="col-md-8 text-center ftco-animate">
+								<div class="text">
+									<span class="subheading">Hello!</span>
+									<h1 class="mb-4 mt-3">I'm <span>@Model.FirstName @Model.LastName</span></h1>
+									@if (!string.IsNullOrEmpty(Model.Title))
+									{
+										<h2 class="mb-4">@Model.Title</h2>
+									}
+									<p>
+										<a href="#about-section" class="btn-custom btn-primary-custom">About Me</a>
+										@if (Model.Projects != null && Model.Projects.Any())
+										{
+											<a href="#projects-section" class="btn-custom btn-outline-custom ml-3">My Works</a>
+										}
+									</p>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+
+			@if (!string.IsNullOrEmpty(Model.Address))
+			{
+				<div class="slider-item">
+					<div class="overlay"></div>
+					<div class="container">
+						<div class="row d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+							<div class="col-md-8 text-center ftco-animate">
+								<div class="text">
+									<span class="subheading">Hello!</span>
+									<h1 class="mb-4 mt-3">I'm <span>@Model.FirstName @Model.LastName</span> based in @Model.Address</h1>
+									<p>
+										<a href="#about-section" class="btn-custom btn-primary-custom">About Me</a>
+										@if (Model.Projects != null && Model.Projects.Any())
+										{
+											<a href="#projects-section" class="btn-custom btn-outline-custom ml-3">My Works</a>
+										}
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</section>
+
+	<section class="ftco-about img ftco-section ftco-no-pb section-spacing" id="about-section">
+		<div class="container">
+			@if (!string.IsNullOrEmpty(Model.PersonalImage))
+			{
+				<div class="row d-flex">
+					<div class="col-md-6 col-lg-5 d-flex">
+						<div class="img-about img d-flex align-items-stretch">
+							<div class="overlay"></div>
+							<div class="img d-flex align-self-stretch align-items-center" style="background-image:url(@Model.PersonalImage);">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
+						<div class="row justify-content-start pb-3">
+							<div class="col-md-12 heading-section ftco-animate section-heading position-relative">
+								<h1 class="big">About</h1>
+								<h2 class="mb-4">About Me</h2>
+								@if (!string.IsNullOrEmpty(Model.Bio))
+								{
+									<p>@Model.Bio</p>
+								}
+								<ul class="about-info mt-4 px-md-0 px-2">
+									<li><span>Name:</span> <span>@Model.FirstName @Model.LastName</span></li>
+									@if (Model.DateOfBirth != default(DateOnly))
+									{
+										<li><span>Date of birth:</span> <span>@Model.DateOfBirth.ToString("MMMM dd, yyyy")</span></li>
+									}
+									@if (!string.IsNullOrEmpty(Model.Address))
+									{
+										<li><span>Address:</span> <span>@Model.Address</span></li>
+									}
+									@if (!string.IsNullOrEmpty(Model.Email))
+									{
+										<li><span>Email:</span> <span>@Model.Email</span></li>
+									}
+									@if (!string.IsNullOrEmpty(Model.PhoneNumber))
+									{
+										<li><span>Phone:</span> <span>@Model.PhoneNumber</span></li>
+									}
+								</ul>
+							</div>
+						</div>
+						@if (Model.Projects != null && Model.Projects.Any())
+						{
+							<div class="counter-wrap ftco-animate d-flex mt-md-3">
+								<div class="text">
+									<p class="mb-4">
+										<span class="number" data-number="@Model.Projects.Count">0</span>
+										<span>Project complete</span>
+									</p>
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			}
+			else
+			{
+				<div class="row justify-content-center">
+					<div class="col-md-8 text-center ftco-animate">
+						<div class="section-heading position-relative">
+							<h1 class="big">About</h1>
+							<h2 class="mb-4">About Me</h2>
+							@if (!string.IsNullOrEmpty(Model.Bio))
+							{
+								<p>@Model.Bio</p>
+							}
+						</div>
+						<ul class="about-info mt-4 px-md-0 px-2 text-left d-inline-block">
+							<li><span>Name:</span> <span>@Model.FirstName @Model.LastName</span></li>
+							@if (Model.DateOfBirth != default(DateOnly))
+							{
+								<li><span>Date of birth:</span> <span>@Model.DateOfBirth.ToString("MMMM dd, yyyy")</span></li>
+							}
+							@if (!string.IsNullOrEmpty(Model.Address))
+							{
+								<li><span>Address:</span> <span>@Model.Address</span></li>
+							}
+							@if (!string.IsNullOrEmpty(Model.Email))
+							{
+								<li><span>Email:</span> <span>@Model.Email</span></li>
+							}
+							@if (!string.IsNullOrEmpty(Model.PhoneNumber))
+							{
+								<li><span>Phone:</span> <span>@Model.PhoneNumber</span></li>
+							}
+						</ul>
+						@if (Model.Projects != null && Model.Projects.Any())
+						{
+							<div class="counter-wrap ftco-animate d-flex justify-content-center mt-md-3">
+								<div class="text">
+									<p class="mb-4">
+										<span class="number" data-number="@Model.Projects.Count">0</span>
+										<span>Project complete</span>
+									</p>
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			}
+		</div>
+	</section>
+
+	@if (Model.Services != null && Model.Services.Any())
+	{
+		<section class="ftco-section section-spacing" id="services-section" style="background: var(--bg-light);">
+			<div class="container">
+				<div class="row justify-content-center py-5 mt-5">
+					<div class="col-md-12 heading-section text-center ftco-animate section-heading position-relative">
+						<h1 class="big big-2">Services</h1>
+						<h2 class="mb-4">Services</h2>
+						<p>Here are the services I offer to help bring your ideas to life</p>
+					</div>
+				</div>
+				<div class="row">
+					@foreach (var service in Model.Services)
+					{
+						<div class="col-md-4 d-flex ftco-animate mb-4">
+							<div class="service-card">
+								<div class="icon">
+									<i class="flaticon-analysis"></i>
+								</div>
+								<div class="desc">
+									<h3 class="mb-3">@service.ServiceName</h3>
+									@if (!string.IsNullOrEmpty(service.ServiceDescription))
+									{
+										<p>@service.ServiceDescription</p>
+									}
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</section>
+	}
+
+	@if (Model.Projects != null && Model.Projects.Any())
+	{
+		<section class="ftco-section ftco-project section-spacing" id="projects-section">
+			<div class="container">
+				<div class="row justify-content-center pb-5">
+					<div class="col-md-12 heading-section text-center ftco-animate section-heading position-relative">
+						<h1 class="big big-2">Projects</h1>
+						<h2 class="mb-4">My Projects</h2>
+						<p>Take a look at some of the projects I've worked on</p>
+					</div>
+				</div>
+				<div class="project-grid">
+					@foreach (var project in Model.Projects)
+					{
+						<div class="ftco-animate">
+							<div class="project-card">
+								<div class="text">
+									<h3>
+										@if (!string.IsNullOrEmpty(project.ProjectLink))
+										{
+											<a href="@project.ProjectLink" target="_blank">@project.ProjectName</a>
+										}
+										else
+										{
+											@project.ProjectName
+										}
+									</h3>
+									@if (!string.IsNullOrEmpty(project.ServiceName))
+									{
+										<span class="service-tag">@project.ServiceName</span>
+									}
+									@if (!string.IsNullOrEmpty(project.ProjectDescription))
+									{
+										<p>@project.ProjectDescription</p>
+									}
+									@if (!string.IsNullOrEmpty(project.ProjectLink))
+									{
+										<a href="@project.ProjectLink" target="_blank" class="btn-project">View Project</a>
+									}
+									@if(project.ProjectAttachments.Length > 0)
+									{
+										<a asp-action="ViewFile" asp-route-projectId="@project.ProjectId" target="_blank" class="btn-project">View Project Attachment</a>
+									}
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</section>
+	}
+
+	<footer class="ftco-footer ftco-section">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">About</h2>
+						<p>@(!string.IsNullOrEmpty(Model.Bio) ? Model.Bio : "Thank you for visiting my portfolio.")</p>
+					</div>
+				</div>
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4 ml-md-4">
+						<h2 class="ftco-heading-2">Links</h2>
+						<ul class="list-unstyled">
+							<li><a href="#home-section"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
+							<li><a href="#about-section"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
+							@if (Model.Services != null && Model.Services.Any())
+							{
+								<li><a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Services</a></li>
+							}
+							@if (Model.Projects != null && Model.Projects.Any())
+							{
+								<li><a href="#projects-section"><span class="icon-long-arrow-right mr-2"></span>Projects</a></li>
+							}
+						</ul>
+					</div>
+				</div>
+				@if (Model.Services != null && Model.Services.Any())
+				{
+					<div class="col-md">
+						<div class="ftco-footer-widget mb-4">
+							<h2 class="ftco-heading-2">Services</h2>
+							<ul class="list-unstyled">
+								@foreach (var service in Model.Services.Take(5))
+								{
+									<li><a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>@service.ServiceName</a></li>
+								}
+							</ul>
+						</div>
+					</div>
+				}
+				@if (!string.IsNullOrEmpty(Model.Address) || !string.IsNullOrEmpty(Model.PhoneNumber) || !string.IsNullOrEmpty(Model.Email))
+				{
+					<div class="col-md">
+						<div class="ftco-footer-widget mb-4">
+							<h2 class="ftco-heading-2">Have Questions?</h2>
+							<div class="block-23 mb-3">
+								<ul>
+									@if (!string.IsNullOrEmpty(Model.Address))
+									{
+										<li><span class="icon icon-map-marker"></span><span class="text">@Model.Address</span></li>
+									}
+									@if (!string.IsNullOrEmpty(Model.PhoneNumber))
+									{
+										<li><a href="tel:@Model.PhoneNumber"><span class="icon icon-phone"></span><span class="text">@Model.PhoneNumber</span></a></li>
+									}
+									@if (!string.IsNullOrEmpty(Model.Email))
+									{
+										<li><a href="mailto:@Model.Email"><span class="icon icon-envelope"></span><span class="text">@Model.Email</span></a></li>
+									}
+								</ul>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p>
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+	<script src="~/assetsPort/js/jquery.min.js"></script>
+	<script src="~/assetsPort/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="~/assetsPort/js/popper.min.js"></script>
+	<script src="~/assetsPort/js/bootstrap.min.js"></script>
+	<script src="~/assetsPort/js/jquery.easing.1.3.js"></script>
+	<script src="~/assetsPort/js/jquery.waypoints.min.js"></script>
+	<script src="~/assetsPort/js/jquery.stellar.min.js"></script>
+	<script src="~/assetsPort/js/owl.carousel.min.js"></script>
+	<script src="~/assetsPort/js/jquery.magnific-popup.min.js"></script>
+	<script src="~/assetsPort/js/aos.js"></script>
+	<script src="~/assetsPort/js/jquery.animateNumber.min.js"></script>
+	<script src="~/assetsPort/js/scrollax.min.js"></script>
+	<script src="~/assetsPort/js/main.js"></script>
+
+</body>
+</html>

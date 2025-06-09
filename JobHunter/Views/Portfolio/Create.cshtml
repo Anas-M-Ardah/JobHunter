@@ -231,10 +231,15 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Service Association <span class="text-danger">*</span></label>
-                                    <select name="Projects[0].ServiceId" class="form-control service-selector" required>
+                                    <label asp-for="Projects[0].ServiceId">Service Association <span class="text-danger">*</span></label>
+                                    <select asp-for="Projects[0].ServiceId" class="form-control service-selector" required>
                                         <option value="">-- Select Service --</option>
+                                        <!-- Options will be populated here -->
                                     </select>
+                                    <span asp-validation-for="Projects[0].ServiceId" class="text-danger"></span>
+
+                                    <!-- Hidden field to store the service name -->
+                                    <input type="hidden" asp-for="Projects[0].ServiceName" class="service-name-field" />
                                 </div>
                             </div>
                         </div>
@@ -350,26 +355,47 @@
                 `;
             }
 
-            // Function to update service selectors in projects
-            function updateServiceSelectors() {
-                const serviceOptions = Array.from(document.querySelectorAll('.service-name-input'))
-                    .map((input, index) => ({
-                        id: input.closest('.service-item').querySelector('input[type="hidden"]').value,
-                        name: input.value
-                    }));
 
-                document.querySelectorAll('.service-selector').forEach(selector => {
-                    const currentValue = selector.value;
-                    selector.innerHTML = '<option value="">-- Select Service --</option>';
-                    serviceOptions.forEach(service => {
-                        const option = new Option(service.name, service.id);
-                        selector.add(option);
-                        if (service.id === currentValue) {
-                            option.selected = true;
-                        }
+                function updateServiceSelectors() {
+            const serviceItems = document.querySelectorAll('.service-item');
+            const serviceOptions = [];
+
+            serviceItems.forEach((item, index) => {
+                const nameInput = item.querySelector('.service-name-input');
+                const hiddenId = item.querySelector('input[type="hidden"]');
+
+                if (nameInput && nameInput.value.trim() && hiddenId) {
+                    serviceOptions.push({
+                        id: hiddenId.value,
+                        name: nameInput.value.trim()
                     });
+                }
+            });
+
+            document.querySelectorAll('.service-selector').forEach(selector => {
+                const currentValue = selector.value;
+                selector.innerHTML = '<option value="">-- Select Service --</option>';
+
+                serviceOptions.forEach(service => {
+                    const option = document.createElement('option');
+                    option.value = service.id;
+                    option.textContent = service.name;
+                    option.setAttribute('data-service-name', service.name); // Store name in data attribute
+
+                    if (service.id === currentValue) {
+                        option.selected = true;
+                    }
+
+                    selector.appendChild(option);
                 });
-            }
+            });
+        }
+
+        // Function to get selected service name
+        function getSelectedServiceName(selectElement) {
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            return selectedOption.getAttribute('data-service-name') || '';
+        }
 
             // Service event listeners
             addServiceBtn.addEventListener('click', function () {
@@ -690,6 +716,20 @@
             if (e.target.closest('.improve-project-btn')) {
                 improveProjectDescription(e.target.closest('.improve-project-btn'));
             }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceSelector = document.querySelector('.service-selector');
+            const serviceNameField = document.querySelector('.service-name-field');
+
+            serviceSelector.addEventListener('change', function() {
+                // Get the selected option text (service name)
+                const selectedOption = this.options[this.selectedIndex];
+                const serviceName = selectedOption.text !== '-- Select Service --' ? selectedOption.text : '';
+
+                // Set the service name in the hidden field
+                serviceNameField.value = serviceName;
+            });
         });
     </script>
 }

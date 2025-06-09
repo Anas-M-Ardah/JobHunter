@@ -14,7 +14,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Edit Your Portfolio</h1>
         <div>
-            <a asp-action="Details" asp-route-id="@Model.PortfolioId" class="btn btn-secondary btn-lg shadow-sm mr-2">
+            <a asp-action="Index" class="btn btn-secondary btn-lg shadow-sm mr-2">
                 <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i>Cancel
             </a>
             <button type="submit" form="portfolioForm" class="d-none d-sm-inline-block btn btn-primary btn-lg shadow-sm">
@@ -283,22 +283,17 @@
                                                    placeholder="e.g., E-commerce Website" required />
                                         </div>
                                     </div>
-                                                    <div class="col-md-6">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Service Association <span class="text-danger">*</span></label>
-                                            <select name="Projects[@i].ServiceId" class="form-control service-selector" required>
+                                            <label asp-for="Projects[0].ServiceId">Service Association <span class="text-danger">*</span></label>
+                                            <select asp-for="Projects[0].ServiceId" class="form-control service-selector" required>
                                                 <option value="">-- Select Service --</option>
-                                                @if (Model.Services != null)
-                                                {
-                                                    @foreach (var service in Model.Services)
-                                                    {
-
-                                                        <option value="@service.ServiceId">
-                                                            @service.ServiceName
-                                                        </option>
-                                                    }
-                                                }
+                                                <!-- Options will be populated here -->
                                             </select>
+                                            <span asp-validation-for="Projects[0].ServiceId" class="text-danger"></span>
+
+                                            <!-- Hidden field to store the service name -->
+                                            <input type="hidden" asp-for="Projects[0].ServiceName" class="service-name-field" />
                                         </div>
                                     </div>
                                 </div>
@@ -940,6 +935,20 @@
         // Enable auto-save on form changes
         document.getElementById('portfolioForm').addEventListener('input', autoSaveDraft);
         document.getElementById('portfolioForm').addEventListener('change', autoSaveDraft);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceSelector = document.querySelector('.service-selector');
+            const serviceNameField = document.querySelector('.service-name-field');
+
+            serviceSelector.addEventListener('change', function() {
+                // Get the selected option text (service name)
+                const selectedOption = this.options[this.selectedIndex];
+                const serviceName = selectedOption.text !== '-- Select Service --' ? selectedOption.text : '';
+
+                // Set the service name in the hidden field
+                serviceNameField.value = serviceName;
+            });
+        });
     </script>
 
     @{

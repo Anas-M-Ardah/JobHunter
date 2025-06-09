@@ -8,6 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\assetsPort\css\.DS_Store" />
+    <None Include="wwwroot\assetsPort\css\bootstrap\.DS_Store" />
+    <None Include="wwwroot\assetsPort\css\css\.DS_Store" />
+    <None Include="wwwroot\assetsPort\fonts\.DS_Store" />
+    <None Include="wwwroot\assetsPort\fonts\flaticon\.DS_Store" />
+    <None Include="wwwroot\assetsPort\fonts\flaticon\font\.DS_Store" />
+    <None Include="wwwroot\assetsPort\fonts\ionicons\fonts\.DS_Store" />
+    <None Include="wwwroot\assetsPort\images\.DS_Store" />
+    <None Include="wwwroot\assetsPort\js\.DS_Store" />
+    <None Include="wwwroot\assetsPort\scss\.DS_Store" />
+    <None Include="wwwroot\assetsPort\scss\bootstrap\.DS_Store" />
     <None Include="wwwroot\assets\img\job.png" />
   </ItemGroup>
 

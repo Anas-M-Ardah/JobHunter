@@ -1,7 +1,9 @@
 ﻿using JobHunter.Data;
 using JobHunter.DTOs;
 using JobHunter.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Core.Types;
 
 namespace JobHunter.Repositories
 {
@@ -65,6 +67,7 @@ namespace JobHunter.Repositories
 
                     // Only set ServiceId if it references an existing service
                     ServiceId = p.ServiceId,
+                    ServiceName = p.ServiceName,
 
                     // File handling
                     ProjectAttachments = ConvertFileToBytes(p.ProjectAttachments),
@@ -107,7 +110,7 @@ namespace JobHunter.Repositories
             try
             {
                 var portfolios = await _context.Portfolios
-                    .Where(p => p.EndUserId == user.Id)
+                    .Where(p => p.EndUserId == user.Id && !p.IsDeleted)
                     .Select(p => new PortfolioIndexDTO
                     {
                         PortfolioId = p.PortfolioId,
@@ -130,10 +133,10 @@ namespace JobHunter.Repositories
             }
         }
 
-        public async Task<PortfolioCreateEditDTO> GetPortfolioById(Guid portfolioId)
+        public async Task<PortfolioCreateEditDTO> GetPortfolioByIdForEdit(Guid portfolioId)
         {
             var result = await _context.Portfolios
-                .Where(p => p.PortfolioId == portfolioId)
+                .Where(p => p.PortfolioId == portfolioId && !p.IsDeleted)
                 .Select(p => new PortfolioCreateEditDTO
                 {
                     PortfolioId = p.PortfolioId,
@@ -252,6 +255,7 @@ namespace JobHunter.Repositories
                         ProjectLink = p.ProjectLink,
                         PortfolioId = existingPortfolio.PortfolioId,
                         ServiceId = p.ServiceId,
+                        ServiceName = p.ServiceName,
                         // File handling - only update if new file is provided
                         ProjectAttachments = p.ProjectAttachments != null ? ConvertFileToBytes(p.ProjectAttachments) : null,
                         ProjectAttachmentsName = p.ProjectAttachments?.FileName,
@@ -271,6 +275,57 @@ namespace JobHunter.Repositories
                 // Consider logging the exception here
                 return false;
             }
+        }
+
+        public async Task<bool> DeletePortfolioAsync(Guid portfolioId)
+        {
+            try
+            {
+                await _context.Portfolios
+                .Where(p => p.PortfolioId == portfolioId)
+                .ExecuteUpdateAsync(r => r.SetProperty(r => r.IsDeleted, true));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+
+        public async Task<Portfolio> GetPortfolioById(Guid portfolioId)
+        {
+            try
+            {
+                var portfolio = await _context.Portfolios
+                    .Include(p => p.Services)
+                    .Include(p => p.Projects)
+                    .FirstOrDefaultAsync(p => p.PortfolioId == portfolioId && !p.IsDeleted);
+                return portfolio ?? throw new KeyNotFoundException($"Portfolio with ID {portfolioId} not found.");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                throw new ApplicationException($"Error retrieving portfolio with ID {portfolioId}", ex);
+            }
+        }
+
+        public async Task<FileStreamResult> GetFileFromDatabaseAsync(Guid projectId)
+        {
+            try
+            {
+                var project = await _context.Projects.Where(p => p.ProjectId == projectId).FirstOrDefaultAsync();
+                var file = project.ProjectAttachments;
+                Stream stream = new MemoryStream(file);
+                return new FileStreamResult(stream, project.ProjectAttachmentsContentType);
+            }
+            catch(Exception ex)
+            {
+                // Log the exception
+                throw new ApplicationException($"Error retrieving project with ID {projectId}", ex);
+            }
+
+           
         }
     }
 }
