@@ -490,28 +490,28 @@
 						<div class="row justify-content-start pb-3">
 							<div class="col-md-12 heading-section ftco-animate section-heading position-relative">
 								<h1 class="big">About</h1>
-								<h2 class="mb-4">About Me</h2>
+								<h2 class="mb-4" style="color: white">About Me</h2>
 								@if (!string.IsNullOrEmpty(Model.Bio))
 								{
-									<p>@Model.Bio</p>
+									<p style="color: white">@Model.Bio</p>
 								}
 								<ul class="about-info mt-4 px-md-0 px-2">
-									<li><span>Name:</span> <span>@Model.FirstName @Model.LastName</span></li>
+									<li><span>Name:</span> <span style="color: white">@Model.FirstName @Model.LastName</span></li>
 									@if (Model.DateOfBirth != default(DateOnly))
 									{
-										<li><span>Date of birth:</span> <span>@Model.DateOfBirth.ToString("MMMM dd, yyyy")</span></li>
+										<li><span>Date of birth:</span> <span style="color: white">@Model.DateOfBirth.ToString("MMMM dd, yyyy")</span></li>
 									}
 									@if (!string.IsNullOrEmpty(Model.Address))
 									{
-										<li><span>Address:</span> <span>@Model.Address</span></li>
+										<li><span>Address:</span> <span style="color: white">@Model.Address</span></li>
 									}
 									@if (!string.IsNullOrEmpty(Model.Email))
 									{
-										<li><span>Email:</span> <span>@Model.Email</span></li>
+										<li><span>Email:</span> <span style="color: white">@Model.Email</span></li>
 									}
 									@if (!string.IsNullOrEmpty(Model.PhoneNumber))
 									{
-										<li><span>Phone:</span> <span>@Model.PhoneNumber</span></li>
+										<li><span>Phone:</span> <span style="color: white">@Model.PhoneNumber</span></li>
 									}
 								</ul>
 							</div>
@@ -536,29 +536,29 @@
 					<div class="col-md-8 text-center ftco-animate">
 						<div class="section-heading position-relative">
 							<h1 class="big">About</h1>
-							<h2 class="mb-4">About Me</h2>
+							<h2 class="mb-4" style="color: white">About Me</h2>
 							@if (!string.IsNullOrEmpty(Model.Bio))
 							{
-								<p>@Model.Bio</p>
+								<p style="color: white">@Model.Bio</p>
 							}
 						</div>
 						<ul class="about-info mt-4 px-md-0 px-2 text-left d-inline-block">
 							<li><span>Name:</span> <span>@Model.FirstName @Model.LastName</span></li>
 							@if (Model.DateOfBirth != default(DateOnly))
 							{
-								<li><span>Date of birth:</span> <span>@Model.DateOfBirth.ToString("MMMM dd, yyyy")</span></li>
+								<li><span>Date of birth:</span> <span style="color: white">@Model.DateOfBirth.ToString("MMMM dd, yyyy")</span></li>
 							}
 							@if (!string.IsNullOrEmpty(Model.Address))
 							{
-								<li><span>Address:</span> <span>@Model.Address</span></li>
+								<li><span>Address:</span> <span style="color: white">@Model.Address</span></li>
 							}
 							@if (!string.IsNullOrEmpty(Model.Email))
 							{
-								<li><span>Email:</span> <span>@Model.Email</span></li>
+								<li><span>Email:</span> <span style="color: white">@Model.Email</span></li>
 							}
 							@if (!string.IsNullOrEmpty(Model.PhoneNumber))
 							{
-								<li><span>Phone:</span> <span>@Model.PhoneNumber</span></li>
+								<li><span>Phone:</span> <span style="color: white">@Model.PhoneNumber</span></li>
 							}
 						</ul>
 						@if (Model.Projects != null && Model.Projects.Any())
@@ -619,8 +619,8 @@
 				<div class="row justify-content-center pb-5">
 					<div class="col-md-12 heading-section text-center ftco-animate section-heading position-relative">
 						<h1 class="big big-2">Projects</h1>
-						<h2 class="mb-4">My Projects</h2>
-						<p>Take a look at some of the projects I've worked on</p>
+						<h2 class="mb-4" style="color: white">My Projects</h2>
+						<p style="color: white">Take a look at some of the projects I've worked on</p>
 					</div>
 				</div>
 				<div class="project-grid">

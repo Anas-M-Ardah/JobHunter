@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+
+@{
+    var currentUser = await UserManager.GetUserAsync(User);
+    var firstName = currentUser?.FirstName;
+    var lastName = currentUser?.LastName;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -76,7 +85,7 @@
                         <a class="collapse-item" asp-controller="Resume" asp-action="Index">
                             <i class="fas fa-list text-primary"></i> My Resumes
                         </a>
-                        <a class="collapse-item" asp-controller="Resume" asp-action="Templates">
+                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
                             <i class="fas fa-th-large text-info"></i> Templates
                         </a>
                     </div>
@@ -100,7 +109,7 @@
                         <a class="collapse-item" asp-controller="Portfolio" asp-action="Index">
                             <i class="fas fa-folder-open text-primary"></i> My Portfolios
                         </a>
-                        <a class="collapse-item" asp-controller="Portfolio" asp-action="Gallery">
+                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
                             <i class="fas fa-images text-info"></i> Gallery
                         </a>
                     </div>
@@ -117,7 +126,7 @@
 
             <!-- Nav Item - AI Assistant -->
             <li class="nav-item">
-                <a class="nav-link" asp-controller="AI" asp-action="Assistant">
+                <a class="nav-link" asp-controller="Home" asp-action="ComingSoon">
                     <i class="fas fa-fw fa-robot"></i>
                     <span>AI Assistant</span>
                 </a>
@@ -133,16 +142,16 @@
                 <div id="collapseAITools" class="collapse" aria-labelledby="headingAITools" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">AI Tools:</h6>
-                        <a class="collapse-item" asp-controller="AI" asp-action="ResumeOptimizer">
+                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
                             <i class="fas fa-chart-line text-success"></i> Resume Optimizer
                         </a>
-                        <a class="collapse-item" asp-controller="AI" asp-action="SkillSuggestions">
+                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
                             <i class="fas fa-lightbulb text-warning"></i> Skill Suggestions
                         </a>
-                        <a class="collapse-item" asp-controller="AI" asp-action="CoverLetter">
+                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
                             <i class="fas fa-envelope-open-text text-info"></i> Cover Letters
                         </a>
-                        <a class="collapse-item" asp-controller="AI" asp-action="InterviewPrep">
+                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
                             <i class="fas fa-microphone text-primary"></i> Interview Prep
                         </a>
                     </div>
@@ -159,7 +168,7 @@
 
             <!-- Nav Item - Templates -->
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Templates" asp-action="Index">
+                <a class="nav-link" asp-controller="Home" asp-action="ComingSoon">
                     <i class="fas fa-fw fa-palette"></i>
                     <span>Templates</span>
                 </a>
@@ -167,7 +176,7 @@
 
             <!-- Nav Item - Job Board -->
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Jobs" asp-action="Index">
+                <a class="nav-link" asp-controller="Home" asp-action="ComingSoon">
                     <i class="fas fa-fw fa-search-location"></i>
                     <span>Job Board</span>
                 </a>
@@ -175,7 +184,7 @@
 
             <!-- Nav Item - Analytics -->
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Analytics" asp-action="Index">
+                <a class="nav-link" asp-controller="Home" asp-action="ComingSoon">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Analytics</span>
                 </a>
@@ -197,16 +206,16 @@
                 </a>
             </li>
 
-            <!-- Nav Item - Settings -->
+            @* <!-- Nav Item - Settings -->
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Account" asp-action="Settings">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Settings</span>
                 </a>
-            </li>
+            </li> *@
 
             <!-- Nav Item - Help -->
-            <li class="nav-item">
+            @* <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHelp"
                    aria-expanded="true" aria-controls="collapseHelp">
                     <i class="fas fa-fw fa-question-circle"></i>
@@ -229,7 +238,7 @@
                         </a>
                     </div>
                 </div>
-            </li>
+            </li> *@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -425,24 +434,16 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@firstName @lastName</span>
                                 <img class="img-profile rounded-circle"
-                                     src="~/assetsDash/img/undraw_posting_photo.svgrofile.svg">
+                                     src="https://i.ibb.co/tHd6Wdj/default-profile-pic.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" asp-controller="Account" asp-action="Index">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" data-toggle="modal" data-target="#logoutModal">
