@@ -1,4 +1,5 @@
-﻿using JobHunter.DTOs;
+﻿using System.Text.Json;
+using JobHunter.DTOs;
 using JobHunter.Models;
 using JobHunter.Repositories;
 using JobHunter.Services;
@@ -117,6 +118,38 @@ namespace JobHunter.Controllers
                 fileName);
         }
 
-        
+        [HttpPost]
+        public async Task<IActionResult> UpdateResume([FromBody] JsonElement resumeJson)
+        {
+            try
+            {
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    Converters = { new DateOnlyJsonConverter(), new NullableDateOnlyJsonConverter() }
+                };
+
+                var resume = JsonSerializer.Deserialize<Resume>(resumeJson.GetRawText(), options);
+
+                if (resume == null || resume.ResumeId == Guid.Empty)
+                {
+                    return Json(new { success = false, message = "Invalid resume data" });
+                }
+
+                bool isUpdated = await _resumeRepository.UpdateResume(resume);
+                if (!isUpdated)
+                {
+                    return Json(new { success = false, message = "Failed to update resume" });
+                }
+
+                return Json(new { success = true, message = "Resume updated successfully" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = $"Deserialization error: {ex.Message}" });
+            }
+        }
+
+
     }
 }

@@ -131,7 +131,7 @@ namespace JobHunter.Repositories
             try
             {
                 // Step 1: Remove all existing skills for this resume
-                var existingEdu= await _context.Educations
+                var existingEdu = await _context.Educations
                     .Where(s => s.ResumeId == resumeId)
                     .ToListAsync();
 
@@ -350,7 +350,7 @@ namespace JobHunter.Repositories
             }
         }
 
-    public ResumeCreateEditDTO MapResumeModelToResumeCreateEditDTO(Resume resume)
+        public ResumeCreateEditDTO MapResumeModelToResumeCreateEditDTO(Resume resume)
         {
             try
             {
@@ -411,6 +411,54 @@ namespace JobHunter.Repositories
             }
             catch (Exception ex)
             {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateResume(Resume resume)
+        {
+            try
+            {
+                var existingResume = await GetResumeByIdAsync(resume.ResumeId);
+
+                if (existingResume == null)
+                {
+                    return false;
+                }
+
+                // Update the entity state
+                existingResume.FirstName = resume.FirstName;
+                existingResume.LastName = resume.LastName;
+                existingResume.Title = resume.Title;
+                existingResume.LinkedInLink = resume.LinkedInLink;
+                existingResume.GitHubLink = resume.GitHubLink;
+                existingResume.PortfolioLink = resume.PortfolioLink;
+                existingResume.Email = resume.Email;
+                existingResume.DateOfBirth = resume.DateOfBirth;
+                existingResume.PhoneNumber = resume.PhoneNumber;
+                existingResume.Address = resume.Address;
+                existingResume.Bio = resume.Bio;
+
+                resume.Educations[0].DegreeType = "Bachelor's Degree"; // Example of modifying a property
+                resume.Educations[0].Major = "Computer Science"; // Example of modifying a property
+                resume.Educations[0].GPA = 3.8; // Example of modifying a property
+                resume.Major = resume.Educations[0].Major; // Update the Resume's Major from the first Education entry
+                existingResume.Major = resume.Major ;
+
+                // Update navigation properties
+                existingResume.Skills = resume.Skills;
+                existingResume.Educations = resume.Educations;
+                existingResume.Experiences = resume.Experiences;
+                existingResume.Languages = resume.Languages;
+                existingResume.Certificates = resume.Certificates;
+                existingResume.ModifiedDate = DateTime.Now;
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating resume: {ex.Message}");
                 return false;
             }
         }

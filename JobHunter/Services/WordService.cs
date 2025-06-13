@@ -507,6 +507,7 @@ namespace JobHunter.Services
 
             foreach (var edu in educations.OrderByDescending(e => e.StartDate))
             {
+                // Institution and Duration line
                 var eduPara = new Paragraph();
                 var eduParaProps = new ParagraphProperties();
                 eduParaProps.Append(new ParagraphStyleId() { Val = "JobTitle" });
@@ -532,7 +533,7 @@ namespace JobHunter.Services
                 eduPara.Append(durationRun);
                 body.Append(eduPara);
 
-                // Degree/Major
+                // Major/Field of Study
                 var majorPara = new Paragraph();
                 var majorParaProps = new ParagraphProperties();
                 majorParaProps.Append(new ParagraphStyleId() { Val = "Company" });
@@ -542,6 +543,63 @@ namespace JobHunter.Services
                 majorRun.Append(new Text(edu.Major));
                 majorPara.Append(majorRun);
                 body.Append(majorPara);
+
+                // Degree Type and GPA line (only if either exists)
+                if (!string.IsNullOrEmpty(edu.DegreeType) || edu.GPA.HasValue)
+                {
+                    var degreeGpaPara = new Paragraph();
+                    var degreeGpaParaProps = new ParagraphProperties();
+
+                    // Use a slightly smaller font size and different color for degree/GPA
+                    var degreeGpaStyle = new ParagraphStyleId() { Val = "Normal" };
+                    degreeGpaParaProps.Append(degreeGpaStyle);
+
+                    // Add tab stop for GPA alignment
+                    var degreeGpaTabs = new Tabs();
+                    degreeGpaTabs.Append(new TabStop() { Val = TabStopValues.Right, Position = 9360 });
+                    degreeGpaParaProps.Append(degreeGpaTabs);
+
+                    degreeGpaPara.Append(degreeGpaParaProps);
+
+                    // Degree Type (left side)
+                    if (!string.IsNullOrEmpty(edu.DegreeType))
+                    {
+                        var degreeRun = new Run();
+                        degreeRun.Append(new RunProperties(
+                            new RunFonts() { Ascii = "Calibri", HighAnsi = "Calibri" },
+                            new FontSize() { Val = "20" }, // 10pt
+                            new Color() { Val = "595959" },
+                            new Italic()
+                        ));
+                        degreeRun.Append(new Text(edu.DegreeType));
+                        degreeGpaPara.Append(degreeRun);
+                    }
+
+                    // GPA (right side)
+                    if (edu.GPA.HasValue)
+                    {
+                        // Add tab character to align GPA to the right
+                        degreeGpaPara.Append(new Run(new TabChar()));
+
+                        var gpaRun = new Run();
+                        gpaRun.Append(new RunProperties(
+                            new RunFonts() { Ascii = "Calibri", HighAnsi = "Calibri" },
+                            new FontSize() { Val = "20" }, // 10pt
+                            new Color() { Val = "595959" }
+                        ));
+                        gpaRun.Append(new Text($"GPA: {edu.GPA.Value:F2}"));
+                        degreeGpaPara.Append(gpaRun);
+                    }
+
+                    body.Append(degreeGpaPara);
+                }
+
+                // Add spacing between education items
+                var spacingPara = new Paragraph();
+                var spacingParaProps = new ParagraphProperties();
+                spacingParaProps.Append(new SpacingBetweenLines() { After = "120" }); // 6pt spacing
+                spacingPara.Append(spacingParaProps);
+                body.Append(spacingPara);
             }
         }
 
