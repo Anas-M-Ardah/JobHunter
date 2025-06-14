@@ -458,182 +458,7 @@
             min-height: 100px;
         }
 
-        /* Print Styles - Matching Word Output */
-        @@media print {
-            *
-
-        {
-            -webkit-print-color-adjust: exact !important;
-            color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        body {
-            background: white !important;
-            font-size: 10pt !important;
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-
-        .cv-container {
-            margin: 0 !important;
-            padding: 0.5in !important;
-            max-width: none !important;
-            box-shadow: none !important;
-            border: none !important;
-            width: 100% !important;
-            min-height: auto !important;
-        }
-
-            .cv-container::before {
-                display: none !important;
-            }
-
-        .control-panel,
-        .add-item-container,
-        .remove-item-btn,
-        .edit-mode-indicator {
-            display: none !important;
-        }
-
-        .editable {
-            border: none !important;
-            background: none !important;
-            box-shadow: none !important;
-            padding: 0 !important;
-        }
-
-        .section {
-            break-inside: avoid !important;
-            page-break-inside: avoid !important;
-            margin-bottom: 16px !important;
-        }
-
-        .experience-item, .education-item, .certificate-item {
-            break-inside: avoid !important;
-            page-break-inside: avoid !important;
-            margin-bottom: 12px !important;
-        }
-
-        .item-title-line {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: baseline !important;
-        }
-
-        .item-title {
-            font-size: 11pt !important;
-            flex: 1 !important;
-            padding-right: 20px !important;
-        }
-
-        .item-duration {
-            font-size: 9pt !important;
-            white-space: nowrap !important;
-            text-align: right !important;
-            min-width: 120px !important;
-        }
-
-        .languages-list {
-            display: flex !important;
-            flex-wrap: wrap !important;
-            gap: 15px !important;
-        }
-
-        .language-item-container {
-            margin-bottom: 0 !important;
-            display: inline-block !important;
-        }
-
-        .language-item {
-            display: inline-flex !important;
-            align-items: center !important;
-            gap: 3px !important;
-            white-space: nowrap !important;
-        }
-
-        .cv-header h1 {
-            font-size: 22pt !important;
-        }
-
-        .section-title {
-            font-size: 12pt !important;
-        }
-
-        .two-column-section {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            gap: 20px !important;
-        }
-
-        .job-title {
-            font-size: 13pt !important;
-        }
-
-        .contact-info, .contact-links {
-            font-size: 9pt !important;
-        }
-
-        }
-
-        /* Responsive Design */
-        @@media (max-width: 768px) {
-            body
-
-        {
-            padding: 10px;
-        }
-
-        .cv-container {
-            padding: 20px;
-        }
-
-        .control-panel {
-            position: relative;
-            top: auto;
-            right: auto;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        .control-buttons {
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-
-        .item-title-line {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-        }
-
-        .item-title, .item-duration {
-            padding-right: 0 !important;
-        }
-
-        .item-duration {
-            margin-top: 3px;
-            font-size: 9pt;
-            text-align: left !important;
-            min-width: auto !important;
-        }
-
-        .languages-list {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .two-column-section {
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-
-        .cv-header h1 {
-            font-size: 20pt;
-        }
-
-        }
-
+        /* Education Degree and GPA Line */
         .item-degree-gpa {
             font-size: 10pt;
             color: #595959;
@@ -641,61 +466,233 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
         }
 
         .item-degree {
             font-style: italic;
             flex: 1;
             padding-right: 10px;
+            margin: 0;
         }
 
         .item-gpa {
             white-space: nowrap;
             font-weight: normal;
+            margin: 0;
         }
 
-        /* Responsive adjustments for mobile */
-        @@media (max-width: 768px) {
-            .item-degree-gpa
-
-        {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-        }
-
-        .item-degree, .item-gpa {
-            padding-right: 0 !important;
-        }
-
-        .item-gpa {
-            margin-top: 2px;
-            text-align: left !important;
-        }
-
-        }
-
-        /* Print styles */
+        /* Print Styles - Matching Word Output */
         @@media print {
-            .item-degree-gpa
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
 
-        {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
+            body {
+                background: white !important;
+                font-size: 10pt !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .cv-container {
+                margin: 0 !important;
+                padding: 0.5in !important;
+                max-width: none !important;
+                box-shadow: none !important;
+                border: none !important;
+                width: 100% !important;
+                min-height: auto !important;
+            }
+
+                .cv-container::before {
+                    display: none !important;
+                }
+
+            .control-panel,
+            .add-item-container,
+            .remove-item-btn,
+            .edit-mode-indicator {
+                display: none !important;
+            }
+
+            .editable {
+                border: none !important;
+                background: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+
+            .section {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                margin-bottom: 16px !important;
+            }
+
+            .experience-item, .education-item, .certificate-item {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                margin-bottom: 12px !important;
+            }
+
+            .item-title-line {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: baseline !important;
+            }
+
+            .item-title {
+                font-size: 11pt !important;
+                flex: 1 !important;
+                padding-right: 20px !important;
+            }
+
+            .item-duration {
+                font-size: 9pt !important;
+                white-space: nowrap !important;
+                text-align: right !important;
+                min-width: 120px !important;
+            }
+
+            .languages-list {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 15px !important;
+            }
+
+            .language-item-container {
+                margin-bottom: 0 !important;
+                display: inline-block !important;
+            }
+
+            .language-item {
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 3px !important;
+                white-space: nowrap !important;
+            }
+
+            .cv-header h1 {
+                font-size: 22pt !important;
+            }
+
+            .section-title {
+                font-size: 12pt !important;
+            }
+
+            .two-column-section {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 20px !important;
+            }
+
+            .job-title {
+                font-size: 13pt !important;
+            }
+
+            .contact-info, .contact-links {
+                font-size: 9pt !important;
+            }
+            /* Education specific print styles */
+            .item-degree-gpa {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: baseline !important;
+                margin-bottom: 3px !important;
+                width: 100% !important;
+                line-height: 1.2 !important;
+            }
+
+            .item-degree {
+                font-size: 10pt !important;
+                font-style: italic !important;
+                color: #595959 !important;
+                flex: 1 !important;
+                padding-right: 10px !important;
+                margin: 0 !important;
+                display: inline-block !important;
+            }
+
+            .item-gpa {
+                font-size: 10pt !important;
+                color: #595959 !important;
+                white-space: nowrap !important;
+                text-align: right !important;
+                font-weight: normal !important;
+                margin: 0 !important;
+                display: inline-block !important;
+            }
         }
 
-        .item-degree {
-            font-size: 10pt !important;
-            flex: 1 !important;
-            padding-right: 10px !important;
-        }
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
 
-        .item-gpa {
-            font-size: 10pt !important;
-            white-space: nowrap !important;
-            text-align: right !important;
-        }
+            .cv-container {
+                padding: 20px;
+            }
 
+            .control-panel {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            .control-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .item-title-line {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+            }
+
+            .item-title, .item-duration {
+                padding-right: 0 !important;
+            }
+
+            .item-duration {
+                margin-top: 3px;
+                font-size: 9pt;
+                text-align: left !important;
+                min-width: auto !important;
+            }
+
+            .languages-list {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .two-column-section {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .cv-header h1 {
+                font-size: 20pt;
+            }
+            /* Responsive adjustments for education on mobile */
+            .item-degree-gpa {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+            }
+
+            .item-degree, .item-gpa {
+                padding-right: 0 !important;
+            }
+
+            .item-gpa {
+                margin-top: 2px;
+                text-align: left !important;
+            }
         }
     </style>
 </head>
@@ -724,19 +721,19 @@
                 <span class="editable" contenteditable="false" data-placeholder="Last Name">@Model.LastName</span>
             </h1>
 
-@if (!string.IsNullOrEmpty(Model.Title))
-{
+            @if (!string.IsNullOrEmpty(Model.Title))
+            {
                 <div class="job-title">
                     <span class="editable" contenteditable="false" data-placeholder="Job Title">@Model.Title</span>
                 </div>
-}
+            }
 
             <div class="contact-info">
                 <span class="editable" contenteditable="false" data-placeholder="Address">@(Model.Address ?? "")</span>
-@if (!string.IsNullOrEmpty(Model.Address) && (!string.IsNullOrEmpty(Model.PhoneNumber) || !string.IsNullOrEmpty(Model.Email)))
-{
+                @if (!string.IsNullOrEmpty(Model.Address) && (!string.IsNullOrEmpty(Model.PhoneNumber) || !string.IsNullOrEmpty(Model.Email)))
+                {
                     <text> | </text>
-}
+                }
                 <span class="editable" contenteditable="false" data-placeholder="Phone">@(Model.PhoneNumber ?? "")</span>
                 @if (!string.IsNullOrEmpty(Model.PhoneNumber) && !string.IsNullOrEmpty(Model.Email))
                 {
@@ -845,7 +842,6 @@
             </div>
         }
 
-
         <!-- Education Section -->
         @if (Model.Educations != null && Model.Educations.Any())
         {
@@ -920,7 +916,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Certificates Column -->
                 <div class="column">
                     <div class="section" id="certificatesSection">
@@ -928,8 +923,8 @@
                         <div id="certificatesContent">
                             @foreach (var certificate in Model.Certificates.OrderByDescending(c => c.StartDate).Take(5))
                             {
-                                <div class="certificate-item" style="margin-bottom: 10px;" data-certificate-id="@certificate.CertificateId">
-                                    <div class="item-header">
+                                <div class="certificate-item" style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: flex-start;" data-certificate-id="@certificate.CertificateId">
+                                    <div class="item-header" style="flex: 1;">
                                         <div class="item-title" style="font-size: 10pt; margin-bottom: 2px;">
                                             <span class="editable" contenteditable="false" data-placeholder="Certificate Name">@certificate.TopicName</span>
                                         </div>
@@ -938,7 +933,12 @@
                                             <div class="item-provider editable" contenteditable="false" data-placeholder="Provider">@certificate.ProviderName</div>
                                         }
                                     </div>
-                                    <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+                                    <div class="item-date" style="text-align: right; margin-left: 10px;">
+                                        <span class="editable item-end-date" contenteditable="false" data-placeholder="End Date" style="font-size: 9pt; color: #666;">
+                                            @(certificate.EndDate?.ToString("MMM yyyy") ?? "Present")
+                                        </span>
+                                    </div>
+                                    <button class="remove-item-btn" onclick="removeItem(this.parentElement)" style="margin-left: 5px;">✕</button>
                                 </div>
                             }
                         </div>
@@ -985,14 +985,16 @@
                             <div class="item-header">
                                 <div class="item-title-line">
                                     <div class="item-title editable" contenteditable="false" data-placeholder="Certificate Name">@certificate.TopicName</div>
-                                    @if (certificate.StartDate != default(DateOnly))
-                                    {
-                                        <div class="item-duration editable" contenteditable="false" data-placeholder="Date">@certificate.StartDate.ToString("MMM yyyy")</div>
-                                    }
-                                    else
-                                    {
-                                        <div class="item-duration editable" contenteditable="false" data-placeholder="Date"></div>
-                                    }
+                                    <div class="item-duration editable" contenteditable="false" data-placeholder="Date">
+                                        @if (certificate.EndDate != null)
+                                        {
+                                            @certificate.EndDate.Value.ToString("MMM yyyy")
+                                        }
+                                        else
+                                        {
+                                            <text>Present</text>
+                                        }
+                                    </div>
                                 </div>
                                 @if (!string.IsNullOrEmpty(certificate.ProviderName))
                                 {
@@ -1011,275 +1013,288 @@
     </div>
 
     <script>
-            let isEditing = false;
-            let originalContent = '';
+        let isEditing = false;
+        let originalContent = '';
 
-            // Store original content
-            document.addEventListener('DOMContentLoaded', function() {
-                originalContent = document.getElementById('cvContainer').innerHTML;
-            });
-
-            // Toggle edit mode
-            document.getElementById('editBtn').addEventListener('click', function() {
-                toggleEditMode();
-            });
-
-            document.getElementById('saveBtn').addEventListener('click', function() {
-                saveChanges();
-            });
-
-            document.getElementById('resetBtn').addEventListener('click', function() {
-                resetChanges();
-            });
-
-            document.getElementById('printBtn').addEventListener('click', function() {
-                window.print();
-            });
-
-            document.getElementById('downloadBtn').addEventListener('click', function() {
-                downloadPDF();
-            });
-
-            function toggleEditMode() {
-                isEditing = !isEditing;
-                const container = document.getElementById('cvContainer');
-                const editBtn = document.getElementById('editBtn');
-                const saveBtn = document.getElementById('saveBtn');
-                const resetBtn = document.getElementById('resetBtn');
-
-                if (isEditing) {
-                    container.classList.add('editing');
-                    document.querySelectorAll('.editable').forEach(el => {
-                        el.contentEditable = true;
-                    });
-                    editBtn.style.display = 'none';
-                    saveBtn.style.display = 'block';
-                    resetBtn.style.display = 'block';
-                    editBtn.textContent = '🖊️ Enable Editing';
-                } else {
-                    container.classList.remove('editing');
-                    document.querySelectorAll('.editable').forEach(el => {
-                        el.contentEditable = false;
-                    });
-                    editBtn.style.display = 'block';
-                    saveBtn.style.display = 'none';
-                    resetBtn.style.display = 'none';
-                }
-            }
-
-            function saveChanges() {
-                const saveBtn = document.getElementById('saveBtn');
-                const originalText = saveBtn.textContent;
-                saveBtn.textContent = '⏳ Saving...';
-                saveBtn.disabled = true;
-
-                const resume = parseResumeFromDOM();
-
-                // Debug: Log the resume object
-                console.log('Resume object being sent:', resume);
-                console.log('JSON being sent:', JSON.stringify(resume));
-
-                fetch('/Resume/UpdateResume', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
-                    },
-                    body: JSON.stringify(resume)
-                })
-                .then(response => {
-                    // Debug: Log the response
-                    console.log('Response status:', response.status);
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Response data:', data);
-                    if (data.success) {
-                        originalContent = document.getElementById('cvContainer').innerHTML;
-                        toggleEditMode();
-                        showNotification('Changes saved successfully!', 'success');
-                    } else {
-                        showNotification('Error saving changes: ' + data.message, 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showNotification('Error saving changes. Please try again.', 'error');
-                })
-                .finally(() => {
-                    saveBtn.textContent = originalText;
-                    saveBtn.disabled = false;
-                });
-            }
-
-            function parseResumeFromDOM() {
-                const resume = {
-                    resumeId: '@Model.ResumeId',
-                    firstName: '',
-                    lastName: '',
-                    title: '',
-                    address: '',
-                    phoneNumber: '',
-                    email: '',
-                    linkedInLink: '',
-                    portfolioLink: '',
-                    bio: '',
-                    experiences: [],
-                    educations: [],
-                    skills: [],
-                    languages: [],
-                    certificates: []
-                };
-
-                // Parse header information
-                const header = document.querySelector('.cv-header');
-                const nameElements = header.querySelector('h1').querySelectorAll('.editable');
-                resume.firstName = nameElements[0]?.textContent.trim() || '';
-                resume.lastName = nameElements[1]?.textContent.trim() || '';
-
-                const jobTitle = header.querySelector('.job-title .editable');
-                                resume.title = jobTitle?.textContent.trim() || '';
-
-                const contactInfoElements = header.querySelector('.contact-info').querySelectorAll('.editable');
-                resume.address = contactInfoElements[0]?.textContent.trim() || '';
-                resume.phoneNumber = contactInfoElements[1]?.textContent.trim() || '';
-                resume.email = contactInfoElements[2]?.textContent.trim() || '';
-
-                const contactLinks = header.querySelector('.contact-links');
-                if (contactLinks) {
-                    const linkElements = contactLinks.querySelectorAll('.editable');
-                    linkElements.forEach((el, index) => {
-                        const text = el.textContent.trim();
-                        if (el.parentElement.textContent.includes('LinkedIn:')) {
-                            resume.linkedInLink = text;
-                        } else if (el.parentElement.textContent.includes('Portfolio:')) {
-                            resume.portfolioLink = text;
-                        }
-                    });
-                }
-
-                // Parse professional summary
-                const summaryElement = document.querySelector('.summary.editable');
-                resume.bio = summaryElement?.textContent.trim() || '';
-
-                // Parse experiences - Updated to use data attributes
-                const experienceItems = document.querySelectorAll('.experience-item');
-                experienceItems.forEach((item, index) => {
-                    const experienceId = item.dataset.experienceId || '00000000-0000-0000-0000-000000000000';
-                    const title = item.querySelector('.item-title')?.textContent.trim() || '';
-                    const duration = item.querySelector('.item-duration')?.textContent.trim() || '';
-                    const company = item.querySelector('.item-company')?.textContent.trim() || '';
-
-                    let duties = '';
-                    const bulletPoints = item.querySelectorAll('.bullet-point');
-                    if (bulletPoints.length > 0) {
-                        duties = Array.from(bulletPoints).map(bp => bp.textContent.trim()).join('\n');
-                    } else {
-                        const description = item.querySelector('.item-description');
-                        duties = description?.textContent.trim() || '';
-                    }
-
-                    const [startDate, endDate] = parseDurationString(duration);
-
-                    resume.experiences.push({
-                        experienceId: experienceId,
-                        title: title,
-                        company: company,
-                        duties: duties,
-                        startDate: startDate,
-                        endDate: endDate
-                    });
-                });
-
-                
-                        // Parse educations - Updated to include degree type and GPA
-        const educationItems = document.querySelectorAll('.education-item');
-        educationItems.forEach(item => {
-            const educationId = item.dataset.educationId || '00000000-0000-0000-0000-000000000000';
-            const collegeName = item.querySelector('.item-title')?.textContent.trim() || '';
-            const duration = item.querySelector('.item-duration')?.textContent.trim() || '';
-            const major = item.querySelector('.item-company')?.textContent.trim() || '';
-            const degreeType = item.querySelector('.item-degree')?.textContent.trim() || '';
-            const gpaText = item.querySelector('.item-gpa')?.textContent.trim() || '';
-
-            // Parse GPA from text like "GPA: 3.75" or just "3.75"
-            let gpa = null;
-            if (gpaText) {
-                const gpaMatch = gpaText.match(/(\d+\.?\d*)/);
-                if (gpaMatch) {
-                    const parsedGpa = parseFloat(gpaMatch[1]);
-                    if (!isNaN(parsedGpa) && parsedGpa >= 0 && parsedGpa <= 4.0) {
-                        gpa = parsedGpa;
-                    }
-                }
-            }
-
-            const [startDate, endDate] = parseDurationString(duration);
-
-            resume.educations.push({
-                educationId: educationId,
-                collegeName: collegeName,
-                major: major,
-                degreeType: degreeType,
-                gpa: gpa,
-                startDate: startDate,
-                endDate: endDate
-            });
+        // Store original content
+        document.addEventListener('DOMContentLoaded', function() {
+            originalContent = document.getElementById('cvContainer').innerHTML;
         });
 
-                // Parse skills - Updated to handle existing skill IDs
-                const skillCategories = document.querySelectorAll('.skill-category');
-                skillCategories.forEach(category => {
-                    const categoryTitle = category.querySelector('.skill-category-title')?.textContent.replace(':', '').trim() || 'Technical Skills';
-                    const skillsElement = category.querySelector('.skill-items');
-                    const skillsText = skillsElement?.textContent.trim() || '';
-                    const skillIds = skillsElement?.dataset.skillIds?.split(',') || [];
-                    const skills = skillsText.split('•').map(s => s.trim()).filter(s => s);
+        // Toggle edit mode
+        document.getElementById('editBtn').addEventListener('click', function() {
+            toggleEditMode();
+        });
 
-                    skills.forEach((skillName, index) => {
-                        resume.skills.push({
-                            skillId: skillIds[index] || '00000000-0000-0000-0000-000000000000',
-                            skillName: skillName,
-                            skillType: categoryTitle
-                        });
-                    });
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            saveChanges();
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            resetChanges();
+        });
+
+        document.getElementById('printBtn').addEventListener('click', function() {
+            window.print();
+        });
+
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            downloadPDF();
+        });
+
+        function toggleEditMode() {
+            isEditing = !isEditing;
+            const container = document.getElementById('cvContainer');
+            const editBtn = document.getElementById('editBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const resetBtn = document.getElementById('resetBtn');
+
+            if (isEditing) {
+                container.classList.add('editing');
+                document.querySelectorAll('.editable').forEach(el => {
+                    el.contentEditable = true;
                 });
-
-                // Parse languages - Updated to use data attributes
-                const languageItems = document.querySelectorAll('.language-item-container');
-                languageItems.forEach(item => {
-                    const languageId = item.dataset.languageId || '00000000-0000-0000-0000-000000000000';
-                    const name = item.querySelector('.language-name')?.textContent.trim() || '';
-                    const levelText = item.querySelector('.language-level')?.textContent.trim() || '';
-                    const level = levelText.replace(/[()]/g, '').trim();
-
-                    resume.languages.push({
-                        languageId: languageId,
-                        languageName: name,
-                        level: level
-                    });
+                editBtn.style.display = 'none';
+                saveBtn.style.display = 'block';
+                resetBtn.style.display = 'block';
+                editBtn.textContent = '🖊️ Enable Editing';
+            } else {
+                container.classList.remove('editing');
+                document.querySelectorAll('.editable').forEach(el => {
+                    el.contentEditable = false;
                 });
+                editBtn.style.display = 'block';
+                saveBtn.style.display = 'none';
+                resetBtn.style.display = 'none';
+            }
+        }
 
-                // Parse certificates - Updated to use data attributes
-                const certificateItems = document.querySelectorAll('.certificate-item');
-                certificateItems.forEach(item => {
-                    const certificateId = item.dataset.certificateId || '00000000-0000-0000-0000-000000000000';
-                    const topicName = item.querySelector('.item-title .editable, .item-title span.editable')?.textContent.trim() || '';
-                    const providerName = item.querySelector('.item-provider')?.textContent.trim() || '';
-                    const dateText = item.querySelector('.item-duration')?.textContent.trim() || '';
+        function saveChanges() {
+            const saveBtn = document.getElementById('saveBtn');
+            const originalText = saveBtn.textContent;
+            saveBtn.textContent = '⏳ Saving...';
+            saveBtn.disabled = true;
 
-                    resume.certificates.push({
-                        certificateId: certificateId,
-                        topicName: topicName,
-                        providerName: providerName,
-                        startDate: parseSingleDate(dateText)
-                    });
+            const resume = parseResumeFromDOM();
+
+            // Debug: Log the resume object
+            console.log('Resume object being sent:', resume);
+                        console.log('JSON being sent:', JSON.stringify(resume));
+
+            fetch('/Resume/UpdateResume', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
+                },
+                body: JSON.stringify(resume)
+            })
+            .then(response => {
+                // Debug: Log the response
+                console.log('Response status:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                if (data.success) {
+                    originalContent = document.getElementById('cvContainer').innerHTML;
+                    toggleEditMode();
+                    showNotification('Changes saved successfully!', 'success');
+                } else {
+                    showNotification('Error saving changes: ' + data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Error saving changes. Please try again.', 'error');
+            })
+            .finally(() => {
+                saveBtn.textContent = originalText;
+                saveBtn.disabled = false;
+            });
+        }
+
+        function parseResumeFromDOM() {
+            const resume = {
+                resumeId: '@Model.ResumeId',
+                firstName: '',
+                lastName: '',
+                title: '',
+                address: '',
+                phoneNumber: '',
+                email: '',
+                linkedInLink: '',
+                portfolioLink: '',
+                bio: '',
+                experiences: [],
+                educations: [],
+                skills: [],
+                languages: [],
+                certificates: []
+            };
+
+            // Parse header information
+            const header = document.querySelector('.cv-header');
+            const nameElements = header.querySelector('h1').querySelectorAll('.editable');
+            resume.firstName = nameElements[0]?.textContent.trim() || '';
+            resume.lastName = nameElements[1]?.textContent.trim() || '';
+
+            const jobTitle = header.querySelector('.job-title .editable');
+            resume.title = jobTitle?.textContent.trim() || '';
+
+            const contactInfoElements = header.querySelector('.contact-info').querySelectorAll('.editable');
+            resume.address = contactInfoElements[0]?.textContent.trim() || '';
+            resume.phoneNumber = contactInfoElements[1]?.textContent.trim() || '';
+            resume.email = contactInfoElements[2]?.textContent.trim() || '';
+
+            const contactLinks = header.querySelector('.contact-links');
+            if (contactLinks) {
+                const linkElements = contactLinks.querySelectorAll('.editable');
+                linkElements.forEach((el, index) => {
+                    const text = el.textContent.trim();
+                    if (el.parentElement.textContent.includes('LinkedIn:')) {
+                        resume.linkedInLink = text;
+                    } else if (el.parentElement.textContent.includes('Portfolio:')) {
+                        resume.portfolioLink = text;
+                    }
                 });
-
-                return resume;
             }
 
-                   function parseDurationString(durationStr) {
+            // Parse professional summary
+            const summaryElement = document.querySelector('.summary.editable');
+            resume.bio = summaryElement?.textContent.trim() || '';
+
+            // Parse experiences - Updated to use data attributes
+            const experienceItems = document.querySelectorAll('.experience-item');
+            experienceItems.forEach((item, index) => {
+                const experienceId = item.dataset.experienceId || '00000000-0000-0000-0000-000000000000';
+                const title = item.querySelector('.item-title')?.textContent.trim() || '';
+                const duration = item.querySelector('.item-duration')?.textContent.trim() || '';
+                const company = item.querySelector('.item-company')?.textContent.trim() || '';
+
+                let duties = '';
+                const bulletPoints = item.querySelectorAll('.bullet-point');
+                if (bulletPoints.length > 0) {
+                    duties = Array.from(bulletPoints).map(bp => bp.textContent.trim()).join('\n');
+                } else {
+                    const description = item.querySelector('.item-description');
+                    duties = description?.textContent.trim() || '';
+                }
+
+                const [startDate, endDate] = parseDurationString(duration);
+
+                resume.experiences.push({
+                    experienceId: experienceId,
+                    title: title,
+                    company: company,
+                    duties: duties,
+                    startDate: startDate,
+                    endDate: endDate
+                });
+            });
+
+            // Parse educations - Updated to include degree type and GPA
+            const educationItems = document.querySelectorAll('.education-item');
+            educationItems.forEach(item => {
+                const educationId = item.dataset.educationId || '00000000-0000-0000-0000-000000000000';
+                const collegeName = item.querySelector('.item-title')?.textContent.trim() || '';
+                const duration = item.querySelector('.item-duration')?.textContent.trim() || '';
+                const major = item.querySelector('.item-company')?.textContent.trim() || '';
+                const degreeType = item.querySelector('.item-degree')?.textContent.trim() || '';
+                const gpaText = item.querySelector('.item-gpa')?.textContent.trim() || '';
+
+                // Parse GPA from text like "GPA: 3.75" or just "3.75"
+                let gpa = null;
+                if (gpaText) {
+                    const gpaMatch = gpaText.match(/(\d+\.?\d*)/);
+                    if (gpaMatch) {
+                        const parsedGpa = parseFloat(gpaMatch[1]);
+                        if (!isNaN(parsedGpa) && parsedGpa >= 0 && parsedGpa <= 4.0) {
+                            gpa = parsedGpa;
+                        }
+                    }
+                }
+
+                const [startDate, endDate] = parseDurationString(duration);
+
+                resume.educations.push({
+                    educationId: educationId,
+                    collegeName: collegeName,
+                    major: major,
+                    degreeType: degreeType,
+                    gpa: gpa,
+                    startDate: startDate,
+                    endDate: endDate
+                });
+            });
+
+            // Parse skills - Updated to handle existing skill IDs
+            const skillCategories = document.querySelectorAll('.skill-category');
+            skillCategories.forEach(category => {
+                const categoryTitle = category.querySelector('.skill-category-title')?.textContent.replace(':', '').trim() || 'Technical Skills';
+                const skillsElement = category.querySelector('.skill-items');
+                const skillsText = skillsElement?.textContent.trim() || '';
+                const skillIds = skillsElement?.dataset.skillIds?.split(',') || [];
+                const skills = skillsText.split('•').map(s => s.trim()).filter(s => s);
+
+                skills.forEach((skillName, index) => {
+                    resume.skills.push({
+                        skillId: skillIds[index] || '00000000-0000-0000-0000-000000000000',
+                        skillName: skillName,
+                        skillType: categoryTitle
+                    });
+                });
+            });
+
+            // Parse languages - Updated to use data attributes
+            const languageItems = document.querySelectorAll('.language-item-container');
+            languageItems.forEach(item => {
+                const languageId = item.dataset.languageId || '00000000-0000-0000-0000-000000000000';
+                const name = item.querySelector('.language-name')?.textContent.trim() || '';
+                const levelText = item.querySelector('.language-level')?.textContent.trim() || '';
+                const level = levelText.replace(/[()]/g, '').trim();
+
+                resume.languages.push({
+                    languageId: languageId,
+                    languageName: name,
+                    level: level
+                });
+            });
+
+            // Parse certificates - Updated to handle end dates properly
+            const certificateItems = document.querySelectorAll('.certificate-item');
+            certificateItems.forEach(item => {
+                const certificateId = item.dataset.certificateId || '00000000-0000-0000-0000-000000000000';
+                const topicName = item.querySelector('.item-title .editable, .item-title span.editable')?.textContent.trim() || '';
+                const providerName = item.querySelector('.item-provider')?.textContent.trim() || '';
+
+                // Check if it's in two-column layout (has item-end-date class)
+                const endDateElement = item.querySelector('.item-end-date');
+                let endDate = null;
+
+                if (endDateElement) {
+                    // Two-column layout - only has end date
+                    const dateText = endDateElement.textContent.trim();
+                    endDate = dateText.toLowerCase() === 'present' ? null : parseSingleDate(dateText);
+                } else {
+                    // Full-width layout - check item-duration
+                    const dateText = item.querySelector('.item-duration')?.textContent.trim() || '';
+                    endDate = dateText.toLowerCase() === 'present' ? null : parseSingleDate(dateText);
+                }
+
+                resume.certificates.push({
+                    certificateId: certificateId,
+                    topicName: topicName,
+                    providerName: providerName,
+                    startDate: null,  // Certificates typically don't have start dates in your model
+                    endDate: endDate
+                });
+            });
+
+            return resume;
+        }
+
+        function parseDurationString(durationStr) {
             // Parse strings like "Jan 2020 - Dec 2021" or "Jan 2020 - Present"
             if (!durationStr || durationStr.trim() === '') return [null, null];
 
@@ -1370,197 +1385,200 @@
             return null;
         }
 
-            function showNotification(message, type) {
-                // Create a toast notification
-                const notification = document.createElement('div');
-                notification.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    padding: 15px 25px;
-                    background: ${type === 'success' ? '#28a745' : '#dc3545'};
-                    color: white;
-                    border-radius: 5px;
-                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                    z-index: 10000;
-                    animation: slideIn 0.3s ease;
-                `;
-                notification.textContent = message;
-                document.body.appendChild(notification);
-
-                setTimeout(() => {
-                    notification.style.animation = 'slideOut 0.3s ease';
-                    setTimeout(() => notification.remove(), 300);
-                }, 3000);
-            }
-
-            // Add animation styles
-            const style = document.createElement('style');
-            style.textContent = `
-            @@keyframes slideIn {
-                    from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
-                    to { transform: translateX(-50%) translateY(0); opacity: 1; }
-                }
-            @@keyframes slideOut {
-                    from { transform: translateX(-50%) translateY(0); opacity: 1; }
-                    to { transform: translateX(-50%) translateY(-100%); opacity: 0; }
-                }
+        function showNotification(message, type) {
+            // Create a toast notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 15px 25px;
+                background: ${type === 'success' ? '#28a745' : '#dc3545'};
+                color: white;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
             `;
-            document.head.appendChild(style);
+            notification.textContent = message;
+            document.body.appendChild(notification);
 
-            function resetChanges() {
-                if (confirm('Are you sure you want to reset all changes?')) {
-                    document.getElementById('cvContainer').innerHTML = originalContent;
-                    toggleEditMode();
-                }
-            }
-
-            function downloadPDF() {
-                const wasEditing = isEditing;
-                if (isEditing) {
-                    toggleEditMode();
-                }
-
-                setTimeout(() => {
-                    window.print();
-                    if (wasEditing) {
-                        toggleEditMode();
-                    }
-                }, 100);
-            }
-
-            function removeItem(element) {
-                if (confirm('Are you sure you want to remove this item?')) {
-                    element.remove();
-                }
-            }
-
-            // Updated add functions with data attributes
-            function addExperience() {
-                const container = document.getElementById('experienceContent');
-                const newItem = document.createElement('div');
-                newItem.className = 'experience-item';
-                newItem.dataset.experienceId = '00000000-0000-0000-0000-000000000000';
-                newItem.innerHTML = `
-                    <div class="item-header">
-                        <div class="item-title-line">
-                            <div class="item-title editable" contenteditable="true" data-placeholder="Job Title"></div>
-                            <div class="item-duration editable" contenteditable="true" data-placeholder="Start - End"></div>
-                        </div>
-                        <div class="item-company editable" contenteditable="true" data-placeholder="Company Name"></div>
-                    </div>
-                    <div class="item-description editable" contenteditable="true" data-placeholder="Describe your responsibilities and achievements..."></div>
-                    <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
-                `;
-                container.appendChild(newItem);
-            }
-
-            function addEducation() {
-                const container = document.getElementById('educationContent');
-                const newItem = document.createElement('div');
-                newItem.className = 'education-item';
-                newItem.dataset.educationId = '00000000-0000-0000-0000-000000000000';
-                newItem.innerHTML = `
-                    <div class="item-header">
-                        <div class="item-title-line">
-                            <div class="item-title editable" contenteditable="true" data-placeholder="Institution Name"></div>
-                            <div class="item-duration editable" contenteditable="true" data-placeholder="Start - End"></div>
-                        </div>
-                        <div class="item-company editable" contenteditable="true" data-placeholder="Major/Field of Study"></div>
-                        <div class="item-degree-gpa">
-                            <div class="item-degree editable" contenteditable="true" data-placeholder="Degree Type (e.g., Bachelor's, Master's)"></div>
-                            <div class="item-gpa editable" contenteditable="true" data-placeholder="GPA: 0.00"></div>
-                        </div>
-                    </div>
-                    <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
-                `;
-                container.appendChild(newItem);
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
         }
 
-            function addCertificate() {
-                const container = document.getElementById('certificatesContent');
-                const newItem = document.createElement('div');
-                newItem.className = 'certificate-item';
-                newItem.dataset.certificateId = '00000000-0000-0000-0000-000000000000';
+        // Add animation styles
+        const style = document.createElement('style');
+        style.textContent = `
+           @@keyframes slideIn {
+                from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+                to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            }
+            @@keyframes slideOut {
+                from { transform: translateX(-50%) translateY(0); opacity: 1; }
+                to { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
 
-                // Check if we're in two-column layout or full-width layout
-                const isTwoColumn = container.closest('.two-column-section') !== null;
+        function resetChanges() {
+            if (confirm('Are you sure you want to reset all changes?')) {
+                document.getElementById('cvContainer').innerHTML = originalContent;
+                toggleEditMode();
+            }
+        }
 
-                if (isTwoColumn) {
-                    newItem.style.marginBottom = '10px';
-                    newItem.innerHTML = `
-                        <div class="item-header">
-                            <div class="item-title" style="font-size: 10pt; margin-bottom: 2px;">
-                                <span class="editable" contenteditable="true" data-placeholder="Certificate Name"></span>
-                            </div>
-                            <div class="item-provider editable" contenteditable="true" data-placeholder="Provider"></div>
-                        </div>
-                        <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
-                    `;
-                } else {
-                    newItem.innerHTML = `
-                        <div class="item-header">
-                            <div class="item-title-line">
-                                <div class="item-title editable" contenteditable="true" data-placeholder="Certificate Name"></div>
-                                <div class="item-duration editable" contenteditable="true" data-placeholder="Date"></div>
-                            </div>
-                            <div class="item-provider editable" contenteditable="true" data-placeholder="Provider/Institution"></div>
-                        </div>
-                        <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
-                    `;
-                }
-                container.appendChild(newItem);
+        function downloadPDF() {
+            const wasEditing = isEditing;
+            if (isEditing) {
+                toggleEditMode();
             }
 
-            function addLanguage() {
-                const languagesList = document.querySelector('.languages-list');
-                const newItem = document.createElement('div');
-                newItem.className = 'language-item-container';
-                newItem.dataset.languageId = '00000000-0000-0000-0000-000000000000';
+            setTimeout(() => {
+                window.print();
+                if (wasEditing) {
+                    toggleEditMode();
+                }
+            }, 100);
+        }
+
+        function removeItem(element) {
+            if (confirm('Are you sure you want to remove this item?')) {
+                element.remove();
+            }
+        }
+
+        // Updated add functions with data attributes
+        function addExperience() {
+            const container = document.getElementById('experienceContent');
+            const newItem = document.createElement('div');
+            newItem.className = 'experience-item';
+            newItem.dataset.experienceId = '00000000-0000-0000-0000-000000000000';
+            newItem.innerHTML = `
+                <div class="item-header">
+                    <div class="item-title-line">
+                        <div class="item-title editable" contenteditable="true" data-placeholder="Job Title"></div>
+                        <div class="item-duration editable" contenteditable="true" data-placeholder="Start - End"></div>
+                    </div>
+                    <div class="item-company editable" contenteditable="true" data-placeholder="Company Name"></div>
+                </div>
+                <div class="item-description editable" contenteditable="true" data-placeholder="Describe your responsibilities and achievements..."></div>
+                <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        function addEducation() {
+            const container = document.getElementById('educationContent');
+            const newItem = document.createElement('div');
+            newItem.className = 'education-item';
+            newItem.dataset.educationId = '00000000-0000-0000-0000-000000000000';
+            newItem.innerHTML = `
+                <div class="item-header">
+                    <div class="item-title-line">
+                        <div class="item-title editable" contenteditable="true" data-placeholder="Institution Name"></div>
+                        <div class="item-duration editable" contenteditable="true" data-placeholder="Start - End"></div>
+                    </div>
+                    <div class="item-company editable" contenteditable="true" data-placeholder="Major/Field of Study"></div>
+                    <div class="item-degree-gpa">
+                        <div class="item-degree editable" contenteditable="true" data-placeholder="Degree Type (e.g., Bachelor's, Master's)"></div>
+                        <div class="item-gpa editable" contenteditable="true" data-placeholder="GPA: 0.00"></div>
+                    </div>
+                </div>
+                <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        function addCertificate() {
+            const container = document.getElementById('certificatesContent');
+            const newItem = document.createElement('div');
+            newItem.className = 'certificate-item';
+            newItem.dataset.certificateId = '00000000-0000-0000-0000-000000000000';
+
+            // Check if we're in two-column layout or full-width layout
+            const isTwoColumn = container.closest('.two-column-section') !== null;
+
+            if (isTwoColumn) {
+                newItem.style.cssText = 'margin-bottom: 10px; display: flex; justify-content: space-between; align-items: flex-start;';
                 newItem.innerHTML = `
-                    <div class="language-item">
-                        <span class="language-name editable" contenteditable="true" data-placeholder="Language"></span>
-                        <span class="language-level editable" contenteditable="true" data-placeholder="(Level)"></span>
+                    <div class="item-header" style="flex: 1;">
+                        <div class="item-title" style="font-size: 10pt; margin-bottom: 2px;">
+                            <span class="editable" contenteditable="true" data-placeholder="Certificate Name"></span>
+                        </div>
+                        <div class="item-provider editable" contenteditable="true" data-placeholder="Provider"></div>
+                    </div>
+                    <div class="item-date" style="text-align: right; margin-left: 10px;">
+                        <span class="editable item-end-date" contenteditable="true" data-placeholder="End Date" style="font-size: 9pt; color: #666;">Present</span>
+                    </div>
+                    <button class="remove-item-btn" onclick="removeItem(this.parentElement)" style="margin-left: 5px;">✕</button>
+                `;
+            } else {
+                newItem.innerHTML = `
+                    <div class="item-header">
+                        <div class="item-title-line">
+                            <div class="item-title editable" contenteditable="true" data-placeholder="Certificate Name"></div>
+                            <div class="item-duration editable" contenteditable="true" data-placeholder="Date">Present</div>
+                        </div>
+                        <div class="item-provider editable" contenteditable="true" data-placeholder="Provider/Institution"></div>
                     </div>
                     <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
                 `;
-                languagesList.appendChild(newItem);
             }
+            container.appendChild(newItem);
+        }
 
-            function addSkillCategory() {
-                const container = document.getElementById('skillsContent');
-                const newItem = document.createElement('div');
-                newItem.className = 'skill-category';
-                newItem.innerHTML = `
-                    <span class="skill-category-title editable" contenteditable="true" data-placeholder="Skill Category">New Category:</span>
-                    <span class="skill-items editable" contenteditable="true" data-placeholder="Add skills separated by bullets"></span>
-                    <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
-                `;
-                container.appendChild(newItem);
+        function addLanguage() {
+            const languagesList = document.querySelector('.languages-list');
+            const newItem = document.createElement('div');
+            newItem.className = 'language-item-container';
+            newItem.dataset.languageId = '00000000-0000-0000-0000-000000000000';
+            newItem.innerHTML = `
+                <div class="language-item">
+                    <span class="language-name editable" contenteditable="true" data-placeholder="Language"></span>
+                    <span class="language-level editable" contenteditable="true" data-placeholder="(Level)"></span>
+                </div>
+                <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+            `;
+            languagesList.appendChild(newItem);
+        }
+
+        function addSkillCategory() {
+            const container = document.getElementById('skillsContent');
+            const newItem = document.createElement('div');
+            newItem.className = 'skill-category';
+            newItem.innerHTML = `
+                <span class="skill-category-title editable" contenteditable="true" data-placeholder="Skill Category">New Category:</span>
+                <span class="skill-items editable" contenteditable="true" data-placeholder="Add skills separated by bullets"></span>
+                <button class="remove-item-btn" onclick="removeItem(this.parentElement)">✕</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        // Print event handlers
+        window.addEventListener('beforeprint', function() {
+            document.querySelector('.control-panel').style.display = 'none';
+            document.querySelector('.edit-mode-indicator').style.display = 'none';
+        });
+
+        window.addEventListener('afterprint', function() {
+            document.querySelector('.control-panel').style.display = 'block';
+            if (isEditing) {
+                document.querySelector('.edit-mode-indicator').style.display = 'block';
             }
+        });
 
-            // Print event handlers
-            window.addEventListener('beforeprint', function() {
-                document.querySelector('.control-panel').style.display = 'none';
-                document.querySelector('.edit-mode-indicator').style.display = 'none';
-            });
-
-            window.addEventListener('afterprint', function() {
-                document.querySelector('.control-panel').style.display = 'block';
-                if (isEditing) {
-                    document.querySelector('.edit-mode-indicator').style.display = 'block';
+        // Enhanced contenteditable behavior
+        document.addEventListener('keydown', function(e) {
+            if (e.target.classList.contains('editable') && e.key === 'Enter') {
+                if (!e.target.classList.contains('item-description') && !e.target.classList.contains('summary')) {
+                    e.preventDefault();
                 }
-            });
-
-                        // Enhanced contenteditable behavior
-            document.addEventListener('keydown', function(e) {
-                if (e.target.classList.contains('editable') && e.key === 'Enter') {
-                    if (!e.target.classList.contains('item-description') && !e.target.classList.contains('summary')) {
-                        e.preventDefault();
-                    }
-                }
-            });
+            }
+        });
     </script>
 </body>
 </html>

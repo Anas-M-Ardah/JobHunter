@@ -439,12 +439,6 @@ namespace JobHunter.Repositories
                 existingResume.Address = resume.Address;
                 existingResume.Bio = resume.Bio;
 
-                resume.Educations[0].DegreeType = "Bachelor's Degree"; // Example of modifying a property
-                resume.Educations[0].Major = "Computer Science"; // Example of modifying a property
-                resume.Educations[0].GPA = 3.8; // Example of modifying a property
-                resume.Major = resume.Educations[0].Major; // Update the Resume's Major from the first Education entry
-                existingResume.Major = resume.Major ;
-
                 // Update navigation properties
                 existingResume.Skills = resume.Skills;
                 existingResume.Educations = resume.Educations;

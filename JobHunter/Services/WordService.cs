@@ -752,6 +752,22 @@ namespace JobHunter.Services
                     certPara.Append(providerRun);
                 }
 
+                // Add end date
+                var dateText = cert.EndDate?.ToString("MMM yyyy") ?? "Present";
+                var dateRun = new Run();
+                dateRun.Append(new RunProperties(
+                    new Color() { Val = "808080" },
+                    new FontSize() { Val = "18" } // Slightly smaller font
+                ));
+
+                // Add some spacing before the date
+                var tabRun = new Run();
+                tabRun.Append(new TabChar());
+                certPara.Append(tabRun);
+
+                dateRun.Append(new Text($"({dateText})"));
+                certPara.Append(dateRun);
+
                 certCell.Append(certPara);
             }
 

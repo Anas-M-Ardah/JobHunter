@@ -10,13 +10,7 @@
 }
 
 <div class="container-fluid">
-    <!-- Page Header -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Create Your Portfolio</h1>
-        <button type="submit" form="portfolioForm" class="d-none d-sm-inline-block btn btn-primary btn-lg shadow-sm">
-            <i class="fas fa-save fa-sm text-white-50 mr-2"></i>Submit Portfolio
-        </button>
-    </div>
+    <!-- Page Header --> <div class="d-sm-flex align-items-center justify-content-between mb-4"> <h1 class="h3 mb-0 text-gray-800">Create Your Portfolio</h1> </div>
 
     <form id="portfolioForm" asp-action="Create" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="alert alert-danger shadow-sm" role="alert"></div>
@@ -33,113 +27,97 @@
                 <div class="row">
                     <div class="col-lg-4 mb-3">
                         <div class="form-group">
-                            <label asp-for="FirstName" class="small font-weight-bold text-gray-800">First Name</label>
-                            <input asp-for="FirstName" class="form-control shadow-sm"
-                                   placeholder="Enter your first name" required />
+                            <label asp-for="FirstName" class="small font-weight-bold text-gray-800"></label>
+                            <input asp-for="FirstName" class="form-control shadow-sm" placeholder="Enter your first name" required />
                             <span asp-validation-for="FirstName" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                     <div class="col-lg-4 mb-3">
                         <div class="form-group">
                             <label asp-for="SecondName" class="small font-weight-bold text-gray-800">Middle Name</label>
-                            <input asp-for="SecondName" class="form-control shadow-sm"
-                                   placeholder="Enter your middle name" />
+                            <input asp-for="SecondName" class="form-control shadow-sm" placeholder="Enter your middle name" />
                             <span asp-validation-for="SecondName" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                     <div class="col-lg-4 mb-3">
                         <div class="form-group">
-                            <label asp-for="LastName" class="small font-weight-bold text-gray-800">Last Name</label>
-                            <input asp-for="LastName" class="form-control shadow-sm"
-                                   placeholder="Enter your last name" required />
+                            <label asp-for="LastName" class="small font-weight-bold text-gray-800"></label>
+                            <input asp-for="LastName" class="form-control shadow-sm" placeholder="Enter your last name" required />
                             <span asp-validation-for="LastName" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-lg-6 mb-3">
                         <div class="form-group">
-                            <label asp-for="DateOfBirth" class="small font-weight-bold text-gray-800">Date of Birth</label>
+                            <label asp-for="DateOfBirth" class="small font-weight-bold text-gray-800"></label>
                             <input asp-for="DateOfBirth" type="date" class="form-control shadow-sm" required />
                             <span asp-validation-for="DateOfBirth" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <div class="form-group">
-                            <label asp-for="Address" class="small font-weight-bold text-gray-800">Address</label>
-                            <input asp-for="Address" class="form-control shadow-sm"
-                                   placeholder="Enter your full address" required />
+                            <label asp-for="Address" class="small font-weight-bold text-gray-800"></label>
+                            <input asp-for="Address" class="form-control shadow-sm" placeholder="Enter your full address" required />
                             <span asp-validation-for="Address" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                 </div>
-
                 <!-- Contact Information -->
                 <div class="row">
                     <div class="col-lg-6 mb-3">
                         <div class="form-group">
-                            <label asp-for="Email" class="small font-weight-bold text-gray-800">Email Address</label>
-                            <input asp-for="Email" type="email" class="form-control shadow-sm"
-                                   placeholder="Enter your email address" required />
+                            <label asp-for="Email" class="small font-weight-bold text-gray-800"></label>
+                            <input asp-for="Email" type="email" class="form-control shadow-sm" placeholder="Enter your email address" required />
                             <span asp-validation-for="Email" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <div class="form-group">
-                            <label asp-for="PhoneNumber" class="small font-weight-bold text-gray-800">Phone Number</label>
-                            <input asp-for="PhoneNumber" type="tel" class="form-control shadow-sm"
-                                   placeholder="Enter your phone number" required />
+                            <label asp-for="PhoneNumber" class="small font-weight-bold text-gray-800"></label>
+                            <input asp-for="PhoneNumber" type="tel" class="form-control shadow-sm" placeholder="Enter your phone number" required />
                             <span asp-validation-for="PhoneNumber" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                 </div>
-
                 <!-- Professional Information -->
                 <div class="row">
                     <div class="col-lg-6 mb-3">
                         <div class="form-group">
                             <label asp-for="Title" class="small font-weight-bold text-gray-800">Professional Title</label>
-                            <input asp-for="Title" class="form-control shadow-sm"
-                                   placeholder="e.g., Senior Software Engineer" required />
+                            <input asp-for="Title" class="form-control shadow-sm" placeholder="e.g., Senior Software Engineer" required />
                             <span asp-validation-for="Title" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <div class="form-group">
                             <label asp-for="Major" class="small font-weight-bold text-gray-800">Field of Expertise</label>
-                            <input asp-for="Major" class="form-control shadow-sm"
-                                   placeholder="e.g., Computer Science, Marketing" required />
+                            <input asp-for="Major" class="form-control shadow-sm" placeholder="e.g., Computer Science, Marketing" required />
                             <span asp-validation-for="Major" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                 </div>
-
                 <!-- Personal Image -->
                 <div class="form-group mb-3">
-                    <label asp-for="PersonalImage" class="small font-weight-bold text-gray-800">Profile Image</label>
-                    <input asp-for="PersonalImage" type="url" class="form-control shadow-sm"
-                           placeholder="https://example.com/your-image.jpg" />
-                    <small class="form-text text-muted">Enter a valid image URL for your profile picture</small>
+                    <label asp-for="PersonalImage" class="small font-weight-bold text-gray-800">Profile Image URL</label>
+                    <input asp-for="PersonalImage" type="url" class="form-control shadow-sm" placeholder="https://example.com/your-image.jpg" />
+                    <small class="form-text text-muted">Enter a valid image URL for your profile picture.</small>
                     <span asp-validation-for="PersonalImage" class="text-danger small d-block mt-1"></span>
                 </div>
-
                 <!-- Professional Bio -->
                 <div class="form-group">
                     <label asp-for="Bio" class="small font-weight-bold text-gray-800">Professional Bio</label>
                     <div class="position-relative">
-                        <textarea asp-for="Bio" class="form-control shadow-sm" rows="4"
+                        <textarea asp-for="Bio" class="form-control shadow-sm char-count-input" rows="4"
                                   placeholder="Share your professional journey, key achievements, expertise, and what makes you unique in your field..."
-                                  maxlength="1000" oninput="updateCharCount(this)" required></textarea>
-
-                        <!-- AI Replace Button -->
-                        <button type="button" id="aiReplaceBtn" class="btn btn-outline-primary btn-sm mt-2" onclick="replaceWithAI()">
+                                  maxlength="1000" required></textarea>
+                        <small class="form-text text-muted char-count-display">0/1000 characters</small>
+                        <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="replaceWithAI(this)">
                             <i class="fas fa-magic"></i> Replace with AI Bio
                         </button>
                     </div>
                     <span asp-validation-for="Bio" class="text-danger small d-block mt-1"></span>
                 </div>
-
             </div>
         </div>
 
@@ -155,50 +133,10 @@
             </div>
             <div class="card-body">
                 <div id="services-container">
-                    <!-- Service Template -->
-                    <div class="service-item border rounded p-3 mb-3">
-                        <input type="hidden" name="Services[0].ServiceId" value="@Guid.NewGuid()" />
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="text-primary mb-0">Service #1</h6>
-                            <button type="button" class="btn btn-danger btn-sm remove-service">
-                                <i class="fas fa-trash"></i> Remove
-                            </button>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Service Name <span class="text-danger">*</span></label>
-                                    <input type="text" name="Services[0].ServiceName" class="form-control service-name-input"
-                                           placeholder="e.g., Web Development" required minlength="3" maxlength="100" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Service Image URL <span class="text-danger">*</span></label>
-                                    <input type="url" name="Services[0].ServiceImage" class="form-control"
-                                           placeholder="https://example.com/service-image.jpg" required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Service Description <span class="text-danger">*</span></label>
-                            <div class="position-relative">
-                                <textarea name="Services[0].ServiceDescription" class="form-control service-description" rows="3"
-                                          placeholder="Describe what this service includes, your expertise, and what clients can expect... (10-1000 characters)"
-                                          required minlength="10" maxlength="1000"></textarea>
-
-                                <!-- AI Improve Button -->
-                                <button type="button" class="btn btn-outline-success btn-sm mt-2 improve-service-btn">
-                                    <i class="fas fa-magic"></i> Improve with AI
-                                </button>
-                            </div>
-                            <small class="form-text text-muted">Character count: <span class="char-count">0</span>/1000
-                        </div>
-                    </div>
+                    <!-- Service items will be dynamically inserted here -->
                 </div>
             </div>
         </div>
-
 
         <!-- Projects Section -->
         <div class="card shadow mb-4 border-left-info">
@@ -212,76 +150,7 @@
             </div>
             <div class="card-body">
                 <div id="projects-container">
-                    <!-- Project Template -->
-                    <div class="project-item border rounded p-3 mb-3">
-                        <input type="hidden" name="Projects[0].ProjectId" value="@Guid.NewGuid()" />
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="text-primary mb-0">Project #1</h6>
-                            <button type="button" class="btn btn-danger btn-sm remove-project">
-                                <i class="fas fa-trash"></i> Remove
-                            </button>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Project Name <span class="text-danger">*</span></label>
-                                    <input type="text" name="Projects[0].ProjectName" class="form-control"
-                                           placeholder="e.g., E-commerce Website" required />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label asp-for="Projects[0].ServiceId">Service Association <span class="text-danger">*</span></label>
-                                    <select asp-for="Projects[0].ServiceId" class="form-control service-selector" required>
-                                        <option value="">-- Select Service --</option>
-                                        <!-- Options will be populated here -->
-                                    </select>
-                                    <span asp-validation-for="Projects[0].ServiceId" class="text-danger"></span>
-
-                                    <!-- Hidden field to store the service name -->
-                                    <input type="hidden" asp-for="Projects[0].ServiceName" class="service-name-field" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Project Link <span class="text-danger">*</span></label>
-                            <input type="url" name="Projects[0].ProjectLink" class="form-control"
-                                   placeholder="https://project-demo.com" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Project Description <span class="text-danger">*</span></label>
-                            <div class="position-relative">
-                                <textarea name="Projects[0].ProjectDescription" class="form-control project-description" rows="3"
-                                          placeholder="Describe the project, technologies used, challenges solved, and your role..." required></textarea>
-
-                                <!-- AI Improve Button -->
-                                <button type="button" class="btn btn-outline-info btn-sm mt-2 improve-project-btn">
-                                    <i class="fas fa-magic"></i> Improve with AI
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Start Date <span class="text-danger">*</span></label>
-                                    <input type="date" name="Projects[0].StartDate" class="form-control" required />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>End Date</label>
-                                    <input type="date" name="Projects[0].EndDate" class="form-control" />
-                                    <small class="form-text text-muted">Leave empty if ongoing</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Project Attachments</label>
-                            <input type="file" name="Projects[0].ProjectAttachments" class="form-control-file"
-                                   accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip,.rar" multiple />
-                            <small class="form-text text-muted">Upload documentation, screenshots, or other relevant files (Max: 10MB)</small>
-                        </div>
-                    </div>
+                    <!-- Project items will be dynamically inserted here -->
                 </div>
             </div>
         </div>
@@ -289,39 +158,36 @@
         <input type="hidden" asp-for="EndUserId" value="@currentUserId" />
         <input type="hidden" asp-for="PortfolioId" value="@Guid.NewGuid()" />
 
-        <!-- Submit Button (Mobile) -->
-        <div class="d-sm-none mb-4">
-            <button type="submit" class="btn btn-primary btn-block btn-lg shadow">
-                <i class="fas fa-save fa-sm mr-2"></i>Submit Portfolio
+        <!-- MODIFIED: Final Action Buttons for both mobile and desktop -->
+        <div class="d-flex justify-content-end align-items-center my-4">
+            <!-- Cancel button navigates to the Index action -->
+            <a asp-action="Index" class="btn btn-secondary btn-lg shadow-sm">
+                Cancel
+            </a>
+
+            <!-- Submit button creates the portfolio -->
+            <button type="submit" class="btn btn-primary btn-lg shadow-sm ml-3">
+                <i class="fas fa-save fa-sm mr-2"></i>Create Portfolio
             </button>
         </div>
     </form>
 </div>
+
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // --- Services Management ---
-            const servicesContainer = document.getElementById('services-container');
-            const addServiceBtn = document.getElementById('add-service');
+        // --- Globals ---
+        const servicesContainer = document.getElementById('services-container');
+        const addServiceBtn = document.getElementById('add-service');
+        const projectsContainer = document.getElementById('projects-container');
+        const addProjectBtn = document.getElementById('add-project');
 
-            function updateServiceNames() {
-                const serviceItems = servicesContainer.querySelectorAll('.service-item');
-                serviceItems.forEach((item, idx) => {
-                    item.querySelectorAll('input, textarea').forEach(input => {
-                        if (input.name) {
-                            input.name = input.name.replace(/Services\[\d+\]/, `Services[${idx}]`);
-                        }
-                        if (input.id) {
-                            input.id = input.id.replace(/Services_\d+_/, `Services_${idx}_`);
-                        }
-                    });
-                });
-            }
-
-            function getServiceTemplate(idx) {
-                return `
-                    <div class="service-item border rounded p-3 mb-3">
-                        <input type="hidden" name="Services[${idx}].ServiceId" value="${crypto.randomUUID()}" />
+                // --- Templates ---
+                function getServiceTemplate(idx) {
+                    const newGuid = crypto.randomUUID();
+                    return `
+                    <div class="service-item border rounded p-3 mb-3" data-id="${newGuid}">
+                        <input type="hidden" name="Services[${idx}].ServiceId" value="${newGuid}" />
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <h6 class="text-primary mb-0">Service #${idx + 1}</h6>
                             <button type="button" class="btn btn-danger btn-sm remove-service">
@@ -333,121 +199,33 @@
                                 <div class="form-group">
                                     <label>Service Name <span class="text-danger">*</span></label>
                                     <input type="text" name="Services[${idx}].ServiceName" class="form-control service-name-input"
-                                        placeholder="e.g., Web Development" required minlength="3" maxlength="100" />
+                                           placeholder="e.g., Web Development" required minlength="3" maxlength="100" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Service Image URL <span class="text-danger">*</span></label>
                                     <input type="url" name="Services[${idx}].ServiceImage" class="form-control"
-                                        placeholder="https://example.com/service-image.jpg" required />
+                                           placeholder="https://example.com/service-image.jpg" required />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Service Description <span class="text-danger">*</span></label>
-                            <textarea name="Services[${idx}].ServiceDescription" class="form-control service-description" rows="3"
-                                placeholder="Describe what this service includes, your expertise, and what clients can expect... (10-1000 characters)"
-                                required minlength="10" maxlength="1000"></textarea>
-                            <small class="form-text text-muted">Character count: <span class="char-count">0</span>/1000</small>
+                            <div class="position-relative">
+                                <textarea name="Services[${idx}].ServiceDescription" class="form-control char-count-input service-description" rows="3"
+                                          placeholder="Describe what this service includes..." required minlength="10" maxlength="1000"></textarea>
+                                <small class="form-text text-muted char-count-display">0/1000 characters</small>
+                                <button type="button" class="btn btn-outline-success btn-sm mt-2 improve-with-ai-btn">
+                                    <i class="fas fa-magic"></i> Improve with AI
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                `;
-            }
-
-
-                function updateServiceSelectors() {
-            const serviceItems = document.querySelectorAll('.service-item');
-            const serviceOptions = [];
-
-            serviceItems.forEach((item, index) => {
-                const nameInput = item.querySelector('.service-name-input');
-                const hiddenId = item.querySelector('input[type="hidden"]');
-
-                if (nameInput && nameInput.value.trim() && hiddenId) {
-                    serviceOptions.push({
-                        id: hiddenId.value,
-                        name: nameInput.value.trim()
-                    });
+                    </div>`;
                 }
-            });
 
-            document.querySelectorAll('.service-selector').forEach(selector => {
-                const currentValue = selector.value;
-                selector.innerHTML = '<option value="">-- Select Service --</option>';
-
-                serviceOptions.forEach(service => {
-                    const option = document.createElement('option');
-                    option.value = service.id;
-                    option.textContent = service.name;
-                    option.setAttribute('data-service-name', service.name); // Store name in data attribute
-
-                    if (service.id === currentValue) {
-                        option.selected = true;
-                    }
-
-                    selector.appendChild(option);
-                });
-            });
-        }
-
-        // Function to get selected service name
-        function getSelectedServiceName(selectElement) {
-            const selectedOption = selectElement.options[selectElement.selectedIndex];
-            return selectedOption.getAttribute('data-service-name') || '';
-        }
-
-            // Service event listeners
-            addServiceBtn.addEventListener('click', function () {
-                const idx = servicesContainer.querySelectorAll('.service-item').length;
-                servicesContainer.insertAdjacentHTML('beforeend', getServiceTemplate(idx));
-                updateServiceNames();
-                updateServiceSelectors();
-            });
-
-            servicesContainer.addEventListener('click', function (e) {
-                if (e.target.closest('.remove-service')) {
-                    const items = servicesContainer.querySelectorAll('.service-item');
-                    if (items.length > 1) {
-                        e.target.closest('.service-item').remove();
-                        updateServiceNames();
-                        updateServiceSelectors();
-                    }
-                }
-            });
-
-            servicesContainer.addEventListener('input', function (e) {
-                if (e.target.classList.contains('service-name-input')) {
-                    updateServiceSelectors();
-                }
-                if (e.target.classList.contains('service-description')) {
-                    const counter = e.target.closest('.form-group').querySelector('.char-count');
-                    if (counter) {
-                        counter.textContent = e.target.value.length;
-                    }
-                }
-            });
-
-            // --- Projects Management ---
-            const projectsContainer = document.getElementById('projects-container');
-            const addProjectBtn = document.getElementById('add-project');
-
-            function updateProjectNames() {
-                const projectItems = projectsContainer.querySelectorAll('.project-item');
-                projectItems.forEach((item, idx) => {
-                    item.querySelectorAll('input, textarea, select').forEach(input => {
-                        if (input.name) {
-                            input.name = input.name.replace(/Projects\[\d+\]/, `Projects[${idx}]`);
-                        }
-                        if (input.id) {
-                            input.id = input.id.replace(/Projects_\d+_/, `Projects_${idx}_`);
-                        }
-                    });
-                });
-            }
-
-            function getProjectTemplate(idx) {
-                return `
+                function getProjectTemplate(idx) {
+                    return `
                     <div class="project-item border rounded p-3 mb-3">
                         <input type="hidden" name="Projects[${idx}].ProjectId" value="${crypto.randomUUID()}" />
                         <div class="d-flex justify-content-between align-items-center mb-2">
@@ -460,32 +238,34 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Project Name <span class="text-danger">*</span></label>
-                                    <input type="text" name="Projects[${idx}].ProjectName" class="form-control"
-                                           placeholder="e.g., E-commerce Website" required />
+                                    <input type="text" name="Projects[${idx}].ProjectName" class="form-control" placeholder="e.g., E-commerce Website" required />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Service Association <span class="text-danger">*</span></label>
                                     <select name="Projects[${idx}].ServiceId" class="form-control service-selector" required>
-                                        <option value="">-- Select Service --</option>
+                                        <option value="">-- Select a Service --</option>
                                     </select>
+                                    <!-- ADDED: Hidden input to hold the ServiceName for model binding -->
+                                    <input type="hidden" name="Projects[${idx}].ServiceName" class="service-name-hidden-field" />
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label>Project Link <span class="text-danger">*</span></label>
-                            <input type="url" name="Projects[${idx}].ProjectLink" class="form-control"
-                                   placeholder="https://project-demo.com" required />
+                            <input type="url" name="Projects[${idx}].ProjectLink" class="form-control" placeholder="https://project-demo.com" required />
                         </div>
-
                         <div class="form-group">
                             <label>Project Description <span class="text-danger">*</span></label>
-                            <textarea name="Projects[${idx}].ProjectDescription" class="form-control" rows="3"
-                                      placeholder="Describe the project, technologies used, challenges solved, and your role..." required></textarea>
+                            <div class="position-relative">
+                                 <textarea name="Projects[${idx}].ProjectDescription" class="form-control project-description" rows="3"
+                                          placeholder="Describe the project, technologies used, challenges solved, and your role..." required></textarea>
+                                <button type="button" class="btn btn-outline-info btn-sm mt-2 improve-with-ai-btn">
+                                    <i class="fas fa-magic"></i> Improve with AI
+                                </button>
+                            </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -501,235 +281,285 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label>Project Attachments</label>
-                            <input type="file" name="Projects[${idx}].ProjectAttachments" class="form-control-file"
-                                   accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip,.rar" multiple />
-                            <small class="form-text text-muted">Upload documentation, screenshots, or other relevant files (Max: 10MB)</small>
+                            <label>Project Attachments <span class="text-danger">*</span></label>
+                            <input type="file" name="Projects[${idx}].ProjectAttachments" class="form-control-file project-attachments"
+                                   accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip,.rar" multiple required />
+                            <small class="form-text text-muted">Upload documentation or screenshots (Max: 10MB) - <strong>Required</strong></small>
+                            <div class="invalid-feedback">Please upload at least one attachment for this project.</div>
                         </div>
-                    </div>
-                `;
-            }
+                    </div>`;
+                }
 
-            // Project event listeners
-            addProjectBtn.addEventListener('click', function () {
-                const idx = projectsContainer.querySelectorAll('.project-item').length;
-                projectsContainer.insertAdjacentHTML('beforeend', getProjectTemplate(idx));
-                updateProjectNames();
-                updateServiceSelectors();
-            });
+                // --- Core Logic ---
+                function updateAllIndexes() {
+                    // Update Service indexes
+                    const serviceItems = servicesContainer.querySelectorAll('.service-item');
+                    serviceItems.forEach((item, idx) => {
+                        item.querySelector('h6').textContent = `Service #${idx + 1}`;
+                        item.querySelectorAll('input, textarea').forEach(input => {
+                            if (input.name) {
+                                input.name = input.name.replace(/Services$$\d+$$/, `Services[${idx}]`);
+                            }
+                        });
+                    });
 
-            projectsContainer.addEventListener('click', function (e) {
-                if (e.target.closest('.remove-project')) {
-                    const items = projectsContainer.querySelectorAll('.project-item');
-                    if (items.length > 1) {
+                    // Update Project indexes
+                    const projectItems = projectsContainer.querySelectorAll('.project-item');
+                    projectItems.forEach((item, idx) => {
+                        item.querySelector('h6').textContent = `Project #${idx + 1}`;
+                        item.querySelectorAll('input, textarea, select').forEach(input => {
+                            if (input.name) {
+                                input.name = input.name.replace(/Projects$$\d+$$/, `Projects[${idx}]`);
+                            }
+                        });
+                    });
+
+                    updateServiceSelectors();
+                    toggleRemoveButtons();
+                }
+
+                function updateServiceSelectors() {
+                    const serviceOptions = Array.from(servicesContainer.querySelectorAll('.service-item')).map(item => {
+                        const nameInput = item.querySelector('.service-name-input');
+                        const idInput = item.querySelector('input[type="hidden"]');
+                        return {
+                            id: idInput.value,
+                            name: nameInput.value.trim() || "Untitled Service"
+                        };
+                    });
+
+                    document.querySelectorAll('.service-selector').forEach(selector => {
+                        const currentVal = selector.value;
+                        selector.innerHTML = '<option value="">-- Select a Service --</option>'; // Clear existing options
+                        serviceOptions.forEach(opt => {
+                            const optionEl = document.createElement('option');
+                            optionEl.value = opt.id;
+                            optionEl.textContent = opt.name;
+                            if (opt.id === currentVal) {
+                                optionEl.selected = true;
+                            }
+                            selector.appendChild(optionEl);
+                        });
+                    });
+                }
+
+                function toggleRemoveButtons() {
+                    servicesContainer.querySelectorAll('.remove-service').forEach(btn => {
+                        btn.disabled = servicesContainer.children.length <= 1;
+                    });
+                    projectsContainer.querySelectorAll('.remove-project').forEach(btn => {
+                        btn.disabled = projectsContainer.children.length <= 1;
+                    });
+                }
+
+                function updateCharCount(element) {
+                    const maxLength = element.getAttribute('maxlength');
+                    const currentLength = element.value.length;
+                    const display = element.parentElement.querySelector('.char-count-display');
+                    if (display) {
+                        display.textContent = `${currentLength}/${maxLength} characters`;
+                    }
+                }
+
+                // --- File Validation Function ---
+                function validateProjectAttachments(fileInput) {
+                    const files = fileInput.files;
+                    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+                    const allowedTypes = ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png', '.zip', '.rar'];
+
+                    // Check if at least one file is selected
+                    if (files.length === 0) {
+                        fileInput.setCustomValidity('Please upload at least one attachment for this project.');
+                        fileInput.classList.add('is-invalid');
+                        return false;
+                    }
+
+                    // Validate each file
+                    for (let i = 0; i < files.length; i++) {
+                        const file = files[i];
+
+                        // Check file size
+                        if (file.size > maxSize) {
+                            fileInput.setCustomValidity(`File "${file.name}" exceeds the 10MB size limit.`);
+                            fileInput.classList.add('is-invalid');
+                            return false;
+                        }
+
+                        // Check file type
+                        const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+                        if (!allowedTypes.includes(fileExtension)) {
+                            fileInput.setCustomValidity(`File "${file.name}" has an unsupported file type. Allowed types: ${allowedTypes.join(', ')}`);
+                            fileInput.classList.add('is-invalid');
+                            return false;
+                        }
+                    }
+
+                    // If all validations pass
+                    fileInput.setCustomValidity('');
+                    fileInput.classList.remove('is-invalid');
+                    fileInput.classList.add('is-valid');
+                    return true;
+                }
+
+                // --- Generic AI Text Improvement Function ---
+                function improveTextWithAI(button) {
+                    const formItem = button.closest('.position-relative');
+                    const textarea = formItem.querySelector('textarea');
+                    const originalHtml = button.innerHTML;
+                    let apiUrl = '';
+                    let bodyKey = '';
+
+                    if (textarea.name.includes('Bio')) {
+                        apiUrl = '/Portfolio/ImproveBio';
+                        bodyKey = 'bio';
+                    } else if (textarea.name.includes('ServiceDescription')) {
+                        apiUrl = '/Portfolio/ImproveServiceDescription';
+                        bodyKey = 'serviceDescription';
+                    } else if (textarea.name.includes('ProjectDescription')) {
+                        apiUrl = '/Portfolio/ImproveProjectDescription';
+                        bodyKey = 'projectDescription';
+                    } else {
+                        return;
+                    }
+
+                    if (!textarea.value.trim()) {
+                        alert('Please enter some text before using the AI improvement feature.');
+                        return;
+                    }
+
+                    button.disabled = true;
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Improving...';
+
+                    fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({ [bodyKey]: textarea.value })
+                    })
+                    .then(response => response.ok ? response.json() : Promise.reject('Network response was not ok.'))
+                    .then(data => {
+                        const improvedTextKey = Object.keys(data)[0];
+                        if (data && data[improvedTextKey]) {
+                            textarea.value = data[improvedTextKey];
+                            updateCharCount(textarea);
+                        } else {
+                            alert('Error: The AI did not return an improved description.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('AI Improvement Error:', error);
+                        alert('An error occurred while improving the text. Please check the console and try again.');
+                    })
+                    .finally(() => {
+                        button.disabled = false;
+                        button.innerHTML = originalHtml;
+                    });
+                }
+
+                // --- Form Validation Function ---
+                function validateForm() {
+                    let isValid = true;
+                    const attachmentInputs = document.querySelectorAll('.project-attachments');
+
+                    attachmentInputs.forEach(input => {
+                        if (!validateProjectAttachments(input)) {
+                            isValid = false;
+                        }
+                    });
+
+                    return isValid;
+                }
+
+                // --- Event Listeners ---
+                addServiceBtn.addEventListener('click', () => {
+                    const newIndex = servicesContainer.children.length;
+                    servicesContainer.insertAdjacentHTML('beforeend', getServiceTemplate(newIndex));
+                    updateAllIndexes();
+                });
+
+                addProjectBtn.addEventListener('click', () => {
+                    const newIndex = projectsContainer.children.length;
+                    projectsContainer.insertAdjacentHTML('beforeend', getProjectTemplate(newIndex));
+                    updateAllIndexes();
+                });
+
+                document.getElementById('portfolioForm').addEventListener('click', function(e) {
+                    if (e.target.closest('.improve-with-ai-btn')) {
+                        improveTextWithAI(e.target.closest('.improve-with-ai-btn'));
+                        return;
+                    }
+                    if(e.target.closest('.btn-outline-primary')) {
+                         improveTextWithAI(e.target.closest('.btn-outline-primary'));
+                         return;
+                    }
+                    if (e.target.closest('.remove-service')) {
+                        e.target.closest('.service-item').remove();
+                        updateAllIndexes();
+                        return;
+                    }
+                    if (e.target.closest('.remove-project')) {
                         e.target.closest('.project-item').remove();
-                        updateProjectNames();
+                        updateAllIndexes();
                     }
-                }
-            });
-            
-        
-            // Initial setup
-            updateServiceSelectors();
-        });
-
-         function updateCharCount(element) {
-            const currentLength = element.value.length;
-            const maxLength = element.getAttribute('maxlength') || 500; // Default max length
-
-            // Find or create the character count display element
-            let countDisplay = element.parentElement.querySelector('.char-count');
-
-            if (!countDisplay) {
-                // Create character count display if it doesn't exist
-                countDisplay = document.createElement('small');
-                countDisplay.className = 'char-count form-text text-muted mt-1';
-                element.parentElement.appendChild(countDisplay);
-            }
-
-            // Update the display text
-            countDisplay.textContent = `${currentLength}/${maxLength} characters`;
-
-            // Add visual feedback based on character count
-            if (currentLength > maxLength * 0.9) {
-                countDisplay.className = 'char-count form-text text-warning mt-1';
-            } else if (currentLength >= maxLength) {
-                countDisplay.className = 'char-count form-text text-danger mt-1';
-            } else {
-                countDisplay.className = 'char-count form-text text-muted mt-1';
-            }
-
-            // Optionally prevent further input if max length exceeded
-            if (currentLength > maxLength) {
-                element.value = element.value.substring(0, maxLength);
-                countDisplay.textContent = `${maxLength}/${maxLength} characters (limit reached)`;
-            }
-        }
-
-        function replaceWithAI() {
-                const bioTextarea = document.querySelector('textarea[name="Bio"]') || document.getElementById('Bio');
-                const button = document.getElementById('aiReplaceBtn');
-
-                // Disable button and show loading state
-                button.disabled = true;
-                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
-
-                // Call the Portfolio controller's ImproveBio action
-                       // In your main script section, update the replaceWithAI function:
-                fetch('/Portfolio/ImproveBio', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams({
-                        bio: bioTextarea.value
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.improvedBio) {
-                        // Replace the textarea content with AI-generated bio
-                        bioTextarea.value = data.improvedBio;
-
-                        // Trigger the character count update if the function exists
-                        if (typeof updateCharCount === 'function') {
-                            updateCharCount(bioTextarea);
-                        }
-                    } else {
-                        alert('Error generating bio: No response received');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error generating bio. Please try again.');
-                })
-                .finally(() => {
-                    // Re-enable button and restore original text
-                    button.disabled = false;
-                    button.innerHTML = '<i class="fas fa-magic"></i> Replace with AI Bio';
                 });
 
-
-            }
-
-            function improveServiceDescription(button) {
-                const textarea = button.parentElement.querySelector('.service-description');
-
-                if (!textarea.value.trim()) {
-                    alert('Please enter a service description first before improving it.');
-                    return;
-                }
-
-                // Disable button and show loading state
-                button.disabled = true;
-                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Improving...';
-
-                // Call the Portfolio controller's ImproveServiceDescription action
-                fetch('/Portfolio/ImproveServiceDescription', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams({
-                        serviceDescription: textarea.value
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.improvedServiceDescription) {
-                        // Replace the textarea content with AI-improved description
-                        textarea.value = data.improvedServiceDescription;
-
-                        // Trigger the character count update
-                        const counter = textarea.closest('.form-group').querySelector('.char-count');
-                        if (counter) {
-                            counter.textContent = textarea.value.length;
-                        }
-                    } else {
-                        alert('Error improving description: No response received');
+                document.getElementById('portfolioForm').addEventListener('input', function(e) {
+                    if (e.target.matches('.service-name-input')) {
+                        updateServiceSelectors();
                     }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error improving description. Please try again.');
-                })
-                .finally(() => {
-                    // Re-enable button and restore original text
-                    button.disabled = false;
-                    button.innerHTML = '<i class="fas fa-magic"></i> Improve with AI';
+                    if (e.target.matches('.char-count-input')) {
+                        updateCharCount(e.target);
+                    }
+
+                    // ADDED: Logic to update the hidden ServiceName field when a service is selected for a project
+                    if (e.target.matches('.service-selector')) {
+                        const selectedOption = e.target.options[e.target.selectedIndex];
+                        const projectItem = e.target.closest('.project-item');
+                        const hiddenInput = projectItem.querySelector('.service-name-hidden-field');
+
+                        if (hiddenInput) {
+                            hiddenInput.value = selectedOption.value ? selectedOption.text : '';
+                        }
+                    }
                 });
-            }
 
-            // Add event listener for dynamically created improve buttons
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('.improve-service-btn')) {
-                    improveServiceDescription(e.target.closest('.improve-service-btn'));
+                // --- File Input Change Event Listener ---
+                document.getElementById('portfolioForm').addEventListener('change', function(e) {
+                    if (e.target.matches('.project-attachments')) {
+                        validateProjectAttachments(e.target);
+                    }
+                });
+
+                // --- Form Submit Event Listener ---
+                document.getElementById('portfolioForm').addEventListener('submit', function(e) {
+                    if (!validateForm()) {
+                        e.preventDefault();
+                        alert('Please ensure all project attachments are provided and meet the requirements.');
+
+                        // Scroll to the first invalid attachment field
+                        const firstInvalid = document.querySelector('.project-attachments.is-invalid');
+                        if (firstInvalid) {
+                            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            firstInvalid.focus();
+                        }
+                    }
+                });
+
+                // --- Initial State ---
+                function initializeForm() {
+                    if (servicesContainer.children.length === 0) {
+                         servicesContainer.insertAdjacentHTML('beforeend', getServiceTemplate(0));
+                    }
+                    if (projectsContainer.children.length === 0) {
+                         projectsContainer.insertAdjacentHTML('beforeend', getProjectTemplate(0));
+                    }
+                    updateAllIndexes();
+
+                    const bioTextarea = document.querySelector('textarea[name="Bio"]');
+                    if(bioTextarea) updateCharCount(bioTextarea);
                 }
+
+                initializeForm();
             });
-
-                    function improveProjectDescription(button) {
-            const textarea = button.parentElement.querySelector('.project-description');
-
-            if (!textarea.value.trim()) {
-                alert('Please enter a project description first before improving it.');
-                return;
-            }
-
-            // Disable button and show loading state
-            button.disabled = true;
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Improving...';
-
-            // Call the Portfolio controller's ImproveProjectDescription action
-            fetch('/Portfolio/ImproveProjectDescription', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    projectDescription: textarea.value
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.improvedProjectDescription) {
-                    // Replace the textarea content with AI-improved description
-                    textarea.value = data.improvedProjectDescription;
-                } else {
-                    alert('Error improving description: No response received');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error improving description. Please try again.');
-            })
-            .finally(() => {
-                // Re-enable button and restore original text
-                button.disabled = false;
-                button.innerHTML = '<i class="fas fa-magic"></i> Improve with AI';
-            });
-        }
-
-        // Add event listener for dynamically created improve project buttons
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.improve-project-btn')) {
-                improveProjectDescription(e.target.closest('.improve-project-btn'));
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const serviceSelector = document.querySelector('.service-selector');
-            const serviceNameField = document.querySelector('.service-name-field');
-
-            serviceSelector.addEventListener('change', function() {
-                // Get the selected option text (service name)
-                const selectedOption = this.options[this.selectedIndex];
-                const serviceName = selectedOption.text !== '-- Select Service --' ? selectedOption.text : '';
-
-                // Set the service name in the hidden field
-                serviceNameField.value = serviceName;
-            });
-        });
     </script>
 }
