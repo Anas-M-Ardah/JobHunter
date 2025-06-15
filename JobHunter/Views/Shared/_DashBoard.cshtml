@@ -85,9 +85,6 @@
                         <a class="collapse-item" asp-controller="Resume" asp-action="Index">
                             <i class="fas fa-list text-primary"></i> My Resumes
                         </a>
-                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
-                            <i class="fas fa-th-large text-info"></i> Templates
-                        </a>
                     </div>
                 </div>
             </li>
@@ -109,9 +106,6 @@
                         <a class="collapse-item" asp-controller="Portfolio" asp-action="Index">
                             <i class="fas fa-folder-open text-primary"></i> My Portfolios
                         </a>
-                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
-                            <i class="fas fa-images text-info"></i> Gallery
-                        </a>
                     </div>
                 </div>
             </li>
@@ -119,7 +113,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
+            @* <!-- Heading -->
             <div class="sidebar-heading">
                 AI Tools
             </div>
@@ -188,10 +182,10 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Analytics</span>
                 </a>
-            </li>
+            </li> *@
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+            @* <!-- Divider -->
+            <hr class="sidebar-divider"> *@
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -229,18 +223,13 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                   aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <!-- Breadcrumb Navigation -->
+                    <nav aria-label="breadcrumb" class="d-none d-sm-inline-block ml-md-3 my-2 my-md-0">
+                        <ol class="breadcrumb bg-transparent mb-0">
+                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+                        </ol>
+                    </nav>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
