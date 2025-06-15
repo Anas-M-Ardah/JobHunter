@@ -54,17 +54,30 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" asp-controller="Home" asp-action="Index">
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item active">
+                    <a class="nav-link" asp-controller="Admin" asp-action="Index">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span>
-                </a>
-            </li>
-
+                    </a>
+                </li>
+            }
+          else if (User.IsInRole("EndUser"))
+            {
+                <li class="nav-item active">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">
+                        <i class="fas fa-fw fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+            }
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
+            @if (User.IsInRole("EndUser"))
+            {
+                 <!-- Heading -->
             <div class="sidebar-heading">
                 Create & Manage
             </div>
@@ -110,8 +123,11 @@
                 </div>
             </li>
 
-            <!-- Divider -->
+             <!-- Divider -->
             <hr class="sidebar-divider">
+            }
+           
+           
 
             @* <!-- Heading -->
             <div class="sidebar-heading">

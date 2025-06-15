@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JobHunter.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "EndUser")]
     public abstract class BaseController : Controller
     {
      

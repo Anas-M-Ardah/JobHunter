@@ -16,6 +16,8 @@ namespace JobHunter.Data
         public DbSet<Education> Educations { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
+        public DbSet<EndUser> EndUsers { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -45,6 +47,11 @@ namespace JobHunter.Data
                 .WithMany(p => p.Projects)
                 .HasForeignKey(proj => proj.PortfolioId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>()
+                .HasDiscriminator<string>("Discriminator")
+                .HasValue<EndUser>("EndUser")
+                .HasValue<Admin>("Admin");
         }
     }
 

@@ -20,13 +20,17 @@ namespace JobHunter
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddTransient<IResumeRepository, ResumeRepository>();
             builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
             builder.Services.AddTransient<IGeminiService,  GeminiService>();
             builder.Services.AddTransient<IWordService, WordService>();
+            builder.Services.AddTransient<IAdminRepository, AdminRepository>();
+            builder.Services.AddScoped<UserSeedService>();
 
             var app = builder.Build();
 

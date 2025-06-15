@@ -1,11 +1,12 @@
 ﻿using JobHunter.DTOs;
 using JobHunter.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobHunter.Controllers
 {
-    public class AccountController : BaseController
+    public class AccountController : Controller
     {
         readonly UserManager<User> _userManager;
         readonly SignInManager<User> _signInManager;
@@ -15,6 +16,7 @@ namespace JobHunter.Controllers
             _signInManager = signInManager;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -22,6 +24,7 @@ namespace JobHunter.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> UpdateProfile(User model)
         {
             try
@@ -91,12 +94,14 @@ namespace JobHunter.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult ChangePassword()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordDTO model)
         {

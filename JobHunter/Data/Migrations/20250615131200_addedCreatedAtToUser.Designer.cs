@@ -4,6 +4,7 @@ using JobHunter.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobHunter.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250615131200_addedCreatedAtToUser")]
+    partial class addedCreatedAtToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +57,7 @@ namespace JobHunter.Data.Migrations
 
                     b.HasIndex("ResumeId");
 
-                    b.ToTable("Certificates", (string)null);
+                    b.ToTable("Certificates");
                 });
 
             modelBuilder.Entity("JobHunter.Models.Education", b =>
@@ -94,7 +97,7 @@ namespace JobHunter.Data.Migrations
 
                     b.HasIndex("ResumeId");
 
-                    b.ToTable("Educations", (string)null);
+                    b.ToTable("Educations");
                 });
 
             modelBuilder.Entity("JobHunter.Models.Experience", b =>
@@ -134,7 +137,7 @@ namespace JobHunter.Data.Migrations
 
                     b.HasIndex("ResumeId");
 
-                    b.ToTable("Experiences", (string)null);
+                    b.ToTable("Experiences");
                 });
 
             modelBuilder.Entity("JobHunter.Models.Language", b =>
@@ -160,7 +163,7 @@ namespace JobHunter.Data.Migrations
 
                     b.HasIndex("ResumeId");
 
-                    b.ToTable("Languages", (string)null);
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("JobHunter.Models.Portfolio", b =>
@@ -252,7 +255,7 @@ namespace JobHunter.Data.Migrations
 
                     b.HasIndex("EndUserId");
 
-                    b.ToTable("Portfolios", (string)null);
+                    b.ToTable("Portfolios");
                 });
 
             modelBuilder.Entity("JobHunter.Models.Project", b =>
@@ -308,7 +311,7 @@ namespace JobHunter.Data.Migrations
 
                     b.HasIndex("PortfolioId");
 
-                    b.ToTable("Projects", (string)null);
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("JobHunter.Models.Resume", b =>
@@ -419,7 +422,7 @@ namespace JobHunter.Data.Migrations
 
                     b.HasIndex("EndUserId");
 
-                    b.ToTable("Resumes", (string)null);
+                    b.ToTable("Resumes");
                 });
 
             modelBuilder.Entity("JobHunter.Models.Service", b =>
@@ -453,7 +456,7 @@ namespace JobHunter.Data.Migrations
 
                     b.HasIndex("PortfolioId");
 
-                    b.ToTable("Services", (string)null);
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("JobHunter.Models.Skill", b =>
@@ -479,7 +482,7 @@ namespace JobHunter.Data.Migrations
 
                     b.HasIndex("ResumeId");
 
-                    b.ToTable("Skills", (string)null);
+                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("JobHunter.Models.User", b =>

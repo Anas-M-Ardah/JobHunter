@@ -134,6 +134,22 @@ namespace JobHunter.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    // Add the EndUser role to the newly created user
+                    var roleResult = await _userManager.AddToRoleAsync(user, "EndUser");
+                    if (!roleResult.Succeeded)
+                    {
+                        _logger.LogWarning("Failed to assign EndUser role to user {Email}", Input.Email);
+                        // Optionally handle the role assignment failure
+                        foreach (var error in roleResult.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, $"Role assignment error: {error.Description}");
+                        }
+                    }
+                    else
+                    {
+                        _logger.LogInformation("EndUser role assigned to user {Email}", Input.Email);
+                    }
+
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
