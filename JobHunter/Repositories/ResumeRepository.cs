@@ -1,6 +1,7 @@
 ﻿using JobHunter.Data;
 using JobHunter.DTOs;
 using JobHunter.Models;
+using JobHunter.Models.JSONResponse;
 using JobHunter.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -456,5 +457,153 @@ namespace JobHunter.Repositories
                 return false;
             }
         }
+
+        public Resume MapToResumeEntity(ResumeData resumeData, Guid endUserId, string jobDescription)
+        {
+            var resume = new Resume
+            {
+                // Personal Information
+                FirstName = resumeData.FirstName,
+                LastName = resumeData.LastName,
+                Email = resumeData.Email,
+                PhoneNumber = resumeData.PhoneNumber,
+                Address = resumeData.Address,
+                Major = resumeData.Major,
+                LinkedInLink = resumeData.LinkedInLink,
+                GitHubLink = resumeData.GitHubLink,
+                PortfolioLink = resumeData.PortfolioLink,
+                Bio = resumeData.Bio,
+                Title = resumeData.Title,
+                JobDescription = jobDescription,
+
+                // Initialize lists
+                Educations = new List<Education>(),
+                Experiences = new List<Experience>(),
+                Skills = new List<Skill>(),
+                Languages = new List<Language>(),
+                Certificates = new List<Certificate>(),
+
+                // Metadata
+                //EndUserId = endUserId,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+            };
+
+            // Parse DateOfBirth
+            if (DateOnly.TryParse(resumeData.DateOfBirth, out var dateOfBirth))
+            {
+                resume.DateOfBirth = dateOfBirth;
+            }
+
+            // Map Education
+            foreach (var edu in resumeData.Education)
+            {
+                var education = new Education
+                {
+                    CollegeName = edu.CollegeName,
+                    DegreeType = edu.DegreeType,
+                    Major = edu.Major,
+                    GPA = edu.GPA,
+                    ResumeId = resume.ResumeId
+                };
+
+                if (DateOnly.TryParse(edu.StartDate, out var startDate))
+                    education.StartDate = startDate;
+
+                if (!string.IsNullOrEmpty(edu.EndDate) && DateOnly.TryParse(edu.EndDate, out var endDate))
+                    education.EndDate = endDate;
+
+                resume.Educations.Add(education);
+            }
+
+            // Map Experience
+            foreach (var exp in resumeData.Experience)
+            {
+                var experience = new Experience
+                {
+                    Title = exp.Title,
+                    Company = exp.Company,
+                    Duties = exp.Duties,
+                    IsCurrent = exp.IsCurrent,
+                    ResumeId = resume.ResumeId
+                };
+
+                if (DateOnly.TryParse(exp.StartDate, out var startDate))
+                    experience.StartDate = startDate;
+
+                if (!string.IsNullOrEmpty(exp.EndDate) && DateOnly.TryParse(exp.EndDate, out var endDate))
+                    experience.EndDate = endDate;
+
+                resume.Experiences.Add(experience);
+            }
+
+            // Map Skills
+            foreach (var skill in resumeData.Skills)
+            {
+                resume.Skills.Add(new Skill
+                {
+                    SkillName = skill.SkillName,
+                    SkillType = skill.SkillType,
+                    ResumeId = resume.ResumeId
+                });
+            }
+
+            // Map Languages
+            foreach (var lang in resumeData.Languages)
+            {
+                resume.Languages.Add(new Language
+                {
+                    LanguageName = lang.LanguageName,
+                    Level = lang.Level,
+                    ResumeId = resume.ResumeId
+                });
+            }
+
+            // Map Certificates
+            foreach (var cert in resumeData.Certificates)
+            {
+                var certificate = new Certificate
+                {
+                    ProviderName = cert.ProviderName,
+                    TopicName = cert.TopicName,
+                    GPA = cert.GPA,
+                    ResumeId = resume.ResumeId
+                };
+
+                if (DateOnly.TryParse(cert.StartDate, out var startDate))
+                    certificate.StartDate = startDate;
+
+                if (!string.IsNullOrEmpty(cert.EndDate) && DateOnly.TryParse(cert.EndDate, out var endDate))
+                    certificate.EndDate = endDate;
+
+                resume.Certificates.Add(certificate);
+            }
+
+            // Also populate UserInput fields for backup/reference
+            resume.UserInputSkills = string.Join("; ", resumeData.Skills.Select(s => $"{s.SkillName} ({s.SkillType})"));
+            resume.UserInputLanguages = string.Join("; ", resumeData.Languages.Select(l => $"{l.LanguageName} - {l.Level}"));
+            resume.UserInputEducation = string.Join("; ", resumeData.Education.Select(e => $"{e.DegreeType} in {e.Major} from {e.CollegeName}"));
+            resume.UserInputExperiences = string.Join("; ", resumeData.Experience.Select(e => $"{e.Title} at {e.Company}"));
+            resume.UserInputCertificates = string.Join("; ", resumeData.Certificates.Select(c => $"{c.TopicName} from {c.ProviderName}"));
+
+            return resume;
+        }
+
+        public async Task<bool> SaveResumeAsync(Resume resume, User user)
+        {
+            try
+            {
+                resume.EndUser = (EndUser)user;
+                resume.JobDescription = "none";
+                await _context.Resumes.AddAsync(resume);
+                await _context.SaveChangesAsync();
+                return true; // Return true if save is successful
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error saving resume: {ex.Message}");
+                return false; // Return false if an error occurs
+            }
+        }
     }
-}
+    }

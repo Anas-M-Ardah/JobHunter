@@ -1,11 +1,15 @@
 ﻿// Services/GeminiService.cs
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using JobHunter.Models;
+using JobHunter.Models.JSONResponse;
 using Microsoft.Extensions.Configuration;
 using Mscc.GenerativeAI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using JsonException = System.Text.Json.JsonException;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 using Language = JobHunter.Models.Language;
 
 namespace JobHunter.Services
@@ -1105,7 +1109,7 @@ namespace JobHunter.Services
                         RevisedLanguages = revisedContent["languages"]?.ToString() ?? languages
                     };
                 }
-                catch (JsonException)
+                catch (System.Text.Json.JsonException)
                 {
                     // Return original content if JSON parsing fails
                     return new RevisorResult
@@ -1138,7 +1142,7 @@ namespace JobHunter.Services
         {
             try
             {
-            string prompt = $@"
+                string prompt = $@"
                 Improve and enhance the following professional bio to make it more compelling and polished:
                 {bio}
             
@@ -1252,6 +1256,231 @@ namespace JobHunter.Services
                 Console.WriteLine($"ImproveProjectDescription error: {ex.Message}");
                 return string.Empty;
             }
+        }
+
+        public async Task<ResumeAIResponse> GenerateBaseResumeAsync(string jobDescription, string userInfo)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(jobDescription))
+                {
+                    throw new ArgumentException("Job description cannot be empty", nameof(jobDescription));
+                }
+
+                if (string.IsNullOrWhiteSpace(userInfo))
+                {
+                    throw new ArgumentException("User information cannot be empty", nameof(userInfo));
+                }
+
+                // Construct the prompt for AI with JSON response format
+                var prompt = BuildResumePromptWithJsonResponse(jobDescription, userInfo);
+
+                // Generate the resume using the existing GenerateTextAsync method
+                var aiResponse = await GenerateTextAsync(prompt);
+
+                if (string.IsNullOrWhiteSpace(aiResponse))
+                {
+                    return new ResumeAIResponse
+                    {
+                        IsValid = false,
+                        ValidationMessage = "AI failed to generate response"
+                    };
+                }
+
+                // Parse the JSON response
+                var resumeResponse = ParseAIResponse(aiResponse);
+                return resumeResponse;
+            }
+            catch (Exception ex)
+            {
+                return new ResumeAIResponse
+                {
+                    IsValid = false,
+                    ValidationMessage = $"Error generating resume: {ex.Message}"
+                };
+            }
+        }
+
+        private string BuildResumePromptWithJsonResponse(string jobDescription, string userInfo)
+        {
+            return $@"
+You are a professional resume writer and validator. Your task is to:
+
+Extract and validate user information
+Parse information into structured data
+Create a tailored, ATS-friendly resume
+Return structured data in JSON format
+
+USER INFORMATION:
+{userInfo}
+
+JOB DESCRIPTION:
+{jobDescription}
+
+RESPONSE FORMAT:
+You must respond with ONLY a valid JSON object in this exact format:
+
+{{
+""isValid"": true/false,
+""validationMessage"": ""explanation of missing information if invalid"",
+""resumeData"": {{
+""firstName"": ""extracted first name"",
+""lastName"": ""extracted last name"",
+""email"": ""extracted email"",
+""phoneNumber"": ""extracted phone number"",
+""address"": ""extracted address"",
+""dateOfBirth"": ""extracted date of birth in YYYY-MM-DD format or null"",
+""major"": ""extracted major/field of study or null"",
+""linkedInLink"": ""extracted LinkedIn URL or null"",
+""gitHubLink"": ""extracted GitHub URL or null"",
+""portfolioLink"": ""extracted portfolio URL or null"",
+""bio"": ""extracted professional summary/bio or null"",
+""title"": ""extracted professional title or inferred from experience or null"",
+""education"": [
+{{
+""collegeName"": ""University/College name"",
+""degreeType"": ""Bachelor/Master/PhD etc."",
+""startDate"": ""YYYY-MM-DD"",
+""endDate"": ""YYYY-MM-DD or null if current"",
+""major"": ""Field of study"",
+""gpa"": 3.5 or null
+}}
+] or [],
+""experience"": [
+{{
+""title"": ""Job title"",
+""company"": ""Company name"",
+""startDate"": ""YYYY-MM-DD"",
+""endDate"": ""YYYY-MM-DD or null if current"",
+""isCurrent"": true/false,
+""duties"": ""Detailed job responsibilities and achievements""
+}}
+] or [],
+""skills"": [
+{{
+""skillName"": ""Skill name"",
+""skillType"": ""Technical/Soft/Programming/etc.""
+}}
+],
+""languages"": [
+{{
+""languageName"": ""Language name"",
+""level"": ""Native/Fluent/Conversational/Basic/etc.""
+}}
+] or [],
+""certificates"": [
+{{
+""providerName"": ""Certification provider"",
+""startDate"": ""YYYY-MM-DD issue date"",
+""endDate"": ""YYYY-MM-DD expiration date or null"",
+""topicName"": ""Certificate name"",
+""gpa"": score/grade or null
+}}
+] or [],
+""formattedResume"": ""complete formatted resume as HTML""
+}}
+}}
+
+INSTRUCTIONS:
+
+Extract ALL information from user input and structure it properly
+For Education: Parse each degree/school separately - OPTIONAL, can be empty array if no education mentioned
+For Experience: Parse each job/internship/project separately - OPTIONAL, can be empty array if no experience mentioned
+For Skills: Categorize skills (Technical, Programming Languages, Soft Skills, etc.) - REQUIRED, must have at least basic skills
+For Languages: Extract language and proficiency level - OPTIONAL, can be empty array
+For Certificates: Parse each certification with provider and dates - OPTIONAL, can be empty array if no certificates mentioned
+Use YYYY-MM-DD format for all dates
+Set isCurrent to true for current positions (no end date mentioned)
+Infer missing information intelligently where possible
+Create a complete formatted resume tailored to the job description
+It's acceptable for users to have no formal education, work experience, or certificates
+Focus on transferable skills, volunteer work, projects, or personal attributes when traditional experience is lacking
+
+CRITICAL:
+
+Respond with ONLY the JSON object
+All arrays can be empty if no relevant information is provided
+Don't create fake entries - only use information provided by the user
+If a section has no information, use an empty array []
+Generate your response now:";
+        }
+
+        private ResumeAIResponse ParseAIResponse(string aiResponse)
+        {
+            try
+            {
+                // Clean up the response in case there's extra text
+                var jsonStart = aiResponse.IndexOf("{");
+                var jsonEnd = aiResponse.LastIndexOf("}");
+
+                if (jsonStart == -1 || jsonEnd == -1)
+                {
+                    return new ResumeAIResponse
+                    {
+                        IsValid = false,
+                        ValidationMessage = "Invalid JSON response from AI"
+                    };
+                }
+
+                var jsonString = aiResponse.Substring(jsonStart, jsonEnd - jsonStart + 1);
+
+                var response = JsonSerializer.Deserialize<ResumeAIResponse>(jsonString, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                // Validate that required fields are present
+                if (response?.ResumeData != null)
+                {
+                    var validationErrors = ValidateResumeData(response.ResumeData);
+                    if (validationErrors.Any())
+                    {
+                        response.IsValid = false;
+                        response.ValidationMessage = string.Join("; ", validationErrors);
+                    }
+                }
+
+                return response ?? new ResumeAIResponse
+                {
+                    IsValid = false,
+                    ValidationMessage = "Failed to parse AI response"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResumeAIResponse
+                {
+                    IsValid = false,
+                    ValidationMessage = $"Error parsing AI response: {ex.Message}"
+                };
+            }
+        }
+
+        private List<string> ValidateResumeData(ResumeData resumeData)
+        {
+            var errors = new List<string>();
+
+            // Required fields
+            if (string.IsNullOrWhiteSpace(resumeData.FirstName))
+                errors.Add("First name is required");
+
+            if (string.IsNullOrWhiteSpace(resumeData.LastName))
+                errors.Add("Last name is required");
+
+            if (string.IsNullOrWhiteSpace(resumeData.Email))
+                errors.Add("Email is required");
+
+            if (string.IsNullOrWhiteSpace(resumeData.PhoneNumber))
+                errors.Add("Phone number is required");
+
+            // Skills are required but can be basic
+            if (resumeData.Skills == null || !resumeData.Skills.Any())
+                errors.Add("At least one skill is required");
+
+            // Optional sections - no validation needed for empty arrays
+            // Education, Experience, Certificates, Languages can all be empty
+
+            return errors;
         }
     }
 }

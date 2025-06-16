@@ -1,5 +1,6 @@
 ﻿using JobHunter.DTOs;
 using JobHunter.Models;
+using JobHunter.Models.JSONResponse;
 
 namespace JobHunter.Repositories
 {
@@ -13,5 +14,7 @@ namespace JobHunter.Repositories
         public ResumeCreateEditDTO GetResumeById(Guid resumeId);
         public Task<Resume> GetResumeByIdAsync(Guid resumeId);    
         public Task<bool> DeleteResumeAsync(Guid resumeId);
+        public Resume MapToResumeEntity(ResumeData resumeData, Guid endUserId, string jobDescription);
+        public Task<bool> SaveResumeAsync(Resume resume, User user);
     }
 }

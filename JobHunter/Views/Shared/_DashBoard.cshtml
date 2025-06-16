@@ -77,132 +77,58 @@
 
             @if (User.IsInRole("EndUser"))
             {
-                 <!-- Heading -->
-            <div class="sidebar-heading">
-                Create & Manage
-            </div>
-
-            <!-- Nav Item - Resumes -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseResumes"
-                   aria-expanded="true" aria-controls="collapseResumes">
-                    <i class="fas fa-fw fa-file-alt"></i>
-                    <span>Resumes</span>
-                </a>
-                <div id="collapseResumes" class="collapse" aria-labelledby="headingResumes" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Resume Options:</h6>
-                        <a class="collapse-item" asp-controller="Resume" asp-action="Create">
-                            <i class="fas fa-plus text-success"></i> Create New
-                        </a>
-                        <a class="collapse-item" asp-controller="Resume" asp-action="Index">
-                            <i class="fas fa-list text-primary"></i> My Resumes
-                        </a>
-                    </div>
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Create & Manage
                 </div>
-            </li>
 
-            <!-- Nav Item - Portfolios -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePortfolios"
-                   aria-expanded="true" aria-controls="collapsePortfolios">
-                    <i class="fas fa-fw fa-briefcase"></i>
-                    <span>Portfolios</span>
-                </a>
-                <div id="collapsePortfolios" class="collapse" aria-labelledby="headingPortfolios"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Portfolio Options:</h6>
-                        <a class="collapse-item" asp-controller="Portfolio" asp-action="Create">
-                            <i class="fas fa-plus text-success"></i> Create New
-                        </a>
-                        <a class="collapse-item" asp-controller="Portfolio" asp-action="Index">
-                            <i class="fas fa-folder-open text-primary"></i> My Portfolios
-                        </a>
+                <!-- Nav Item - Resumes -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseResumes"
+                    aria-expanded="true" aria-controls="collapseResumes">
+                        <i class="fas fa-fw fa-file-alt"></i>
+                        <span>Resumes</span>
+                    </a>
+                    <div id="collapseResumes" class="collapse" aria-labelledby="headingResumes" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Resume Options:</h6>
+                            <a class="collapse-item" asp-controller="Resume" asp-action="Create">
+                                <i class="fas fa-plus text-success"></i> Create New (Guided)
+                            </a>
+                            <a class="collapse-item" asp-controller="Resume" asp-action="UnguidedResumeCreate">
+                                <i class="fas fa-plus text-success"></i> Create New (Unguided)
+                            </a>
+                            <a class="collapse-item" asp-controller="Resume" asp-action="Index">
+                                <i class="fas fa-list text-primary"></i> My Resumes
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
-             <!-- Divider -->
-            <hr class="sidebar-divider">
+                <!-- Nav Item - Portfolios -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePortfolios"
+                    aria-expanded="true" aria-controls="collapsePortfolios">
+                        <i class="fas fa-fw fa-briefcase"></i>
+                        <span>Portfolios</span>
+                    </a>
+                    <div id="collapsePortfolios" class="collapse" aria-labelledby="headingPortfolios"
+                    data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Portfolio Options:</h6>
+                            <a class="collapse-item" asp-controller="Portfolio" asp-action="Create">
+                                <i class="fas fa-plus text-success"></i> Create New
+                            </a>
+                            <a class="collapse-item" asp-controller="Portfolio" asp-action="Index">
+                                <i class="fas fa-folder-open text-primary"></i> My Portfolios
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
             }
-           
-           
-
-            @* <!-- Heading -->
-            <div class="sidebar-heading">
-                AI Tools
-            </div>
-
-            <!-- Nav Item - AI Assistant -->
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="ComingSoon">
-                    <i class="fas fa-fw fa-robot"></i>
-                    <span>AI Assistant</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - AI Tools -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAITools"
-                   aria-expanded="true" aria-controls="collapseAITools">
-                    <i class="fas fa-fw fa-magic"></i>
-                    <span>AI Features</span>
-                </a>
-                <div id="collapseAITools" class="collapse" aria-labelledby="headingAITools" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">AI Tools:</h6>
-                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
-                            <i class="fas fa-chart-line text-success"></i> Resume Optimizer
-                        </a>
-                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
-                            <i class="fas fa-lightbulb text-warning"></i> Skill Suggestions
-                        </a>
-                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
-                            <i class="fas fa-envelope-open-text text-info"></i> Cover Letters
-                        </a>
-                        <a class="collapse-item" asp-controller="Home" asp-action="ComingSoon">
-                            <i class="fas fa-microphone text-primary"></i> Interview Prep
-                        </a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Resources
-            </div>
-
-            <!-- Nav Item - Templates -->
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="ComingSoon">
-                    <i class="fas fa-fw fa-palette"></i>
-                    <span>Templates</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Job Board -->
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="ComingSoon">
-                    <i class="fas fa-fw fa-search-location"></i>
-                    <span>Job Board</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Analytics -->
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="ComingSoon">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Analytics</span>
-                </a>
-            </li> *@
-
-            @* <!-- Divider -->
-            <hr class="sidebar-divider"> *@
-
             <!-- Heading -->
             <div class="sidebar-heading">
                 Account

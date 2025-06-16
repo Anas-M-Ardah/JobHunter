@@ -1,4 +1,5 @@
 ﻿using JobHunter.Models;
+using JobHunter.Models.JSONResponse;
 using Mscc.GenerativeAI;
 using Language = JobHunter.Models.Language;
 
@@ -19,6 +20,9 @@ namespace JobHunter.Services
         Task<string> ImproveBio(string bio);
         Task<string> ImproveServiceDescription(string serviceDescription);
         Task<string> ImproveProjectDescription(string projectDescription);
+
+        Task<ResumeAIResponse> GenerateBaseResumeAsync(string jobDescription, string userInfo);
+
 
     }
 }

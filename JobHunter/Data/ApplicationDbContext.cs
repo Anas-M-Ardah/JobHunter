@@ -16,8 +16,6 @@ namespace JobHunter.Data
         public DbSet<Education> Educations { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
-        public DbSet<EndUser> EndUsers { get; set; }
-        public DbSet<Admin> Admins { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

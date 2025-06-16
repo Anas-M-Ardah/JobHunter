@@ -110,41 +110,41 @@ namespace JobHunter.Areas.Identity.Pages.Account
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User logged in.");
-
-                    // Check if user is admin and redirect accordingly
-                    var user = await _userManager.FindByEmailAsync(Input.Email);
-                    if (user != null && await _userManager.IsInRoleAsync(user, "Admin"))
-                    {
-                        return LocalRedirect("/Admin/");
-                    }
-
-                    return LocalRedirect(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return Page();
-                }
+                return Page();
             }
 
-            // If we got this far, something failed, redisplay form
+            var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User {Email} logged in.", Input.Email);
+
+                // Check if user is admin and redirect accordingly
+                var user = await _userManager.FindByEmailAsync(Input.Email);
+                if (user != null && await _userManager.IsInRoleAsync(user, "Admin"))
+                {
+                    return LocalRedirect("~/Admin/");
+                }
+
+                return LocalRedirect("~/Home/");
+            }
+
+            if (result.RequiresTwoFactor)
+            {
+                return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+            }
+
+            if (result.IsLockedOut)
+            {
+                _logger.LogWarning("User account locked out: {Email}", Input.Email);
+                return RedirectToPage("./Lockout");
+            }
+
+            // Invalid login attempt
+            _logger.LogWarning("Invalid login attempt for: {Email}", Input.Email);
+            ModelState.AddModelError(string.Empty, "Invalid email or password.");
             return Page();
         }
     }

@@ -1,0 +1,499 @@
+﻿@model JobHunter.DTOs.UnguidedResumeCreateEditDTO
+@{
+    ViewData["Title"] = "Create Resume";
+    Layout = "_Dashboard";
+}
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Create Resume</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">@Html.ActionLink("Dashboard", "Index", "Home")</li>
+                <li class="breadcrumb-item active" aria-current="page">Create Resume</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Card -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <i class="fas fa-file-alt"></i> Resume Information
+                    </h6>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("SaveResume", "Resume", FormMethod.Post, new { id = "resumeForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <!-- User Information -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.UserInformation, "Your Information", new { @class = "form-label font-weight-bold" })
+                            @Html.TextAreaFor(m => m.UserInformation, new { 
+                                @class = "form-control", 
+                                rows = "10", 
+                                placeholder = @"Enter your complete information including:
+
+Personal Information:
+• First Name, Last Name
+• Email Address
+• Phone Number
+• Address
+• Date of Birth
+• Major/Field of Study
+
+Skills:
+• Technical skills
+• Programming languages
+• Tools and frameworks
+• Soft skills
+
+Education:
+• Degree information
+• Institution name
+• Graduation year
+
+Experience:
+• Work history
+• Internships
+• Projects
+
+Languages:
+• Languages you speak
+• Proficiency levels
+
+Certificates:
+• Professional certifications
+• Licenses
+• Relevant courses
+
+Optional: LinkedIn, GitHub, Portfolio links" 
+                            })
+                            @Html.ValidationMessageFor(m => m.UserInformation, "", new { @class = "text-danger" })
+                            <small class="form-text text-muted">
+                                <i class="fas fa-info-circle"></i> 
+                                <strong>All sections are required:</strong> Personal Information, Skills, Education, Experience, Languages, and Certificates.
+                            </small>
+                        </div>
+
+                        <!-- Job Description -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.JobDescription, "Job Description", new { @class = "form-label font-weight-bold" })
+                            @Html.TextAreaFor(m => m.JobDescription, new { 
+                                @class = "form-control", 
+                                rows = "8", 
+                                placeholder = @"Paste the complete job description here...
+
+Include:
+• Job title and company
+• Key responsibilities
+• Required qualifications
+• Preferred skills
+• Job requirements
+• Benefits (optional)" 
+                            })
+                            @Html.ValidationMessageFor(m => m.JobDescription, "", new { @class = "text-danger" })
+                            <small class="form-text text-muted">
+                                <i class="fas fa-info-circle"></i> 
+                                The more detailed the job description, the better the AI can tailor your resume.
+                            </small>
+                        </div>
+
+                        <!-- AI Output -->
+                        <div class="form-group">
+                            <label class="form-label font-weight-bold">
+                                <i class="fas fa-robot"></i> AI Generated Resume
+                            </label>
+                            <div class="card border-info">
+                                <div class="card-body" style="min-height: 400px; background-color: #f8f9fc;">
+                                    <div id="aiOutput" class="text-muted">
+                                        <div class="text-center py-5">
+                                            <i class="fas fa-robot fa-3x mb-3 text-info"></i>
+                                            <h5 class="text-secondary">AI Resume Generator</h5>
+                                            <p class="mb-2">Fill in your information and job description above, then click "Generate Resume"</p>
+                                            <small class="text-muted">The AI will analyze the job requirements and create a tailored resume for you.</small>
+                                        </div>
+                                    </div>
+                                    <div id="loadingSpinner" class="text-center py-5" style="display: none;">
+                                        <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <h5 class="text-primary">Generating Your Resume...</h5>
+                                        <p class="text-muted">Please wait while AI creates your personalized resume.</p>
+                                        <div class="progress" style="height: 6px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-secondary btn-block" onclick="window.history.back();">
+                                        <i class="fas fa-arrow-left"></i> Back
+                                    </button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="button" id="generateBtn" class="btn btn-info btn-block">
+                                        <i class="fas fa-magic"></i> Generate Resume
+                                    </button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="button" id="saveBtn" class="btn btn-success btn-block" disabled>
+                                        <i class="fas fa-save"></i> Save Resume
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hidden fields to store resume data -->
+                        @Html.HiddenFor(m => m.EndUserId)
+                        @Html.HiddenFor(m => m.ResumeId)
+                        <input type="hidden" id="resumeDataJson" name="ResumeDataJson" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Global variable to store the generated resume data
+        var generatedResumeData = null;
+
+        $(document).ready(function() {
+            $('#generateBtn').click(function() {
+                generateResume();
+            });
+
+            $('#saveBtn').click(function() {
+                saveResume();
+            });
+
+            function generateResume() {
+                var userInfo = $('#UserInformation').val().trim();
+                var jobDesc = $('#JobDescription').val().trim();
+
+                // Enhanced validation
+                if (!userInfo) {
+                    showAlert('Please fill in your information.', 'warning');
+                    $('#UserInformation').focus();
+                    return;
+                }
+
+                if (!jobDesc) {
+                    showAlert('Please paste the job description.', 'warning');
+                    $('#JobDescription').focus();
+                    return;
+                }
+
+                // Show loading state
+                $('#loadingSpinner').show();
+                $('#aiOutput').hide();
+                $('#generateBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Generating...');
+
+                // AJAX call to generate resume
+                $.ajax({
+                    url: '@Url.Action("UnguidedCreate", "Resume")',
+                    type: 'POST',
+                    data: {
+                        userInformation: userInfo,
+                        jobDescription: jobDesc,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Store the complete resume data
+                            generatedResumeData = response.resumeData;
+                            
+                            // Show generated resume
+                            $('#aiOutput').html('<div class="resume-output">' + formatResume(response.resume) + '</div>').show();
+                            $('#saveBtn').prop('disabled', false);
+                            
+                            showAlert('Resume generated successfully! You can now save it.', 'success');
+                        } else {
+                            // Handle different error types
+                            var alertType = response.isValidationError ? 'warning' : 'danger';
+                            var title = response.isValidationError ? 'Missing Information' : 'Generation Error';
+                            
+                            $('#aiOutput').html(`
+                                <div class="alert alert-${alertType} alert-dismissible fade show">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <h6><i class="fas fa-exclamation-triangle"></i> ${title}</h6>
+                                    <p class="mb-0">${response.message}</p>
+                                </div>
+                            `).show();
+                            
+                            // Reset resume data
+                            generatedResumeData = null;
+                            $('#saveBtn').prop('disabled', true);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', error);
+                        $('#aiOutput').html(`
+                            <div class="alert alert-danger alert-dismissible fade show">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <h6><i class="fas fa-exclamation-circle"></i> System Error</h6>
+                                <p class="mb-0">An error occurred while generating the resume. Please try again.</p>
+                            </div>
+                        `).show();
+                        
+                        // Reset resume data
+                        generatedResumeData = null;
+                        $('#saveBtn').prop('disabled', true);
+                    },
+                    complete: function() {
+                        // Reset UI state
+                        $('#loadingSpinner').hide();
+                        $('#generateBtn').prop('disabled', false).html('<i class="fas fa-magic"></i> Generate Resume');
+                    }
+                });
+            }
+
+            function saveResume() {
+                if (!generatedResumeData) {
+                    showAlert('Please generate a resume first before saving.', 'warning');
+                    return;
+                }
+
+                // Show saving state
+                $('#saveBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Saving...');
+
+                // Map the resume data to Resume object structure
+                var resumeObject = mapToResumeObject(generatedResumeData);
+
+                // Debug: Log the resume object to console
+                console.log('Resume Object:', resumeObject);
+
+                // AJAX call to save resume
+                $.ajax({
+                    url: '@Url.Action("SaveResume", "Resume")',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(resumeObject),
+                    success: function(response) {
+                        if (response.success) {
+                            showAlert('Resume saved successfully!', 'success');
+                            
+                            // Optional: Redirect to resume list or view
+                            setTimeout(function() {
+                                window.location.href = '@Url.Action("Index", "Resume")';
+                            }, 2000);
+                        } else {
+                            showAlert(response.message || 'Failed to save resume. Please try again.', 'danger');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Save Error:', error);
+                        console.error('Response:', xhr.responseText);
+                        showAlert('An error occurred while saving the resume. Please try again.', 'danger');
+                    },
+                    complete: function() {
+                        // Reset button state
+                        $('#saveBtn').prop('disabled', false).html('<i class="fas fa-save"></i> Save Resume');
+                    }
+                });
+            }
+
+            function mapToResumeObject(resumeData) {
+                // Ensure we have the data structure we expect
+                console.log('Mapping Resume Data:', resumeData);
+
+                return {
+                    resumeId: $('#ResumeId').val() || '00000000-0000-0000-0000-000000000000',
+                    endUserId: $('#EndUserId').val(),
+                    
+                    // Personal Information
+                    firstName: resumeData.firstName || '',
+                    lastName: resumeData.lastName || '',
+                    email: resumeData.email || '',
+                    phoneNumber: resumeData.phoneNumber || '',
+                    address: resumeData.address || '',
+                    dateOfBirth: resumeData.dateOfBirth || '1990-01-01',
+                    major: resumeData.major || '',
+                    linkedInLink: resumeData.linkedInLink || null,
+                    gitHubLink: resumeData.gitHubLink || null,
+                    portfolioLink: resumeData.portfolioLink || null,
+                    bio: resumeData.bio || null,
+                    title: resumeData.title || null,
+                    
+                    // UserInput fields - handle both string and array formats
+                    userInputSkills: typeof resumeData.skills === 'string' ? resumeData.skills : 
+                                   (Array.isArray(resumeData.skills) ? resumeData.skills.map(s => s.skillName || s).join(', ') : ''),
+                    userInputLanguages: typeof resumeData.languages === 'string' ? resumeData.languages : 
+                                      (Array.isArray(resumeData.languages) ? resumeData.languages.map(l => `${l.languageName || l} - ${l.level || 'Unknown'}`).join(', ') : ''),
+                    userInputEducation: typeof resumeData.education === 'string' ? resumeData.education : 
+                                      (Array.isArray(resumeData.education) ? resumeData.education.map(e => `${e.degreeType || ''} in ${e.major || ''} from ${e.collegeName || ''}`).join(', ') : ''),
+                    userInputExperiences: typeof resumeData.experience === 'string' ? resumeData.experience : 
+                                        (Array.isArray(resumeData.experience) ? resumeData.experience.map(e => `${e.title || ''} at ${e.company || ''}`).join(', ') : ''),
+                    userInputCertificates: typeof resumeData.certificates === 'string' ? resumeData.certificates : 
+                                         (Array.isArray(resumeData.certificates) ? resumeData.certificates.map(c => `${c.topicName || ''} from ${c.providerName || ''}`).join(', ') : ''),
+                    userInputBio: resumeData.bio || '',
+                    jobDescription: $('#JobDescription').val(),
+                    
+                    // Collections - only create if we have array data
+                    educations: Array.isArray(resumeData.education) ? resumeData.education.map(edu => ({
+                        educationId: '00000000-0000-0000-0000-000000000000',
+                        collegeName: edu.collegeName || '',
+                        degreeType: edu.degreeType || '',
+                        startDate: edu.startDate || '2020-01-01',
+                        endDate: edu.endDate || null,
+                        major: edu.major || '',
+                        gpa: edu.gpa || null,
+                        resumeId: $('#ResumeId').val() || '00000000-0000-0000-0000-000000000000'
+                    })) : [],
+                    
+                    experiences: Array.isArray(resumeData.experience) ? resumeData.experience.map(exp => ({
+                        experienceId: '00000000-0000-0000-0000-000000000000',
+                        title: exp.title || '',
+                        company: exp.company || '',
+                        startDate: exp.startDate || '2020-01-01',
+                        endDate: exp.endDate || null,
+                        isCurrent: exp.isCurrent || false,
+                        duties: exp.duties || '',
+                        resumeId: $('#ResumeId').val() || '00000000-0000-0000-0000-000000000000'
+                    })) : [],
+                    
+                    skills: Array.isArray(resumeData.skills) ? resumeData.skills.map(skill => ({
+                        skillId: '00000000-0000-0000-0000-000000000000',
+                        skillName: skill.skillName || skill || '',
+                        skillType: skill.skillType || 'General',
+                        resumeId: $('#ResumeId').val() || '00000000-0000-0000-0000-000000000000'
+                    })) : [],
+                    
+                    languages: Array.isArray(resumeData.languages) ? resumeData.languages.map(lang => ({
+                        languageId: '00000000-0000-0000-0000-000000000000',
+                        languageName: lang.languageName || lang || '',
+                        level: lang.level || 'Unknown',
+                        resumeId: $('#ResumeId').val() || '00000000-0000-0000-0000-000000000000'
+                    })) : [],
+                    
+                    certificates: Array.isArray(resumeData.certificates) ? resumeData.certificates.map(cert => ({
+                        certificateId: '00000000-0000-0000-0000-000000000000',
+                        providerName: cert.providerName || '',
+                        startDate: cert.startDate || '2020-01-01',
+                        endDate: cert.endDate || null,
+                        topicName: cert.topicName || '',
+                        gpa: cert.gpa || null,
+                        resumeId: $('#ResumeId').val() || '00000000-0000-0000-0000-000000000000'
+                    })) : [],
+                    
+                    // Metadata
+                    createdDate: new Date().toISOString(),
+                    modifiedDate: new Date().toISOString(),
+                    isDeleted: false
+                };
+            }
+
+            function formatResume(resumeText) {
+                // Add some basic formatting to the resume text
+                return resumeText.replace(/\n/g, '<br>').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+            }
+
+            function showAlert(message, type) {
+                // Remove existing alerts
+                $('.alert').alert('close');
+                
+                // Create a temporary alert
+                var alert = `
+                    <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                        ${message}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                `;
+                
+                // Insert at the top of the card body
+                $('.card-body').prepend(alert);
+                
+                // Auto-dismiss after 5 seconds for non-error alerts
+                if (type !== 'danger') {
+                    setTimeout(function() {
+                        $('.alert').alert('close');
+                    }, 5000);
+                }
+            }
+        });
+    </script>
+
+    <style>
+        .resume-output {
+            white-space: pre-wrap;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #e3e6f0;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .form-label {
+            color: #5a5c69;
+        }
+
+        textarea.form-control {
+            border: 1px solid #d1d3e2;
+            border-radius: 0.35rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        textarea.form-control:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+        }
+
+        .card.border-info {
+            border-left: 4px solid #36b9cc !important;
+        }
+
+        .btn-block + .btn-block {
+            margin-top: 0;
+        }
+
+        /* Save button styling */
+        #saveBtn:disabled {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* Alert positioning */
+        .alert {
+            margin-bottom: 1rem;
+            z-index: 1050;
+        }
+
+        /* Resume output improvements */
+        .resume-output::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .resume-output::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .resume-output::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .resume-output::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+}

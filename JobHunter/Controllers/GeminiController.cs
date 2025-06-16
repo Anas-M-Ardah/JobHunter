@@ -16,7 +16,7 @@ namespace JobHunter.Controllers
         {
             try
             {
-                var prompt = "Write a brief professional summary for a software developer with 5 years of experience";
+                var prompt = "are you able to generate base64 images?";
                 var result = await _geminiService.GenerateTextAsync(prompt);
 
                 return Json(new { success = true, text = result });

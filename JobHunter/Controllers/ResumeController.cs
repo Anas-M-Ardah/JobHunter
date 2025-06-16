@@ -13,12 +13,15 @@ namespace JobHunter.Controllers
         private readonly IResumeRepository _resumeRepository;
         private readonly UserManager<User> _userManager;
         private readonly IWordService _wordService;
+        private readonly IGeminiService _geminiService;
 
-        public ResumeController(IResumeRepository resumeRepository, UserManager<User> userManager, IWordService wordService)
+        public ResumeController(IResumeRepository resumeRepository, UserManager<User> userManager,
+            IWordService wordService, IGeminiService geminiService)
         {
             _resumeRepository = resumeRepository;
             _userManager = userManager;
             _wordService = wordService;
+            _geminiService = geminiService;
         }
 
         public async Task<IActionResult> Index()
@@ -150,6 +153,180 @@ namespace JobHunter.Controllers
             }
         }
 
+        public async Task<IActionResult> UnguidedResumeCreate()
+        {
+            try
+            {
+                // Get the current user
+                var user = await _userManager.GetUserAsync(User);
 
+                // Create the DTO model with user information pre-filled
+                var model = new UnguidedResumeCreateEditDTO
+                {
+                    EndUserId = Guid.Parse(user.Id),
+                    UserInformation = string.Empty,
+                    JobDescription = string.Empty
+                };
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                // Redirect to error page or show error message
+                TempData["ErrorMessage"] = "An error occurred while loading the page. Please try again.";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UnguidedCreate(string userInformation, string jobDescription)
+        {
+            try
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                if (user == null)
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = "User not authenticated. Please log in again.",
+                        requiresLogin = true
+                    });
+                }
+
+                if (string.IsNullOrWhiteSpace(userInformation) || string.IsNullOrWhiteSpace(jobDescription))
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Both user information and job description are required.",
+                        isValidationError = true
+                    });
+                }
+
+                //_logger.LogInformation("Generating resume for user {UserId}", user.Id);
+
+                var result = await _geminiService.GenerateBaseResumeAsync(jobDescription, userInformation);
+
+                if (!result.IsValid)
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = result.ValidationMessage,
+                        isValidationError = true
+                    });
+                }
+
+                if (result.ResumeData == null)
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Failed to generate resume data",
+                        isGenerationError = true
+                    });
+                }
+
+                // Map to Resume entity for potential saving
+                var resume = _resumeRepository.MapToResumeEntity(
+                    result.ResumeData,
+                    Guid.Parse(user.Id),
+                    jobDescription
+                );
+
+                // You can save the resume to database here if needed
+                // await _resumeService.SaveResumeAsync(resume);
+
+                //_logger.LogInformation("Resume generated successfully for user {UserId}", user.Id);
+
+                return Json(new
+                {
+                    success = true,
+                    resume = result.ResumeData.FormattedResume,
+                    resumeData = result.ResumeData // Optional: return structured data too
+                });
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "Error generating resume for user {UserId}", User.Identity?.Name ?? "Unknown");
+
+                return Json(new
+                {
+                    success = false,
+                    message = "An error occurred while generating the resume. Please try again."
+                });
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> SaveResume([FromBody] Resume resume)
+        {
+            try
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                if (user == null)
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = "User not authenticated. Please log in again."
+                    });
+                }
+
+                if (resume == null)
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Resume data is required."
+                    });
+                }
+
+                // Generate new ResumeId if it's empty
+                if (resume.ResumeId == Guid.Empty)
+                {
+                    resume.ResumeId = Guid.NewGuid();
+                }
+
+                // Set metadata
+                resume.CreatedDate = DateTime.Now;
+                resume.ModifiedDate = DateTime.Now;
+                resume.IsDeleted = false;
+                
+
+                // Save to database
+                if(await _resumeRepository.SaveResumeAsync(resume, user))
+                {
+                    return Json(new
+                    {
+                        success = true,
+                        message = "Resume saved successfully!",
+                        resumeId = resume.ResumeId
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Failed to save resume. Please try again."
+                    });
+                }
+
+               
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "Error saving resume for user {UserId}", User.Identity?.Name ?? "Unknown");
+
+                return Json(new
+                {
+                    success = false,
+                    message = "An error occurred while saving the resume. Please try again."
+                });
+            }
+        }
     }
 }
