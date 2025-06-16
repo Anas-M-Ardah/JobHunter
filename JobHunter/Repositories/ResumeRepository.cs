@@ -27,7 +27,7 @@ namespace JobHunter.Repositories
                 {
                     return false; // Mapping failed
                 }
-
+                resume.JobDescription = "none";
                 _context.Resumes.Add(resume);
                 _context.SaveChanges();
                 return true;
@@ -342,6 +342,7 @@ namespace JobHunter.Repositories
                     CreatedDate = DateTime.Now,
                     ModifiedDate = DateTime.Now,
                     EndUser = (EndUser)user
+                    
                 };
             }
             catch (Exception ex)

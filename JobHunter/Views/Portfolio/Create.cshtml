@@ -9,90 +9,94 @@
     var currentUserId = currentUser.Id;
 }
 
-<div class="container-fluid">
-    <!-- Page Header --> <div class="d-sm-flex align-items-center justify-content-between mb-4"> <h1 class="h3 mb-0 text-gray-800">Create Your Portfolio</h1> </div>
+<!-- Mobile-optimized container with better width utilization -->
+<div class="container-fluid px-2 px-md-4">
+    <!-- Page Header with mobile optimization -->
+    <div class="d-flex align-items-center justify-content-between mb-3 mb-md-4">
+        <h1 class="h4 h3-md mb-0 text-gray-800">Create Your Portfolio</h1>
+    </div>
 
     <form id="portfolioForm" asp-action="Create" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="alert alert-danger shadow-sm" role="alert"></div>
 
         <!-- Personal Information Section -->
-        <div class="card shadow mb-4 border-left-primary">
-            <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-primary">
+        <div class="card shadow mb-3 mb-md-4 border-left-primary">
+            <div class="card-header py-3 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center">
+                <h6 class="m-0 font-weight-bold text-primary mb-2 mb-sm-0">
                     <i class="fas fa-user-circle mr-2"></i>Personal Information
                 </h6>
             </div>
-            <div class="card-body">
-                <!-- Personal Details -->
+            <div class="card-body p-3 p-md-4">
+                <!-- Personal Details with mobile-first responsive design -->
                 <div class="row">
-                    <div class="col-lg-4 mb-3">
+                    <div class="col-12 col-sm-6 col-lg-4 mb-3">
                         <div class="form-group">
                             <label asp-for="FirstName" class="small font-weight-bold text-gray-800"></label>
-                            <input asp-for="FirstName" class="form-control shadow-sm" placeholder="Enter your first name" required />
+                            <input asp-for="FirstName" class="form-control form-control-lg form-control-md-regular shadow-sm" placeholder="Enter your first name" required />
                             <span asp-validation-for="FirstName" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
-                    <div class="col-lg-4 mb-3">
+                    <div class="col-12 col-sm-6 col-lg-4 mb-3">
                         <div class="form-group">
                             <label asp-for="SecondName" class="small font-weight-bold text-gray-800">Middle Name</label>
-                            <input asp-for="SecondName" class="form-control shadow-sm" placeholder="Enter your middle name" />
+                            <input asp-for="SecondName" class="form-control form-control-lg form-control-md-regular shadow-sm" placeholder="Enter your middle name" />
                             <span asp-validation-for="SecondName" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
-                    <div class="col-lg-4 mb-3">
+                    <div class="col-12 col-sm-6 col-lg-4 mb-3">
                         <div class="form-group">
                             <label asp-for="LastName" class="small font-weight-bold text-gray-800"></label>
-                            <input asp-for="LastName" class="form-control shadow-sm" placeholder="Enter your last name" required />
+                            <input asp-for="LastName" class="form-control form-control-lg form-control-md-regular shadow-sm" placeholder="Enter your last name" required />
                             <span asp-validation-for="LastName" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-12 col-md-6 mb-3">
                         <div class="form-group">
                             <label asp-for="DateOfBirth" class="small font-weight-bold text-gray-800"></label>
-                            <input asp-for="DateOfBirth" type="date" class="form-control shadow-sm" required />
+                            <input asp-for="DateOfBirth" type="date" class="form-control form-control-lg form-control-md-regular shadow-sm" required />
                             <span asp-validation-for="DateOfBirth" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-12 col-md-6 mb-3">
                         <div class="form-group">
                             <label asp-for="Address" class="small font-weight-bold text-gray-800"></label>
-                            <input asp-for="Address" class="form-control shadow-sm" placeholder="Enter your full address" required />
+                            <input asp-for="Address" class="form-control form-control-lg form-control-md-regular shadow-sm" placeholder="Enter your full address" required />
                             <span asp-validation-for="Address" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                 </div>
                 <!-- Contact Information -->
                 <div class="row">
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-12 col-md-6 mb-3">
                         <div class="form-group">
                             <label asp-for="Email" class="small font-weight-bold text-gray-800"></label>
-                            <input asp-for="Email" type="email" class="form-control shadow-sm" placeholder="Enter your email address" required />
+                            <input asp-for="Email" type="email" class="form-control form-control-lg form-control-md-regular shadow-sm" placeholder="Enter your email address" required />
                             <span asp-validation-for="Email" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-12 col-md-6 mb-3">
                         <div class="form-group">
                             <label asp-for="PhoneNumber" class="small font-weight-bold text-gray-800"></label>
-                            <input asp-for="PhoneNumber" type="tel" class="form-control shadow-sm" placeholder="Enter your phone number" required />
+                            <input asp-for="PhoneNumber" type="tel" class="form-control form-control-lg form-control-md-regular shadow-sm" placeholder="Enter your phone number" required />
                             <span asp-validation-for="PhoneNumber" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
                 </div>
                 <!-- Professional Information -->
                 <div class="row">
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-12 col-md-6 mb-3">
                         <div class="form-group">
                             <label asp-for="Title" class="small font-weight-bold text-gray-800">Professional Title</label>
-                            <input asp-for="Title" class="form-control shadow-sm" placeholder="e.g., Senior Software Engineer" required />
+                            <input asp-for="Title" class="form-control form-control-lg form-control-md-regular shadow-sm" placeholder="e.g., Senior Software Engineer" required />
                             <span asp-validation-for="Title" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-12 col-md-6 mb-3">
                         <div class="form-group">
                             <label asp-for="Major" class="small font-weight-bold text-gray-800">Field of Expertise</label>
-                            <input asp-for="Major" class="form-control shadow-sm" placeholder="e.g., Computer Science, Marketing" required />
+                            <input asp-for="Major" class="form-control form-control-lg form-control-md-regular shadow-sm" placeholder="e.g., Computer Science, Marketing" required />
                             <span asp-validation-for="Major" class="text-danger small d-block mt-1"></span>
                         </div>
                     </div>
@@ -100,7 +104,7 @@
                 <!-- Personal Image -->
                 <div class="form-group mb-3">
                     <label asp-for="PersonalImage" class="small font-weight-bold text-gray-800">Profile Image URL</label>
-                    <input asp-for="PersonalImage" type="url" class="form-control shadow-sm" placeholder="https://example.com/your-image.jpg" />
+                    <input asp-for="PersonalImage" type="url" class="form-control form-control-lg form-control-md-regular shadow-sm" placeholder="https://example.com/your-image.jpg" />
                     <small class="form-text text-muted">Enter a valid image URL for your profile picture.</small>
                     <span asp-validation-for="PersonalImage" class="text-danger small d-block mt-1"></span>
                 </div>
@@ -112,7 +116,7 @@
                                   placeholder="Share your professional journey, key achievements, expertise, and what makes you unique in your field..."
                                   maxlength="1000" required></textarea>
                         <small class="form-text text-muted char-count-display">0/1000 characters</small>
-                        <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="replaceWithAI(this)">
+                        <button type="button" class="btn btn-outline-primary btn-sm btn-block btn-md-inline mt-2" onclick="replaceWithAI(this)">
                             <i class="fas fa-magic"></i> Replace with AI Bio
                         </button>
                     </div>
@@ -122,16 +126,16 @@
         </div>
 
         <!-- Services Section -->
-        <div class="card shadow mb-4 border-left-success">
-            <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-success">
+        <div class="card shadow mb-3 mb-md-4 border-left-success">
+            <div class="card-header py-3 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center">
+                <h6 class="m-0 font-weight-bold text-success mb-2 mb-sm-0">
                     <i class="fas fa-tools mr-2"></i>Services Offered
                 </h6>
-                <button type="button" id="add-service" class="btn btn-success btn-sm shadow-sm">
+                <button type="button" id="add-service" class="btn btn-success btn-sm btn-block btn-sm-inline shadow-sm">
                     <i class="fas fa-plus mr-1"></i>Add Service
                 </button>
             </div>
-            <div class="card-body">
+            <div class="card-body p-3 p-md-4">
                 <div id="services-container">
                     <!-- Service items will be dynamically inserted here -->
                 </div>
@@ -139,16 +143,16 @@
         </div>
 
         <!-- Projects Section -->
-        <div class="card shadow mb-4 border-left-info">
-            <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-info">
+        <div class="card shadow mb-3 mb-md-4 border-left-info">
+            <div class="card-header py-3 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center">
+                <h6 class="m-0 font-weight-bold text-info mb-2 mb-sm-0">
                     <i class="fas fa-project-diagram mr-2"></i>Projects
                 </h6>
-                <button type="button" id="add-project" class="btn btn-info btn-sm shadow-sm">
+                <button type="button" id="add-project" class="btn btn-info btn-sm btn-block btn-sm-inline shadow-sm">
                     <i class="fas fa-plus mr-1"></i>Add Project
                 </button>
             </div>
-            <div class="card-body">
+            <div class="card-body p-3 p-md-4">
                 <div id="projects-container">
                     <!-- Project items will be dynamically inserted here -->
                 </div>
@@ -158,20 +162,199 @@
         <input type="hidden" asp-for="EndUserId" value="@currentUserId" />
         <input type="hidden" asp-for="PortfolioId" value="@Guid.NewGuid()" />
 
-        <!-- MODIFIED: Final Action Buttons for both mobile and desktop -->
-        <div class="d-flex justify-content-end align-items-center my-4">
+        <!-- Mobile-optimized Final Action Buttons -->
+        <div class="d-flex flex-column flex-sm-row justify-content-end align-items-stretch align-items-sm-center my-4 gap-2">
             <!-- Cancel button navigates to the Index action -->
-            <a asp-action="Index" class="btn btn-secondary btn-lg shadow-sm">
-                Cancel
+            <a asp-action="Index" class="btn btn-secondary btn-lg shadow-sm mb-2 mb-sm-0 mr-sm-3">
+                <i class="fas fa-times fa-sm mr-2"></i>Cancel
             </a>
 
             <!-- Submit button creates the portfolio -->
-            <button type="submit" class="btn btn-primary btn-lg shadow-sm ml-3">
+            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
                 <i class="fas fa-save fa-sm mr-2"></i>Create Portfolio
             </button>
         </div>
+
+        <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+            <div class="card shadow loading-content border-left-primary">
+                <div class="card-body text-center">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col">
+                            <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Creating Your Portfolio</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">AI Enhancement in Progress</div>
+                            <div class="progress">
+                                <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                                     role="progressbar" style="width: 100%"></div>
+                            </div>
+                            <small class="text-muted mt-2 d-block">
+                                <i class="fas fa-info-circle"></i> Please don't close this window
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </form>
 </div>
+
+<!-- Mobile-specific CSS improvements -->
+<style>
+    /* Mobile-first responsive improvements */
+    @@media (max-width: 576px) {
+        .container-fluid
+
+    {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .card {
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .card-body {
+        padding: 1rem !important;
+    }
+
+    .form-control-lg {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    .btn-block {
+        display: block;
+        width: 100%;
+    }
+
+    .btn-sm.btn-block {
+        padding: 0.5rem 1rem;
+    }
+
+    .gap-2 > * {
+        margin-bottom: 0.5rem;
+    }
+
+        .gap-2 > *:last-child {
+            margin-bottom: 0;
+        }
+
+    /* Improve button spacing on mobile */
+    .card-header .btn-block {
+        margin-top: 0.5rem;
+    }
+
+    /* Better form field spacing on mobile */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Optimize text areas for mobile */
+    textarea.form-control {
+        min-height: 120px;
+    }
+
+    /* Better label visibility on mobile */
+    label {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    }
+
+    @@media (min-width: 577px) {
+        .form-control-md-regular
+
+    {
+        font-size: 0.875rem !important;
+        padding: 0.375rem 0.75rem !important;
+    }
+
+    .btn-sm-inline {
+        display: inline-block !important;
+        width: auto !important;
+    }
+
+    .btn-md-inline {
+        display: inline-block !important;
+        width: auto !important;
+    }
+
+    }
+
+    /* Ensure proper viewport utilization */
+    .container-fluid {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Better touch targets for mobile */
+    @@media (max-width: 576px) {
+        .btn
+
+    {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+
+    .form-control {
+        min-height: 44px;
+    }
+
+    select.form-control {
+        min-height: 44px;
+    }
+
+    }
+
+    /* Improve card header responsiveness */
+    .card-header {
+        flex-wrap: wrap;
+    }
+
+        .card-header h6 {
+            flex: 1;
+            min-width: 200px;
+        }
+
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(2px);
+    }
+
+    .loading-content {
+        background: #fff;
+        padding: 3rem 2rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+        border-left: 0.25rem solid #4e73df;
+        max-width: 400px;
+        text-align: center;
+    }
+
+        .loading-content .spinner-border {
+            border-width: 0.3em;
+        }
+
+    /* Disable form during loading */
+    .form-disabled {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+</style>
 
 @section Scripts {
     <script>
@@ -182,30 +365,30 @@
         const projectsContainer = document.getElementById('projects-container');
         const addProjectBtn = document.getElementById('add-project');
 
-                // --- Templates ---
+                // --- Mobile-optimized Templates ---
                 function getServiceTemplate(idx) {
                     const newGuid = crypto.randomUUID();
                     return `
                     <div class="service-item border rounded p-3 mb-3" data-id="${newGuid}">
                         <input type="hidden" name="Services[${idx}].ServiceId" value="${newGuid}" />
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="text-primary mb-0">Service #${idx + 1}</h6>
-                            <button type="button" class="btn btn-danger btn-sm remove-service">
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-3">
+                            <h6 class="text-primary mb-2 mb-sm-0">Service #${idx + 1}</h6>
+                            <button type="button" class="btn btn-danger btn-sm btn-block btn-sm-inline remove-service">
                                 <i class="fas fa-trash"></i> Remove
                             </button>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label>Service Name <span class="text-danger">*</span></label>
-                                    <input type="text" name="Services[${idx}].ServiceName" class="form-control service-name-input"
+                                    <input type="text" name="Services[${idx}].ServiceName" class="form-control form-control-lg form-control-md-regular service-name-input"
                                            placeholder="e.g., Web Development" required minlength="3" maxlength="100" />
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label>Service Image URL <span class="text-danger">*</span></label>
-                                    <input type="url" name="Services[${idx}].ServiceImage" class="form-control"
+                                    <input type="url" name="Services[${idx}].ServiceImage" class="form-control form-control-lg form-control-md-regular"
                                            placeholder="https://example.com/service-image.jpg" required />
                                 </div>
                             </div>
@@ -216,7 +399,7 @@
                                 <textarea name="Services[${idx}].ServiceDescription" class="form-control char-count-input service-description" rows="3"
                                           placeholder="Describe what this service includes..." required minlength="10" maxlength="1000"></textarea>
                                 <small class="form-text text-muted char-count-display">0/1000 characters</small>
-                                <button type="button" class="btn btn-outline-success btn-sm mt-2 improve-with-ai-btn">
+                                <button type="button" class="btn btn-outline-success btn-sm btn-block btn-md-inline mt-2 improve-with-ai-btn">
                                     <i class="fas fa-magic"></i> Improve with AI
                                 </button>
                             </div>
@@ -228,23 +411,23 @@
                     return `
                     <div class="project-item border rounded p-3 mb-3">
                         <input type="hidden" name="Projects[${idx}].ProjectId" value="${crypto.randomUUID()}" />
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="text-primary mb-0">Project #${idx + 1}</h6>
-                            <button type="button" class="btn btn-danger btn-sm remove-project">
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-3">
+                            <h6 class="text-primary mb-2 mb-sm-0">Project #${idx + 1}</h6>
+                            <button type="button" class="btn btn-danger btn-sm btn-block btn-sm-inline remove-project">
                                 <i class="fas fa-trash"></i> Remove
                             </button>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label>Project Name <span class="text-danger">*</span></label>
-                                    <input type="text" name="Projects[${idx}].ProjectName" class="form-control" placeholder="e.g., E-commerce Website" required />
+                                    <input type="text" name="Projects[${idx}].ProjectName" class="form-control form-control-lg form-control-md-regular" placeholder="e.g., E-commerce Website" required />
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label>Service Association <span class="text-danger">*</span></label>
-                                    <select name="Projects[${idx}].ServiceId" class="form-control service-selector" required>
+                                    <select name="Projects[${idx}].ServiceId" class="form-control form-control-lg form-control-md-regular service-selector" required>
                                         <option value="">-- Select a Service --</option>
                                     </select>
                                     <!-- ADDED: Hidden input to hold the ServiceName for model binding -->
@@ -252,31 +435,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label>Project Link <span class="text-danger">*</span></label>
-                            <input type="url" name="Projects[${idx}].ProjectLink" class="form-control" placeholder="https://project-demo.com" required />
+                            <input type="url" name="Projects[${idx}].ProjectLink" class="form-control form-control-lg form-control-md-regular" placeholder="https://project-demo.com" required />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label>Project Description <span class="text-danger">*</span></label>
                             <div class="position-relative">
                                  <textarea name="Projects[${idx}].ProjectDescription" class="form-control project-description" rows="3"
                                           placeholder="Describe the project, technologies used, challenges solved, and your role..." required></textarea>
-                                <button type="button" class="btn btn-outline-info btn-sm mt-2 improve-with-ai-btn">
+                                <button type="button" class="btn btn-outline-info btn-sm btn-block btn-md-inline mt-2 improve-with-ai-btn">
                                     <i class="fas fa-magic"></i> Improve with AI
                                 </button>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label>Start Date <span class="text-danger">*</span></label>
-                                    <input type="date" name="Projects[${idx}].StartDate" class="form-control" required />
+                                    <input type="date" name="Projects[${idx}].StartDate" class="form-control form-control-lg form-control-md-regular" required />
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label>End Date</label>
-                                    <input type="date" name="Projects[${idx}].EndDate" class="form-control" />
+                                    <input type="date" name="Projects[${idx}].EndDate" class="form-control form-control-lg form-control-md-regular" />
                                     <small class="form-text text-muted">Leave empty if ongoing</small>
                                 </div>
                             </div>
@@ -291,7 +474,7 @@
                     </div>`;
                 }
 
-                // --- Core Logic ---
+                // --- Core Logic (unchanged from original) ---
                 function updateAllIndexes() {
                     // Update Service indexes
                     const serviceItems = servicesContainer.querySelectorAll('.service-item');
@@ -561,5 +744,46 @@
 
                 initializeForm();
             });
+
+                 $(document).ready(function() {
+            $('form').on('submit', function(e) {
+                // Show loading overlay
+                $('#loadingOverlay').fadeIn(300);
+
+                // Add disabled class to form
+                $(this).addClass('form-disabled');
+
+                // Disable submit button to prevent double submission
+                $('button[type="submit"]').prop('disabled', true).html(`
+                    <span class="icon text-white-50">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </span>
+                    <span class="text">Creating...</span>
+                `);
+
+                // Optional: Add timeout for very long requests
+                setTimeout(function() {
+                    if ($('#loadingOverlay').is(':visible')) {
+                        $('#loadingOverlay .loading-content p').html(
+                            '<i class="fas fa-clock text-warning"></i> This is taking longer than usual. Please wait...'
+                        );
+                    }
+                }, 30000); // 30 seconds
+            });
+
+            // Hide loader if there are validation errors (form doesn't actually submit)
+            setTimeout(function() {
+                if ($('.alert-danger').length > 0) {
+                    $('#loadingOverlay').fadeOut(300);
+                    $('form').removeClass('form-disabled');
+                    $('button[type="submit"]').prop('disabled', false).html(`
+                        <span class="icon text-white-50">
+                            <i class="fas fa-save"></i>
+                        </span>
+                        <span class="text">Create Resume</span>
+                    `);
+                }
+            }, 1000);
+        });
     </script>
 }

@@ -18,10 +18,10 @@ namespace JobHunter.Controllers
         // Only allow this in development
         public async Task<IActionResult> CreateAdmin()
         {
-            if (!_environment.IsDevelopment())
-            {
-                return NotFound();
-            }
+            //if (!_environment.IsDevelopment())
+            //{
+            //    return NotFound();
+            //}
 
             try
             {

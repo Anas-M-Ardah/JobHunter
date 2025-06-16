@@ -3,6 +3,38 @@
   "WorkspaceRootPath": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\views\\landingpage\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\views\\landingpage\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\views\\landingpage\\portfolio.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\views\\landingpage\\portfolio.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\views\\landingpage\\resume.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\views\\landingpage\\resume.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\views\\shared\\_newlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\views\\shared\\_newlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\controllers\\resumecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\controllers\\resumecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\repositories\\resumerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\repositories\\resumerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\views\\portfolio\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\views\\portfolio\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|c:\\anas-alardah\\al hussein technical university\\technical\\asp.net\\jobhunter\\jobhunter\\services\\geminiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5B5BFE-2357-4223-8B39-B9C764059349}|JobHunter\\JobHunter.csproj|solutionrelative:jobhunter\\services\\geminiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -23,6 +55,110 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\appsettings.json",
+              "RelativeDocumentMoniker": "JobHunter\\appsettings.json",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\appsettings.json",
+              "RelativeToolTip": "JobHunter\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-16T14:47:35.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Resume.cshtml",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\LandingPage\\Resume.cshtml",
+              "RelativeDocumentMoniker": "JobHunter\\Views\\LandingPage\\Resume.cshtml",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\LandingPage\\Resume.cshtml",
+              "RelativeToolTip": "JobHunter\\Views\\LandingPage\\Resume.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T14:17:20.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\LandingPage\\Index.cshtml",
+              "RelativeDocumentMoniker": "JobHunter\\Views\\LandingPage\\Index.cshtml",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\LandingPage\\Index.cshtml",
+              "RelativeToolTip": "JobHunter\\Views\\LandingPage\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T14:17:10.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ResumeController.cs",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Controllers\\ResumeController.cs",
+              "RelativeDocumentMoniker": "JobHunter\\Controllers\\ResumeController.cs",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Controllers\\ResumeController.cs",
+              "RelativeToolTip": "JobHunter\\Controllers\\ResumeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T13:40:48.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\Portfolio\\Index.cshtml",
+              "RelativeDocumentMoniker": "JobHunter\\Views\\Portfolio\\Index.cshtml",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\Portfolio\\Index.cshtml",
+              "RelativeToolTip": "JobHunter\\Views\\Portfolio\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T13:32:40.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Portfolio.cshtml",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\LandingPage\\Portfolio.cshtml",
+              "RelativeDocumentMoniker": "JobHunter\\Views\\LandingPage\\Portfolio.cshtml",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\LandingPage\\Portfolio.cshtml",
+              "RelativeToolTip": "JobHunter\\Views\\LandingPage\\Portfolio.cshtml",
+              "ViewState": "AgIAAAIAAAAAAAAAAIAwwHoAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T13:32:13.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ResumeRepository.cs",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Repositories\\ResumeRepository.cs",
+              "RelativeDocumentMoniker": "JobHunter\\Repositories\\ResumeRepository.cs",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Repositories\\ResumeRepository.cs",
+              "RelativeToolTip": "JobHunter\\Repositories\\ResumeRepository.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAtwB0AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T14:07:05.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_NewLayout.cshtml",
+              "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\Shared\\_NewLayout.cshtml",
+              "RelativeDocumentMoniker": "JobHunter\\Views\\Shared\\_NewLayout.cshtml",
+              "ToolTip": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Views\\Shared\\_NewLayout.cshtml",
+              "RelativeToolTip": "JobHunter\\Views\\Shared\\_NewLayout.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAIAwwIAAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T13:31:33.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "GeminiService.cs",
               "DocumentMoniker": "C:\\Anas-AlArdah\\Al Hussein Technical University\\Technical\\ASP.NET\\JobHunter\\JobHunter\\Services\\GeminiService.cs",
               "RelativeDocumentMoniker": "JobHunter\\Services\\GeminiService.cs",
