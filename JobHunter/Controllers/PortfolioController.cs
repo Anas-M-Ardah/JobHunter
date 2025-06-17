@@ -1,9 +1,10 @@
-﻿using JobHunter.Repositories;
+﻿using JobHunter.DTOs;
+using JobHunter.Models;
+using JobHunter.Repositories;
+using JobHunter.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using JobHunter.Models;
-using JobHunter.DTOs;
-using JobHunter.Services;
 namespace JobHunter.Controllers
 {
     public class PortfolioController : BaseController
@@ -124,7 +125,7 @@ namespace JobHunter.Controllers
             return Json(new { improvedProjectDescription });
         }
 
-
+        [AllowAnonymous]
         public async Task<IActionResult> View(Guid id)
         {
             var portfolio = await _portfolioRepository.GetPortfolioById(id);

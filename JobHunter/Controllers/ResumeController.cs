@@ -3,6 +3,7 @@ using JobHunter.DTOs;
 using JobHunter.Models;
 using JobHunter.Repositories;
 using JobHunter.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -86,6 +87,7 @@ namespace JobHunter.Controllers
         }
 
         //VIEW GET
+        [AllowAnonymous]
         public async Task<IActionResult> View(Guid resumeId)
         {
             var resume = await _resumeRepository.GetResumeByIdAsync(resumeId);
